@@ -1,0 +1,225 @@
+/* The Separation of CSS Solemnly Just to Make a clear code within the HTML */
+/* Fixed.css used to display some information on the left of the page*/
+
+* {
+  box-sizing: border-box;
+  font-family: "Gabarito", sans-serif;
+}
+
+body {
+  background-color: #222831;
+  background-image: url(image/sianok.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#fixed {
+  position: absolute;
+  width: 20%;
+  height: 185%;
+  margin-top: 40px;
+  margin-left: 30px;
+  background-color: #222831;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+}
+
+#fixed-card {
+  background-color: #393e46;
+  padding-bottom: 10px;
+  text-align: center;
+}
+
+#fixed-card img {
+  width: 78px;
+  height: 80px;
+  margin-top: 20px;
+  margin-bottom: -5px;
+  border-radius: 100px;
+}
+
+#fixed-card p {
+  margin-top: -12px;
+  color: #7f8286;
+}
+
+#fixed-card h4 {
+  color: #eeeeee;
+  font-weight: 600;
+}
+
+#fixed-stats ol {
+  list-style: none;
+  padding: 10px 40px;
+  color: #eeeeee;
+}
+
+#fixed-stats ol li span {
+  color: #7f8286;
+}
+
+#fixed-stats hr {
+  border: 2px solid #393e46;
+}
+
+#fixed-stats {
+  padding-bottom: 10px;
+  margin: 0px 20px;
+}
+
+#fixed-stats li {
+  margin-bottom: -5px;
+  margin-left: -30px;
+}
+
+pre {
+  font-family: "Gabarito", sans-serif;
+}
+
+#fixed-circle {
+  padding: 20px 0px 15px 0px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px 30px;
+}
+
+.flex-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+.single-chart {
+  width: 100%;
+  justify-content: space-around;
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+  max-width: 100%;
+  max-height: 250px;
+}
+
+.circle-bg {
+  fill: none;
+  stroke: #222831;
+  stroke-width: 3.8;
+}
+
+.circle {
+  fill: none;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  animation: progress 1s ease-out forwards;
+}
+
+@keyframes progress {
+  0% {
+    stroke-dasharray: 0 100;
+  }
+}
+
+.circular-chart.orange .circle {
+  stroke: #fd7014;
+}
+
+.percentage {
+  fill: #eeeeee;
+  font-family: "Gabarito", sans-serif;
+  font-size: 9px;
+  text-anchor: middle;
+}
+
+.single-chart p {
+  font-size: 15px;
+  text-align: center;
+  margin-top: 0px;
+  color: #eeeeee;
+}
+
+#fixed-bar {
+  padding: 5px 0px 30px 0px;
+}
+
+#fixed-bar p {
+  color: #eeeeee;
+}
+
+.container {
+  width: 100%;
+  background-color: #393e46;
+  border-radius: 50px;
+  margin-top: -10px;
+}
+
+.skills {
+  text-align: right;
+  padding-right: 10px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+  color: white;
+  border-radius: 50px;
+}
+
+.bar,
+.bar1,
+.bar2,
+.bar3 {
+  background-color: #fd7014;
+}
+
+.bar {
+  width: 40%;
+}
+.bar1 {
+  width: 80%;
+}
+.bar2 {
+  width: 50%;
+}
+.bar3 {
+  width: 65%;
+}
+
+#fixed-stats ul {
+  color: #7f8286;
+  list-style-type: "\2714     ";
+  list-style-position: outside;
+  padding: 5px 20px 20px 60px;
+}
+
+#fixed-stats ul li {
+  padding-top: 10px;
+}
+
+#fixed-stats a {
+  text-decoration: none;
+  margin: 10px 0px;
+  padding-top: 10px;
+  padding-bottom: 50px;
+  color: #7f8286;
+}
+
+#fixed-stats #cv {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+#fixed-stats #cv a {
+  grid-column: 1 / span 2;
+}
+
+#fixed-stats #cv svg {
+  margin-top: 19px;
+  margin-left: -30px;
+}
+
+#fixed #contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: 30px;
+  gap: 10px 35px;
+  background-color: #393e46;
+  padding: 20px 20px;
+}
