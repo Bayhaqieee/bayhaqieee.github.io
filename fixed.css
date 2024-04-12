@@ -6,13 +6,6 @@
   font-family: "Gabarito", sans-serif;
 }
 
-body {
-  background-color: #222831;
-  background-image: url(image/sianok.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
 #fixed {
   position: absolute;
   width: 20%;
@@ -105,42 +98,7 @@ body {
 
 #fixed-bar p {
   color: #eeeeee;
-}
-
-.container {
-  width: 100%;
-  background-color: #393e46;
-  border-radius: 3rem;
-  margin-top: -0.8rem;
-}
-
-.skills {
-  text-align: right;
-  padding-right: 1rem;
-  padding-top: 0rem;
-  padding-bottom: 0rem;
-  color: white;
-  border-radius: 3rem;
-}
-
-.bar,
-.bar1,
-.bar2,
-.bar3 {
-  background-color: #fd7014;
-}
-
-.bar {
-  width: 40%;
-}
-.bar1 {
-  width: 80%;
-}
-.bar2 {
-  width: 50%;
-}
-.bar3 {
-  width: 65%;
+  margin: 1rem 0rem 0.2rem 0rem;
 }
 
 #fixed-stats ul {

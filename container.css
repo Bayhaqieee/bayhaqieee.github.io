@@ -1,3 +1,10 @@
+html {
+    background-color: #222831;
+    background-image: url(image/sianok.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
 #container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
