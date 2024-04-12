@@ -46,7 +46,7 @@ body {
 #fixed-card h5 {
   margin-top: 1rem;
   color: #eeeeee;
-  font-weight: 600;
+  font-weight: 590;
 }
 
 #fixed-stats li {
@@ -90,7 +90,14 @@ body {
   font-weight:400;
 }
 
+.modified{
+  background-color: #393e46;
+}
 
+.accordion-item .accordion-header .accordion-button{
+  background-color: #eeeeee;
+  color: #393e46;
+}
 
 #fixed-bar {
   padding: 0rem 0rem 1rem 0rem;
