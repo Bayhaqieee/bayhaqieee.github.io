@@ -39,11 +39,12 @@ body {
 }
 
 #fixed-card p {
-  margin-top: -1rem;
+  margin-top: 0rem;
   color: #7f8286;
 }
 
-#fixed-card h4 {
+#fixed-card h5 {
+  margin-top: 1rem;
   color: #eeeeee;
   font-weight: 600;
 }
