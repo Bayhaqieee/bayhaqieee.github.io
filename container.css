@@ -1,5 +1,3 @@
-/* The Separation of CSS Solemnly Just to Make a clear code within the HTML */
-
 #container{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
