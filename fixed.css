@@ -49,21 +49,10 @@ body {
   font-weight: 600;
 }
 
-#fixed-stats ol {
-  list-style: none;
-  padding: 0.5rem 2rem;
-  color: #eeeeee;
-}
-
-#fixed-stats .desc-self{
-  display: flex;
-  grid-template-columns: 1fr 1fr;
-  gap: 0rem 0.5rem;
-}
-
-#fixed-stats ol li span {
-  color: #7f8286;
-  margin: 1rem 0rem;
+#fixed-stats li {
+  margin-bottom: -0.5rem;
+  margin-left: -2rem;
+  margin-right: -1rem;
 }
 
 #fixed-stats hr {
@@ -75,11 +64,33 @@ body {
   margin: 0px 1.25rem;
 }
 
-#fixed-stats li {
-  margin-bottom: -0.5rem;
-  margin-left: -2rem;
-  margin-right: -1rem;
+#fixed-stats #desc-self ol {
+  list-style: none;
+  padding: 2rem 0rem 0rem 2rem;
+  color: #eeeeee;
+  justify-content: center;
+  align-items: center;
 }
+
+#fixed-stats #desc-self{
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem 3rem;
+}
+
+#fixed-stats #desc-self ol span {
+  color: #7f8286;
+  margin: 1rem 0rem;
+}
+
+#fixed-stats #fixed-skills h5{
+  color: #eeeeee;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight:400;
+}
+
+
 
 #fixed-bar {
   padding: 0rem 0rem 1rem 0rem;

@@ -26,27 +26,27 @@
             Informatics Student</p>
         </div>
         <div id="fixed-stats">
-          <div class="desc-self">
+          <div id="desc-self">
             <ol>
               <li>
-                <pre>Nationality :</pre>
-                <pre>City            :</pre>
-                <pre>Age            :</pre>
-                <pre>Hobby        :</pre>
+                <p>Nationality </p>
+                <p>City </p>
+                <p>Age </p>
+                <p>Hobby </p>
               </li>
             </ol>
             <ol>
               <li>
-                <pre><span>Indonesia</span></pre>
-                <pre><span>Bukittinggi</span></pre>
-                <pre><span>20</span></pre>
-                <pre><span>Game n Gym</span></pre>
+                <p><span><a href="#" title="KRRRAHHHH &#129413;" data-toggle="popover" data-trigger="hover">Indonesia</a></span></p>
+                <p><span><a href="#" title="Onde Mande &#128293;" data-toggle="popover" data-trigger="hover">Bukittinggi</a></span></p>
+                <p><span><a href="#" title="..." data-toggle="popover" data-trigger="hover">20</a></span></p>
+                <p><span><a href="#" title="Pump It &#128170;" data-toggle="popover" data-trigger="hover">Game n Gym</a></span></p>
               </li>
             </ol>
           </div>
           <hr />
           <div id="fixed-skills">
-            <h3>Highlighted Skills</h3>
+            <h5>Highlighted Skills</h5>
             <div>
               <div class="accordion accordion-flush" id="accordionFlushExample">
                 <div class="accordion-item">
@@ -749,6 +749,11 @@
     </div>
   </body>
 
+  <script>
+    $(document).ready(function(){
+      $('[data-toggle="popover"]').popover();   
+    });
+    </script>
   <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
   <script>
     var typed = new Typed("#typed", {
