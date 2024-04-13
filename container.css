@@ -34,55 +34,58 @@ html body{
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   background-color: rgb(34, 40, 49, 0.6);
-  border-radius: 3px;
-  padding: 5px 50px 0px 50px;
-  margin-top: 40px;
-  margin-right: 150px;
-  padding-bottom: 0px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+  border-radius: 0.25rem;
+  padding: 0.5rem 3rem 0rem 3rem;
+  margin-top: 2.5rem;
+  margin-right: 10rem;
+  padding-bottom: 0.1rem;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
     0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
     0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
 }
 
 #home #welcome {
   grid-column: 1 / span 2;
+  margin-top: 1rem;
 }
 
 #welcome h2 {
-  font-size: 30px;
+    margin: 0.5rem 0rem 0.5rem 0rem;
+  font-size: 2rem;
+  font-weight: 600;
   color: rgb(238, 238, 238);
 }
 
 #welcome p {
-  font-size: 20px;
-  margin-top: -10px;
+  font-size: 1.25rem;
   color: rgb(238, 238, 238);
-  margin-bottom: 45px;
+  margin-bottom: 2.5rem;
 }
 
 #univ {
-  color: rgb(253, 112, 20);
+  color: #fd7014;
 }
 
 #welcome a {
   text-decoration: none;
-  padding: 15px 40px;
+  padding: 1rem 2.5rem;
   background-color: #393e46;
-  font-size: medium;
+  font-size: 1rem;
   color: #eeeeee;
   scroll-behavior: smooth;
 }
 
 #welcome a:hover {
-  background-color: #7f8286;
+    color: #ffffff;
+  background-color: #fd7014;
   transition: 0.4s;
 }
 
 #welcome-pict img {
-  width: 300px;
-  height: 300px;
-  margin-top: -50px;
-  margin-bottom: -4px;
+  width: 20rem;
+  height: 20rem;
+  margin-top: -4rem;
+  margin-bottom: 0rem;
 }
 
 #about {
