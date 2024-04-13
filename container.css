@@ -1,7 +1,10 @@
-html {
-  background-color: #222831;
+html body{
   background-image: url(image/sianok.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
   background-size: cover;
 }
 
@@ -12,14 +15,11 @@ html {
 }
 
 #container {
+    background: linear-gradient(180deg, rgb(34, 40, 49, 0.9), rgb(34, 40, 49));
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
-  background: linear-gradient(180deg, rgb(34, 40, 49, 0.9), rgb(34, 40, 49));
-  height: 101%;
-  width: 101.3%;
-  margin-left: -10px;
-  margin-top: -10px;
-  margin-bottom: -10px;
+  height: 100%;
+  width: 100%;
 }
 
 #fixed {
