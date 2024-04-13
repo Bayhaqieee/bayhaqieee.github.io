@@ -1,21 +1,19 @@
 /* The Separation of CSS Solemnly Just to Make a clear code within the HTML */
 /* Fixed.css used to display some information on the left of the page*/
 
-* {
-  box-sizing: border-box;
-  font-family: "Gabarito", sans-serif;
-}
-
 #fixed {
   position: absolute;
   width: 20%;
-  height: 220%;
-  margin-top: 2.5rem;
   margin-left: 2rem;
+}
+
+#fixed #card-container{
   background-color: #222831;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
     0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
     0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+    margin-top: 2.5rem;
+    margin-bottom: 2rem;
 }
 
 #fixed-card {
@@ -27,7 +25,7 @@
 #fixed-card img {
   width: 5rem;
   height: 5rem;
-  margin-top: 1.25rem;
+  margin-top: 2rem;
   border-radius: 6rem;
 }
 
@@ -58,9 +56,8 @@
 
 #fixed-stats a {
   text-decoration: none;
-  margin: 1rem 0px;
   padding-top: 1rem;
-  padding-bottom: 5rem;
+  padding-bottom: 1rem;
   color: #7f8286;
 }
 
@@ -74,7 +71,7 @@
 
 #fixed-stats #desc-self ol {
   list-style: none;
-  padding: 2rem 0rem 0rem 2rem;
+  padding: 2rem 0rem 0rem 2.5rem;
   color: #eeeeee;
   justify-content: center;
   align-items: center;
@@ -103,9 +100,16 @@
   color: #eeeeee;
 }
 
+.accordion-item{
+--bs-accordion-border-color: none;
+--bs-accordion-border-width: 1rem;
+--bs-accordion-border-radius: 1rem;
+}
+
 .accordion-item .accordion-header .accordion-button{
   background-color: #eeeeee;
   color: #393e46;
+  margin-bottom: 0.5rem;
 }
 
 #fixed-bar {
@@ -131,20 +135,22 @@
 }
 
 #fixed-stats #cv {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   justify-content: center;
   align-items: center;
-  margin: -1rem 0rem -3rem 0rem;
+  text-align: center;
+  margin: 2rem 0rem 3rem 0rem;
 }
 
 #fixed-stats #cv a {
-  grid-column: 1 / span 2;
-  text-align: left;
+  color: #eeeeee;
+  font-weight: 500;
+  padding: 0.5rem 1rem ;
+  border-radius: 0.5rem;
 }
 
-#fixed-stats #cv svg {
-  margin-left: -0.75rem;
+#fixed-stats #cv a:hover {
+  color: #eeeeee;
+  background-color: #393e46;
 }
 
 #fixed #contact {
