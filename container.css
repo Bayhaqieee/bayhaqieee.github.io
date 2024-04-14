@@ -1,11 +1,10 @@
 html body{
-  background-image: url(image/sianok.jpg);
+  background-image: url(image/singgalang.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
 }
 
 * {
@@ -180,7 +179,7 @@ html body{
   color: rgb(238, 238, 238);
 }
 
-#projects {
+#projectlist {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem 4rem;
@@ -188,11 +187,11 @@ html body{
   margin-right: -60rem;
 }
 
-#projects h2 {
+#projectlist h2 {
   color: rgb(238, 238, 238);
   grid-column: 1 / span 3;
   text-align: center;
-  margin-right: 2rem;
+  margin-right: 0rem;
   margin-top: 1rem;
   margin-bottom: 1rem;
 }
