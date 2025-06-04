@@ -1,4 +1,4 @@
-html body{
+html body {
   background-image: url(image/singgalang.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
@@ -14,7 +14,7 @@ html body{
 }
 
 #container {
-    background: linear-gradient(180deg, rgb(34, 40, 49, 0.9), rgb(34, 40, 49));
+  background: linear-gradient(180deg, rgb(34, 40, 49, 0.9), rgb(34, 40, 49));
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   height: 100%;
@@ -23,10 +23,16 @@ html body{
 
 #fixed {
   grid-column: 1;
+  position: sticky; /* Changed to sticky for better responsiveness */
+  top: 0;
+  height: 100vh; /* Make it take full viewport height */
+  overflow-y: auto; /* Enable scrolling if content overflows */
+  padding-right: 1rem; /* Add some padding to the right */
 }
 
 #right {
   grid-column: 2 / span 3;
+  padding: 1rem; /* Add padding to the right section */
 }
 
 #home {
@@ -49,7 +55,7 @@ html body{
 }
 
 #welcome h2 {
-    margin: 0.5rem 0rem 0.5rem 0rem;
+  margin: 0.5rem 0rem 0.5rem 0rem;
   font-size: 2rem;
   font-weight: 600;
   color: rgb(238, 238, 238);
@@ -75,7 +81,7 @@ html body{
 }
 
 #welcome a:hover {
-    color: #ffffff;
+  color: #ffffff;
   background-color: #fd7014;
   transition: 0.4s;
 }
@@ -100,7 +106,7 @@ html body{
 }
 
 #about h2 {
-    text-align: center;
+  text-align: center;
   grid-column: 1 / span 3;
   margin-top: 2rem;
   margin-left: -5rem;
@@ -110,9 +116,9 @@ html body{
 }
 
 #about div {
-    text-align: center;
-    object-position: center;
-    align-items: center;
+  text-align: center;
+  object-position: center;
+  align-items: center;
   margin-right: 3.5rem;
   margin-left: -1.5rem;
 }
@@ -140,43 +146,59 @@ html body{
 }
 
 #experience {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex; /* Changed to flex for better layout control */
+  flex-direction: column; /* Stack items vertically */
   margin: 0.75rem 0rem 2rem 0rem;
 }
 
 #experience h2 {
-    text-align: center;
-    margin: -3rem 10rem 3rem 0rem;
+  text-align: center;
   font-size: 2rem;
   font-weight: 600;
   color: rgb(238, 238, 238);
+  margin-bottom: 3rem; /* Adjusted margin */
 }
 
-#journey #desc #track p {
-  color: #7f8286;
+#journey {
+  display: flex;
+  flex-direction: column; /* Stack journey items vertically */
+  align-items: center; /* Center align items */
 }
 
-#desc {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  margin-left: 0rem;
+.experience-item {
+  display: flex;
+  width: 100%;
+  margin-bottom: 2rem; /* Spacing between experience items */
 }
 
-#desc #year {
-    text-align: center;
-    margin-right: 5rem;
+.experience-year {
+  flex: 0 0 150px; /* Fixed width for the year column */
+  text-align: right;
+  padding-right: 2rem;
   color: rgb(238, 238, 238);
   border-right: 0.15rem solid #eeeeee;
 }
 
-#desc #track {
-  margin-left: 4rem;
+.experience-year h3 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.experience-details {
+  flex-grow: 1; /* Take remaining space */
+  padding-left: 2rem;
   color: rgb(238, 238, 238);
 }
 
-#desc #track p {
-  color: rgb(238, 238, 238);
+.experience-details h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.experience-details p {
+  margin-bottom: 1rem;
+  color: #7f8286;
 }
 
 #projectlist {
@@ -209,7 +231,7 @@ html body{
 .info h4 {
   color: #eeeeee;
   text-align: left;
-  margin: -5x 0px;
+  margin: -5px 0px; /* Corrected margin value */
 }
 
 .info p {
@@ -224,6 +246,264 @@ html body{
   border-style: none;
 }
 
-.info a:hover{
-    background-color: #7f8286;
+.info a:hover {
+  background-color: #7f8286;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  #container {
+    grid-template-columns: 1fr; /* Stack columns on smaller screens */
+  }
+
+  #fixed {
+    position: relative; /* Change to relative for smaller screens */
+    width: 100%;
+    height: auto; /* Auto height */
+    margin-left: 0;
+    padding-right: 0;
+  }
+
+  #right {
+    grid-column: 1; /* Take full width */
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #home {
+    grid-template-columns: 1fr; /* Stack home sections */
+    margin-right: 0;
+    padding: 1rem;
+  }
+
+  #welcome-pict {
+    display: none; /* Hide image on smaller screens if needed */
+  }
+
+  #about {
+    grid-template-columns: 1fr; /* Stack about sections */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem;
+  }
+
+  #about h2 {
+    grid-column: 1;
+    margin-left: 0;
+  }
+
+  #about div {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  #experience h2 {
+    margin: 1rem 0; /* Adjust margin for smaller screens */
+  }
+
+  .experience-item {
+    flex-direction: column; /* Stack year and details vertically */
+    align-items: flex-start;
+  }
+
+  .experience-year {
+    width: 100%;
+    text-align: left;
+    border-right: none;
+    border-bottom: 0.15rem solid #eeeeee; /* Add bottom border */
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .experience-details {
+    padding-left: 0;
+  }
+
+  #projectlist {
+    grid-template-columns: 1fr; /* Stack projects on smaller screens */
+    margin-left: 0;
+    margin-right: 0;
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  #fixed #card-container {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  #fixed-card img {
+    width: 4rem;
+    height: 4rem;
+    margin-top: 1rem;
+  }
+
+  #fixed-card h5 {
+    font-size: 1.2rem;
+  }
+
+  #fixed-card p {
+    font-size: 0.9rem;
+  }
+
+  #fixed-stats #desc-self ol {
+    padding: 1rem 0.5rem 0rem 1rem;
+  }
+
+  #fixed-stats #fixed-personality a {
+    margin-left: 1rem;
+    padding: 0.4rem 0.8rem;
+  }
+
+  #fixed-stats #cv a {
+    padding: 0.4rem 0.8rem;
+  }
+
+  #contact {
+    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr)); /* Adjust contact icons */
+    gap: 0.5rem 1rem;
+  }
+
+  #welcome h2 {
+    font-size: 1.5rem;
+  }
+
+  #welcome p {
+    font-size: 1rem;
+  }
+
+  #welcome a {
+    padding: 0.8rem 2rem;
+  }
+
+  #about h2 {
+    font-size: x-large;
+  }
+
+  #about div img {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  #about div h3 {
+    font-size: 1rem;
+  }
+
+  #about div p {
+    font-size: 0.9rem;
+  }
+
+  #experience h2 {
+    font-size: 1.8rem;
+  }
+
+  .experience-year h3 {
+    font-size: 1.3rem;
+  }
+
+  .experience-details h4 {
+    font-size: 1.1rem;
+  }
+
+  .experience-details p {
+    font-size: 0.9rem;
+  }
+
+  .info h4 {
+    font-size: 1.1rem;
+  }
+
+  .info p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  #fixed-card img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+
+  #fixed-card h5 {
+    font-size: 1rem;
+  }
+
+  #fixed-card p {
+    font-size: 0.8rem;
+  }
+
+  #fixed-stats #desc-self ol {
+    padding: 0.5rem 0.2rem 0rem 0.5rem;
+  }
+
+  #fixed-stats #fixed-personality a {
+    margin-left: 0.5rem;
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  #fixed-stats #cv a {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+  }
+
+  #contact {
+    gap: 0.2rem 0.5rem;
+  }
+
+  #welcome h2 {
+    font-size: 1.2rem;
+  }
+
+  #welcome p {
+    font-size: 0.9rem;
+  }
+
+  #welcome a {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  #about h2 {
+    font-size: large;
+  }
+
+  #about div img {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  #about div h3 {
+    font-size: 0.9rem;
+  }
+
+  #about div p {
+    font-size: 0.8rem;
+  }
+
+  #experience h2 {
+    font-size: 1.5rem;
+  }
+
+  .experience-year h3 {
+    font-size: 1.1rem;
+  }
+
+  .experience-details h4 {
+    font-size: 1rem;
+  }
+
+  .experience-details p {
+    font-size: 0.8rem;
+  }
+
+  .info h4 {
+    font-size: 1rem;
+  }
+
+  .info p {
+    font-size: 0.8rem;
+  }
 }

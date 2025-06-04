@@ -2,18 +2,17 @@
 /* Fixed.css used to display some information on the left of the page*/
 
 #fixed {
-  position: absolute;
-  width: 20%;
-  margin-left: 2rem;
+  /* Removed position: absolute; and width: 20%; to allow container.css to manage responsiveness */
+  margin-left: 2rem; /* Keep existing margin */
 }
 
-#fixed #card-container{
+#fixed #card-container {
   background-color: #222831;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
     0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
     0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
-    margin-top: 2.5rem;
-    margin-bottom: 2rem;
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 #fixed-card {
@@ -51,7 +50,7 @@
 #fixed-stats {
   padding-bottom: 0.5rem;
   margin: 0px 1.25rem;
-  background-color:#222831;
+  background-color: #222831;
 }
 
 #fixed-stats a {
@@ -77,7 +76,7 @@
   align-items: center;
 }
 
-#fixed-stats #desc-self{
+#fixed-stats #desc-self {
   display: flex;
   grid-template-columns: 1fr 1fr;
   gap: 0rem 3rem;
@@ -88,25 +87,20 @@
   margin: 1rem 0rem;
 }
 
-#fixed-stats #fixed-skills h5{
+#fixed-stats #fixed-skills h5 {
   color: #eeeeee;
   text-align: center;
   margin-bottom: 1rem;
-  font-weight:400;
+  font-weight: 400;
 }
 
-.modified{
-  background-color: #393e46;
-  color: #eeeeee;
+.accordion-item {
+  --bs-accordion-border-color: none;
+  --bs-accordion-border-width: 1rem;
+  --bs-accordion-border-radius: 1rem;
 }
 
-.accordion-item{
---bs-accordion-border-color: none;
---bs-accordion-border-width: 1rem;
---bs-accordion-border-radius: 1rem;
-}
-
-.accordion-item .accordion-header .accordion-button{
+.accordion-item .accordion-header .accordion-button {
   background-color: #eeeeee;
   color: #393e46;
   margin-bottom: 0.5rem;
@@ -121,17 +115,17 @@
   margin: 1rem 0rem 0.2rem 0rem;
 }
 
-#fixed-stats #fixed-personality a{
+#fixed-stats #fixed-personality a {
   text-decoration: none;
   border: none;
   padding: 0.5rem 1rem;
   margin-left: 3.5rem;
-  background-color:#222831;
+  background-color: #222831;
   color: #ffffff;
 }
 
-#fixed-stats #fixed-personality a:hover{
-  background-color:#393e46;
+#fixed-stats #fixed-personality a:hover {
+  background-color: #393e46;
 }
 
 #fixed-stats #cv {
@@ -144,7 +138,7 @@
 #fixed-stats #cv a {
   color: #eeeeee;
   font-weight: 500;
-  padding: 0.5rem 1rem ;
+  padding: 0.5rem 1rem;
   border-radius: 0.5rem;
 }
 
