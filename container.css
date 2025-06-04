@@ -27,12 +27,13 @@ html body {
   top: 0;
   height: 100vh; /* Make it take full viewport height */
   overflow-y: auto; /* Enable scrolling if content overflows */
-  padding-right: 1rem; /* Add some padding to the right */
+  padding-right: 2rem; /* Add some padding to the right */
 }
 
 #right {
   grid-column: 2 / span 3;
   padding: 1rem; /* Add padding to the right section */
+  padding-left: 5rem; /* Add padding to the left section */
 }
 
 #home {
@@ -205,7 +206,7 @@ html body {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem 4rem;
-  margin-left: 2rem;
+  margin-left: 26rem;
   margin-right: -60rem;
 }
 
