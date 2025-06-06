@@ -158,6 +158,7 @@ html body {
   font-weight: 600;
   color: rgb(238, 238, 238);
   margin-bottom: 3rem; /* Adjusted margin */
+  margin-left: -10rem;
 }
 
 #journey {
@@ -507,4 +508,161 @@ html body {
   .info p {
     font-size: 0.8rem;
   }
+}
+
+/* Fixed.css used to display some information on the left of the page*/
+
+#fixed {
+  /* Removed position: absolute; and width: 20%; to allow container.css to manage responsiveness */
+  margin-left: 2rem; /* Keep existing margin */
+}
+
+#fixed #card-container {
+  background-color: #222831;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+  margin-top: 2.5rem;
+  margin-bottom: 2rem;
+}
+
+#fixed-card {
+  background-color: #393e46;
+  padding-bottom: 0.5rem;
+  text-align: center;
+}
+
+#fixed-card img {
+  width: 5rem;
+  height: 5rem;
+  margin-top: 2rem;
+  border-radius: 6rem;
+}
+
+#fixed-card p {
+  margin-top: 0rem;
+  color: #7f8286;
+}
+
+#fixed-card h5 {
+  margin-top: 1rem;
+  color: #eeeeee;
+  font-weight: 590;
+}
+
+#fixed-stats li {
+  margin: 1rem -2rem -1rem -2rem;
+}
+
+#fixed-stats hr {
+  border: 0.1rem solid #393e46;
+}
+
+#fixed-stats {
+  padding-bottom: 0.5rem;
+  margin: 0px 1.25rem;
+  background-color: #222831;
+}
+
+#fixed-stats a {
+  text-decoration: none;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: #7f8286;
+}
+
+#fixed-stats ul {
+  color: #7f8286;
+  list-style-type: "\2714     ";
+  list-style-position: outside;
+  padding: 0rem 1.25rem 1.5rem 4rem;
+}
+
+
+#fixed-stats #desc-self ol {
+  list-style: none;
+  padding: 2rem 1rem 0rem 2.5rem;
+  color: #eeeeee;
+  justify-content: center;
+  align-items: center;
+}
+
+#fixed-stats #desc-self {
+  display: flex;
+  grid-template-columns: 1fr 1fr;
+  gap: 0rem 3rem;
+}
+
+#fixed-stats #desc-self ol span {
+  color: #7f8286;
+  margin: 1rem 0rem;
+}
+
+#fixed-stats #fixed-skills h5 {
+  color: #eeeeee;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.accordion-item {
+  --bs-accordion-border-color: none;
+  --bs-accordion-border-width: 1rem;
+  --bs-accordion-border-radius: 1rem;
+}
+
+.accordion-item .accordion-header .accordion-button {
+  background-color: #eeeeee;
+  color: #393e46;
+  margin-bottom: 0.5rem;
+}
+
+#fixed-bar {
+  padding: 0rem 0rem 1rem 0rem;
+}
+
+#fixed-bar p {
+  color: #eeeeee;
+  margin: 1rem 0rem 0.2rem 0rem;
+}
+
+#fixed-stats #fixed-personality a {
+  text-decoration: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-left: 3.5rem;
+  background-color: #222831;
+  color: #ffffff;
+}
+
+#fixed-stats #fixed-personality a:hover {
+  background-color: #393e46;
+}
+
+#fixed-stats #cv {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 2rem 0rem 3rem 0rem;
+}
+
+#fixed-stats #cv a {
+  color: #eeeeee;
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+#fixed-stats #cv a:hover {
+  color: #eeeeee;
+  background-color: #393e46;
+}
+
+#fixed #contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  margin-top: -1rem;
+  gap: 0.5rem 2rem;
+  background-color: #393e46;
+  padding: 1.25rem 1.25rem;
 }
