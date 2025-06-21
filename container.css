@@ -93,13 +93,13 @@ body {
 
 #welcome h2 {
   margin: 0.5rem 0;
-  font-size: 2.8rem; /* Made text smaller */
+  font-size: 2.8rem;
   font-weight: 600;
   color: rgb(238, 238, 238);
 }
 
 #welcome p {
-  font-size: 1.4rem; /* Made text smaller */
+  font-size: 1.4rem;
   color: rgb(238, 238, 238);
   margin-bottom: 2.5rem;
 }
@@ -144,14 +144,15 @@ body {
   z-index: 1;
 }
 
+/* CAROUSEL STYLES FOR #ABOUT SECTION */
 #about {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 2rem 1rem;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: 1200px; /* Matches #home width */
+  width: 90%; /* Matches #home width */
 }
 
 #about h2 {
@@ -161,37 +162,149 @@ body {
   font-size: xx-large;
   font-weight: 600;
   color: #eeeeee;
+  margin-bottom: 2rem;
 }
 
-#about div {
-  text-align: center;
-  align-items: center;
-  width: 300px;
-  padding: 1rem;
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  padding: 0 60px; /* NEW: Increased padding to create clear space for buttons */
+  overflow: hidden;
+}
+
+.carousel-container {
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  gap: 0px;
+  padding-bottom: 1rem;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.carousel-container::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  height: auto; /* Allow height to adjust to content */
+  min-height: 200px; /* Ensure a minimum height for consistency */
+  padding: 2rem; /* Uniform padding */
   background-color: rgb(34, 40, 49, 0.6);
   border-radius: 0.25rem;
   box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
 }
 
-#about div img {
-  width: 8rem;
-  height: 8rem;
-  margin-bottom: 1rem;
-  object-fit: contain;
+.carousel-slide .card-icon {
+  flex: 0 0 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-right: 10px;
 }
 
-#about div h3 {
+.carousel-slide .card-icon img {
+  width: 100%;
+  height: auto;
+  max-width: 8rem;
+  max-height: 8rem;
+  margin: 0;
+}
+
+.carousel-slide .card-text-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.carousel-slide h3 {
   color: #eeeeee;
   font-weight: 600;
-  font-size: 1.2rem;
-  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  text-align: left;
 }
 
-#about div p {
-  text-align: center;
+.carousel-slide p {
+  text-align: left;
   color: #7f8286;
   font-size: 1rem;
   margin-bottom: 0;
+}
+
+/* Updated Carousel Buttons (Prev/Next) */
+.carousel-prev,
+.carousel-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: transparent;
+  border: none;
+  color: rgba(238, 238, 238, 0.7);
+  font-size: 3rem;
+  font-weight: 100;
+  cursor: pointer;
+  padding: 0 15px;
+  border-radius: 0;
+  transition: color 0.3s ease;
+  z-index: 1;
+}
+
+.carousel-prev {
+  left: 0;
+}
+
+.carousel-next {
+  right: 0;
+}
+
+.carousel-prev:hover,
+.carousel-next:hover {
+  background-color: transparent;
+  color: #fd7014;
+}
+
+/* Updated Carousel Dots Container */
+.carousel-dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  width: 100%;
+}
+
+.carousel-dots {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(238, 238, 238, 0.5);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.dot.active {
+  background-color: #fd7014;
 }
 
 #experience {
@@ -355,11 +468,11 @@ body {
   }
 
   #welcome h2 {
-    font-size: 2.2rem; /* Adjusted for tablet */
+    font-size: 2.2rem;
   }
 
   #welcome p {
-    font-size: 1.2rem; /* Adjusted for tablet */
+    font-size: 1.2rem;
   }
 
   #welcome-pict {
@@ -375,12 +488,53 @@ body {
   }
 
   #about {
-    padding: 1.5rem 0.5rem;
+    padding: 1.5rem 0;
   }
 
-  #about div {
-    width: 45%;
-    min-width: 280px;
+  .carousel-wrapper {
+    padding: 0 40px; /* Adjusted padding for buttons on smaller screens */
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 1rem;
+  }
+
+  .carousel-slide .card-icon {
+    flex: none;
+    width: auto;
+    padding-right: 0;
+    padding-bottom: 0.5rem;
+  }
+
+  .carousel-slide .card-icon img {
+    max-width: 6rem;
+    max-height: 6rem;
+  }
+
+  .carousel-slide .card-text-content {
+    flex-grow: 0;
+    text-align: center;
+  }
+
+  .carousel-slide h3,
+  .carousel-slide p {
+    text-align: center;
+  }
+
+  /* Adjust button size and position for smaller screens */
+  .carousel-prev,
+  .carousel-next {
+    font-size: 2.5rem;
+  }
+
+  .carousel-dots-container {
+    margin-top: 1rem;
   }
 
   #experience {
@@ -420,11 +574,11 @@ body {
   }
 
   #welcome h2 {
-    font-size: 1.8rem; /* Adjusted for mobile */
+    font-size: 1.8rem;
   }
 
   #welcome p {
-    font-size: 1rem; /* Adjusted for mobile */
+    font-size: 1rem;
   }
 
   #welcome-pict img {
@@ -437,6 +591,26 @@ body {
   #experience h2,
   #projectlist h2 {
     font-size: 2rem;
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+  }
+
+  /* Further adjust button size and position for mobile */
+  .carousel-prev,
+  .carousel-next {
+    font-size: 2.2rem;
+  }
+
+  .carousel-dots {
+    gap: 8px;
+  }
+
+  .dot {
+    width: 10px;
+    height: 10px;
   }
 
   #about div {
@@ -474,17 +648,22 @@ body {
   }
 
   #welcome h2 {
-    font-size: 1.6rem; /* Further adjustment for smaller screens */
+    font-size: 1.6rem;
   }
 
   #welcome p {
-    font-size: 0.9rem; /* Further adjustment for smaller screens */
+    font-size: 0.9rem;
   }
 
   #about h2,
   #experience h2,
   #projectlist h2 {
     font-size: 1.8rem;
+  }
+    
+  .carousel-prev,
+  .carousel-next {
+    font-size: 2rem;
   }
 
   #projectlist {
