@@ -1,4 +1,3 @@
-// Your index.js content remains unchanged
 $(document).ready(function () {
   $('[data-toggle="popover"]').popover();
 
@@ -97,5 +96,13 @@ $(document).ready(function () {
       scrollStep = calculateScrollStep(); // Initial calculation
       updateCarousel();
     }
+  });
+  
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+        updateCarousel(); // Re-center the current slide after resize
+    }, 250);
   });
 });
