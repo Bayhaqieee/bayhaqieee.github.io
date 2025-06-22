@@ -105,4 +105,22 @@ $(document).ready(function () {
         updateCarousel(); // Re-center the current slide after resize
     }, 250);
   });
+
+  // Auto-scroll for the career focus carousel
+  let autoScrollInterval = setInterval(() => {
+    currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+    updateCarousel();
+  }, 5000);
+
+  // Optional: Pause auto-scroll on hover
+  carouselContainer.addEventListener('mouseenter', () => {
+    clearInterval(autoScrollInterval);
+  });
+
+  carouselContainer.addEventListener('mouseleave', () => {
+    autoScrollInterval = setInterval(() => {
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+      updateCarousel();
+    }, 3000);
+  });
 });

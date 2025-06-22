@@ -53,13 +53,13 @@ body {
   width: 28px;
   height: 28px;
   color: #eeeeee;
-  opacity: 0.7; /* Made icons slightly transparent */
-  transition: color 0.3s ease, opacity 0.3s ease; /* Added opacity transition */
+  opacity: 0.7;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
 #sidebar a:hover svg {
   color: #fd7014;
-  opacity: 1; /* Fully visible on hover */
+  opacity: 1;
 }
 
 #right {
@@ -144,15 +144,54 @@ body {
   z-index: 1;
 }
 
+/* NEW ABOUT ME CARD STYLES */
+#about-me-card {
+  background-color: rgb(34, 40, 49, 0.6);
+  border-radius: 0.25rem;
+  padding: 3rem;
+  margin: 2.5rem auto 0;
+  max-width: 1200px;
+  width: 90%;
+  box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
+    0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
+    0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
+}
+
+#about-me-card h2 {
+  margin: 0.5rem 0;
+  font-size: 2.8rem;
+  font-weight: 600;
+  color: rgb(238, 238, 238);
+  margin-bottom: 1rem;
+}
+
+#about-me-card h2 .highlight {
+  color: #fd7014;
+}
+
+#about-me-card .tagline {
+  font-size: 1.4rem;
+  color: rgb(238, 238, 238);
+  margin-bottom: 1.5rem;
+}
+
+#about-me-card .description {
+  font-size: 1.1rem;
+  color: #c9c9c9;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+
 /* CAROUSEL STYLES FOR #ABOUT SECTION */
 #about {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
-  margin: 0 auto;
-  max-width: 1200px; /* Matches #home width */
-  width: 90%; /* Matches #home width */
+  margin: 2.5rem auto 0;
+  max-width: 1200px;
+  width: 90%;
 }
 
 #about h2 {
@@ -163,6 +202,10 @@ body {
   font-weight: 600;
   color: #eeeeee;
   margin-bottom: 2rem;
+}
+
+#about h2 .highlight {
+  color: #fd7014;
 }
 
 .carousel-wrapper {
@@ -241,7 +284,6 @@ body {
   margin-bottom: 0;
 }
 
-/* Updated Carousel Buttons (Prev/Next) */
 .carousel-prev,
 .carousel-next {
   position: absolute;
@@ -273,7 +315,6 @@ body {
   color: #fd7014;
 }
 
-/* Updated Carousel Dots Container */
 .carousel-dots-container {
   display: flex;
   justify-content: center;
@@ -481,18 +522,31 @@ body {
     height: 18rem;
   }
 
+  #about-me-card {
+    padding: 1.5rem;
+  }
+
+  #about-me-card h2 {
+    font-size: 2.2rem;
+  }
+
+  #about-me-card .tagline {
+    font-size: 1.2rem;
+  }
+
+  #about-me-card .description {
+    font-size: 1rem;
+  }
+
   #about {
     padding: 1.5rem 0;
   }
 
   .carousel-wrapper {
-    padding: 0 40px; /* Adjusted padding for buttons on smaller screens */
+    padding: 0 40px;
   }
 
   .carousel-slide {
-    flex: 0 0 100%;
-    min-width: 100%;
-    height: auto;
     flex-direction: column;
     align-items: center;
     gap: 10px;
@@ -521,7 +575,6 @@ body {
     text-align: center;
   }
 
-  /* Adjust button size and position for smaller screens */
   .carousel-prev,
   .carousel-next {
     font-size: 2.5rem;
@@ -581,18 +634,21 @@ body {
     margin-top: -3rem;
   }
 
+  #about-me-card h2,
   #about h2,
   #experience h2,
   #projectlist h2 {
     font-size: 2rem;
   }
 
+  #about-me-card .tagline {
+    font-size: 1rem;
+  }
+
   .carousel-slide {
-    flex: 0 0 100%;
     min-width: 100%;
   }
 
-  /* Further adjust button size and position for mobile */
   .carousel-prev,
   .carousel-next {
     font-size: 2.2rem;
@@ -649,6 +705,7 @@ body {
     font-size: 0.9rem;
   }
 
+  #about-me-card h2,
   #about h2,
   #experience h2,
   #projectlist h2 {
