@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  // Typed.js setup
+  // Typed.js setup for the animated text
   var typed = new Typed("#typed", {
     strings: [
       "University Student",
@@ -13,29 +13,29 @@ $(document).ready(function () {
     loop: true,
   });
 
-  // Project filter functionality
+  // --- Project Filter Functionality ---
   const primaryFilters = $('#primary-filters .filter-btn');
   const secondaryFilters = $('#secondary-filters');
   const projectCards = $('.project-card');
 
-  // --- Primary Filter Click ---
+  // --- Primary Filter Click Handler ---
   primaryFilters.on('click', function() {
-    // Set active class
+    // Manages the 'active' class for the main filter buttons
     primaryFilters.removeClass('active');
     $(this).addClass('active');
 
     const primaryFilterValue = $(this).data('filter');
 
-    // Show/hide secondary filters
+    // Shows or hides the secondary filter group based on the primary selection
     if (primaryFilterValue === 'tech') {
       secondaryFilters.removeClass('hidden');
-      // Reset secondary filter to show all tech projects initially
+      // Resets the secondary filter to show all tech projects initially
       secondaryFilters.find('.filter-btn').removeClass('active');
     } else {
       secondaryFilters.addClass('hidden');
     }
 
-    // Filter cards
+    // Filters the project cards based on the selected primary category
     projectCards.each(function() {
       const cardCategory = $(this).data('category');
       
@@ -47,25 +47,45 @@ $(document).ready(function () {
     });
   });
 
-  // --- Secondary Filter Click ---
+  // --- Secondary Filter Click Handler ---
   secondaryFilters.find('.filter-btn').on('click', function() {
-    // Set active class for secondary buttons
+    // Manages the 'active' class for the secondary filter buttons
     secondaryFilters.find('.filter-btn').removeClass('active');
     $(this).addClass('active');
 
     const secondaryFilterValue = $(this).data('filter');
 
-    // Filter cards
+    // Filters the project cards based on the selected secondary focus
     projectCards.each(function() {
       const cardCategory = $(this).data('category');
       const cardFocus = $(this).data('focus');
 
-      // Only show cards that are 'tech' AND match the chosen focus
+      // Only shows cards that are in the 'tech' category AND match the chosen focus
       if (cardCategory === 'tech' && cardFocus === secondaryFilterValue) {
         $(this).removeClass('hide');
       } else {
         $(this).addClass('hide');
       }
     });
+  });
+
+  // --- Quick Links Dropdown Functionality ---
+  // UPDATED: Changed the selector to target the new class
+  const dropdownToggle = $('.more-btn'); 
+  const dropdownMenu = $('.dropdown-menu');
+
+  // Toggles the dropdown menu's visibility when the 'More' button is clicked
+  dropdownToggle.on('click', function(e) {
+    e.stopPropagation(); // Prevents the document click from firing immediately
+    dropdownMenu.toggleClass('show');
+  });
+
+  // Closes the dropdown menu if a click occurs anywhere outside of it
+  $(document).on('click', function(e) {
+    if (!$(e.target).closest('.dropdown').length) {
+      if (dropdownMenu.hasClass('show')) {
+        dropdownMenu.removeClass('show');
+      }
+    }
   });
 });
