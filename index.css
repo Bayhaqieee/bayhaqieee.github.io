@@ -144,6 +144,91 @@ body {
   z-index: 1;
 }
 
+/* ORGANIZATION SLIDER STYLES */
+#organization-card {
+  max-width: 1200px;
+  width: 90%;
+  margin: 1.5rem auto 0;
+  padding: 1rem 0;
+  background-color: rgba(45, 51, 60, 0.7);
+  border-radius: 0.25rem;
+  position: relative; /* Ensure proper stacking context */
+  z-index: 5;         /* Place it above other relative elements */
+}
+
+.org-slider {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.org-slider::before,
+.org-slider::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 150px;
+  height: 100%;
+  z-index: 2;
+}
+
+.org-slider::before {
+  left: 0;
+  background: linear-gradient(to left, rgba(45, 51, 60, 0), rgb(45, 51, 60));
+}
+
+.org-slider::after {
+  right: 0;
+  background: linear-gradient(to right, rgba(45, 51, 60, 0), rgb(45, 51, 60));
+}
+
+.org-slide-track {
+  display: flex;
+  /* (width of slide) * (total number of slides) */
+  width: calc(200px * 14); 
+  animation: scroll 40s linear infinite;
+  /* GPU acceleration hints to prevent rendering glitches */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.org-slider:hover .org-slide-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0) translateZ(0);
+  }
+  100% {
+    /* -(width of slide) * (number of non-duplicate slides) */
+    transform: translateX(calc(-200px * 7)) translateZ(0); 
+  }
+}
+
+.org-slide {
+  height: 60px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+}
+
+.org-slide img {
+  height: 35px;
+  width: auto;
+  filter: brightness(0) invert(0.9) grayscale(1);
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+}
+
+.org-slide:hover img {
+    opacity: 1;
+}
+
+
 /* NEW ABOUT ME CARD STYLES */
 #about-me-card {
   background-color: rgb(34, 40, 49, 0.6);
@@ -593,6 +678,22 @@ body {
   .project-card-overlay p {
     font-size: 0.9rem;
   }
+
+  /* Responsive Slider */
+  .org-slide-track {
+    animation-duration: 30s;
+  }
+  .org-slide {
+    width: 150px;
+  }
+  .org-slide-track {
+    width: calc(150px * 14);
+  }
+  @keyframes scroll {
+    100% {
+      transform: translateX(calc(-150px * 7)) translateZ(0);
+    }
+  }
 }
 
 @media (max-width: 480px) {
@@ -623,5 +724,22 @@ body {
   #project-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  /* Responsive Slider */
+  .org-slider::before,
+  .org-slider::after {
+      width: 50px;
+  }
+  .org-slide {
+      width: 120px;
+  }
+  .org-slide-track {
+      width: calc(120px * 14);
+  }
+  @keyframes scroll {
+      100% {
+      transform: translateX(calc(-120px * 7)) translateZ(0);
+      }
   }
 }
