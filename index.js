@@ -88,4 +88,23 @@ $(document).ready(function () {
       }
     }
   });
+
+  // --- Scroll Animation ---
+  const animatedElements = document.querySelectorAll('.scroll-animate');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      } else {
+        entry.target.classList.remove('is-visible');
+      }
+    });
+  }, {
+    threshold: 0.1 // The element is considered visible when 10% of it is in the viewport
+  });
+
+  animatedElements.forEach(element => {
+    observer.observe(element);
+  });
 });
