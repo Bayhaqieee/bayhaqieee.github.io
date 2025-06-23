@@ -289,7 +289,8 @@ body {
 .expertise-gallery {
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(12, 1fr);
+  /* This creates the 12-column grid foundation */
+  grid-template-columns: repeat(12, 1fr); 
   gap: 1.5rem;
 }
 
@@ -300,13 +301,7 @@ body {
   background-color: rgb(57, 62, 70, 0.8);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   aspect-ratio: 1 / 1;
-}
-
-.gallery-item:nth-child(-n+3) {
-  grid-column: span 4;
-}
-
-.gallery-item:nth-child(n+4) {
+  /* UPDATED: This single rule makes every item take up 3 of the 12 columns (12 / 3 = 4 items per row) */
   grid-column: span 3;
 }
 
