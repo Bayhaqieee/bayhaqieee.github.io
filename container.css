@@ -283,125 +283,155 @@ body {
   transform: translateY(0);
 }
 
-#experience {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 1rem;
-  margin: 0 auto;
+/* NEW EXPERIENCE & EDUCATION STYLES */
+#experience, #education {
+  padding: 2rem;
+  margin: 2.5rem auto 0;
   max-width: 1200px;
+  width: 90%;
 }
 
-#experience h2 {
-  text-align: center;
-  font-size: 2.5rem;
-  font-weight: 600;
+#experience h2, #education h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
   color: rgb(238, 238, 238);
-  margin-bottom: 3rem;
-  margin-left: 0;
-}
-
-#journey {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-}
-
-.experience-item {
-  display: flex;
-  width: 100%;
-  max-width: 800px;
   margin-bottom: 2rem;
-  align-items: flex-start;
+  text-transform: uppercase;
 }
 
-.experience-year {
-  flex: 0 0 120px;
-  text-align: right;
-  padding-right: 2rem;
-  color: rgb(238, 238, 238);
-  border-right: 0.15rem solid #eeeeee;
+.content-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 3rem;
 }
 
-.experience-year h3 {
-  margin: 0;
-  font-size: 1.5rem;
+.content-item h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #eeeeee;
+  margin-bottom: 0.25rem;
 }
 
-.experience-details {
-  flex-grow: 1;
-  padding-left: 2rem;
-  color: rgb(238, 238, 238);
+.content-item .highlight-orange {
+  color: #fd7014;
 }
 
-.experience-details h4 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.2rem;
+.content-item .date {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.75rem;
 }
 
-.experience-details p {
+.content-item p {
+  font-size: 1rem;
+  color: #c9c9c9;
+  line-height: 1.6;
   margin-bottom: 1rem;
-  color: #7f8286;
 }
 
+/* PROJECT & FILTER STYLES */
 #project {
   padding: 2rem 1rem;
-  margin: 0 auto;
+  margin: 2.5rem auto 0;
   max-width: 1200px;
+  width: 90%;
 }
 
-#projectlist {
+#project h2 {
+  color: rgb(238, 238, 238);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+#project-filters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.filter-btn {
+  background-color: #393e46;
+  color: #eeeeee;
+  border: 2px solid #393e46;
+  padding: 0.5rem 1.25rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background-color: #4a515c;
+}
+
+.filter-btn.active {
+  background-color: #fd7014;
+  color: #ffffff;
+  border-color: #fd7014;
+}
+
+.hidden {
+  display: none;
+}
+
+#project-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
-  margin-left: 0;
-  margin-right: 0;
 }
 
-#projectlist h2 {
-  color: rgb(238, 238, 238);
-  grid-column: 1 / -1;
-  text-align: center;
-  margin-top: 1rem;
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-}
-
-.info {
+.project-card {
   background-color: rgb(34, 40, 49, 0.6);
   border-radius: 10px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
     0 4px 8px rgba(0, 0, 0, 0.07), 0 8px 16px rgba(0, 0, 0, 0.07),
     0 16px 32px rgba(0, 0, 0, 0.07), 0 32px 64px rgba(0, 0, 0, 0.07);
   text-align: left;
-  margin-bottom: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.info .card-img-top {
+.project-card.hide {
+  transform: scale(0.9);
+  opacity: 0;
+  display: none;
+}
+
+.project-card .card-img-top {
   height: 180px;
   object-fit: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.info .card-body {
+.project-card .card-body {
   padding: 1rem;
 }
 
-.info h4 {
+.project-card h4 {
   color: #eeeeee;
   margin: 0 0 0.5rem 0;
   font-size: 1.3rem;
 }
 
-.info p {
+.project-card p {
   color: #7f8286;
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
 
-.info a {
+.project-card a {
   display: inline-block;
   background-color: #393e46;
   border-style: none;
@@ -411,7 +441,7 @@ body {
   text-decoration: none;
 }
 
-.info a:hover {
+.project-card a:hover {
   background-color: #fd7014;
   color: #ffffff;
 }
@@ -439,8 +469,6 @@ body {
   #home {
     grid-template-columns: 1fr;
     padding: 1.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 
   #welcome h2 {
@@ -488,35 +516,19 @@ body {
   }
   
   .gallery-item:nth-child(n) {
-    grid-column: span 1; /* Reset all to span 1 on tablet */
+    grid-column: span 1; 
   }
 
-  #experience {
-    padding: 1.5rem 0.5rem;
+  #experience, #education {
+    padding: 1.5rem;
   }
 
-  .experience-item {
-    flex-direction: column;
-    align-items: flex-start;
+  .content-grid {
+    grid-template-columns: 1fr;
   }
 
-  .experience-year {
-    width: 100%;
-    text-align: left;
-    border-right: none;
-    border-bottom: 0.15rem solid #eeeeee;
-    padding-right: 0;
-    padding-bottom: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .experience-details {
-    padding-left: 0;
-  }
-
-  #projectlist {
+  #project-grid {
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    padding: 1.5rem 0.5rem;
     gap: 1.5rem;
   }
 }
@@ -543,8 +555,9 @@ body {
 
   #about-me-card h2,
   #about h2,
-  #experience h2,
-  #projectlist h2 {
+  #experience h2, 
+  #education h2,
+  #project h2 {
     font-size: 2rem;
   }
 
@@ -556,27 +569,15 @@ body {
     width: 90%;
   }
 
-  .experience-year h3 {
-    font-size: 1.4rem;
-  }
-
-  .experience-details h4 {
-    font-size: 1.1rem;
-  }
-
-  .experience-details p {
-    font-size: 0.9rem;
-  }
-
-  .info h4 {
+  .project-card h4 {
     font-size: 1.2rem;
   }
 
-  .info p {
+  .project-card p {
     font-size: 0.85rem;
   }
 
-  .info .card-img-top {
+  .project-card .card-img-top {
     height: 150px;
   }
 }
@@ -596,8 +597,9 @@ body {
 
   #about-me-card h2,
   #about h2,
-  #experience h2,
-  #projectlist h2 {
+  #experience h2, 
+  #education h2,
+  #project h2 {
     font-size: 1.8rem;
   }
   
@@ -605,9 +607,8 @@ body {
     grid-template-columns: 1fr;
   }
 
-  #projectlist {
+  #project-grid {
     grid-template-columns: 1fr;
-    padding: 1rem;
     gap: 1rem;
   }
 }
