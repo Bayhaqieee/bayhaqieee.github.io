@@ -107,4 +107,19 @@ $(document).ready(function () {
   animatedElements.forEach(element => {
     observer.observe(element);
   });
+
+  // --- Technical Skills View Toggle ---
+  const skillToggleBtn = $('#skill-view-toggle');
+  const skillsContainer = $('#skills-container');
+  const iconGrid = $('#icon-grid');
+  const iconList = $('#icon-list');
+
+  skillToggleBtn.on('click', function() {
+    // Toggle the class on the container to change the grid layout
+    skillsContainer.toggleClass('show-names');
+    
+    // Toggle which icon is visible
+    iconGrid.toggle();
+    iconList.toggle();
+  });
 });

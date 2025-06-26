@@ -152,8 +152,8 @@ body {
   padding: 1rem 0;
   background-color: rgba(45, 51, 60, 0.7);
   border-radius: 0.25rem;
-  position: relative; 
-  z-index: 5;         
+  position: relative;
+  z-index: 5;
 }
 
 .org-slider {
@@ -184,7 +184,7 @@ body {
 
 .org-slide-track {
   display: flex;
-  width: calc(200px * 14); 
+  width: calc(200px * 14);
   animation: scroll 40s linear infinite;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -200,7 +200,7 @@ body {
     transform: translateX(0) translateZ(0);
   }
   100% {
-    transform: translateX(calc(-200px * 7)) translateZ(0); 
+    transform: translateX(calc(-200px * 7)) translateZ(0);
   }
 }
 
@@ -289,8 +289,7 @@ body {
 .expertise-gallery {
   display: grid;
   width: 100%;
-  /* This creates the 12-column grid foundation */
-  grid-template-columns: repeat(12, 1fr); 
+  grid-template-columns: repeat(12, 1fr);
   gap: 1.5rem;
 }
 
@@ -301,7 +300,6 @@ body {
   background-color: rgb(57, 62, 70, 0.8);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   aspect-ratio: 1 / 1;
-  /* UPDATED: This single rule makes every item take up 3 of the 12 columns (12 / 3 = 4 items per row) */
   grid-column: span 3;
 }
 
@@ -358,15 +356,15 @@ body {
   transform: translateY(0);
 }
 
-/* NEW EXPERIENCE & EDUCATION STYLES */
-#experience, #education {
+/* Original EXPERIENCE Section Styles */
+#experience {
   padding: 0rem;
   margin: 2.5rem auto 0;
   max-width: 1200px;
   width: 90%;
 }
 
-#experience h2, #education h2 {
+#experience h2 {
   font-size: 1.8rem;
   font-weight: 700;
   color: rgb(238, 238, 238);
@@ -403,6 +401,202 @@ body {
   line-height: 1.6;
   margin-bottom: 1rem;
 }
+
+/* --- NEW Activities & Skills Section --- */
+#activities-skills {
+  padding: 2rem 0;
+  margin: 2.5rem auto 0;
+  max-width: 1200px;
+  width: 90%;
+}
+
+#activities-skills h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #eeeeee;
+  margin-bottom: 0.5rem;
+}
+
+#activities-skills .section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #c9c9c9;
+  margin-bottom: 2.5rem;
+}
+
+.activities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.activities-col {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.content-box {
+  background-color: rgb(34, 40, 49, 0.6);
+  border: 1px solid #393e46;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.content-box h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #eeeeee;
+  margin-bottom: 1.5rem;
+  border-bottom: 2px solid #fd7014;
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.activity-item {
+  margin-bottom: 1.5rem;
+}
+
+.activity-item:last-child {
+  margin-bottom: 0;
+}
+
+.activity-item h4 {
+  font-size: 1.1rem;
+  font-weight: 550;
+  color: #eeeeee;
+  margin-bottom: 0.25rem;
+}
+
+.activity-item .role-title {
+  font-size: 1rem;
+  color: #fd7014;
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.activity-item .date {
+  font-size: 0.9rem;
+  color: #a0a0a0;
+  margin-bottom: 0.5rem;
+}
+
+.activity-item p {
+  font-size: 1rem;
+  color: #c9c9c9;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+/* --- Styles for Technical Skills Section --- */
+.skills-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.skills-header h3 {
+  margin-bottom: 0;
+}
+
+.skill-toggle-btn {
+  background-color: #393e46;
+  border: 1px solid #5c636e;
+  color: #eeeeee;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.skill-toggle-btn:hover {
+  background-color: #4a515c;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 1rem;
+}
+
+/* When in logo-only mode */
+.skills-grid:not(.show-names) .skill-item {
+    padding: 0.75rem;
+}
+
+.skills-grid:not(.show-names) .skill-name {
+    display: none;
+}
+
+/* When in list mode */
+.skills-grid.show-names {
+  grid-template-columns: 1fr;
+}
+
+.skills-grid.show-names .skill-item {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 0.5rem 0.75rem;
+}
+
+.skills-grid.show-names .skill-name {
+    display: block;
+}
+
+
+.skill-item {
+  background-color: #2b3038;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+  min-height: 40px;
+}
+
+.skill-item:hover {
+  transform: translateY(-4px);
+  border-color: #fd7014;
+  background-color: #393e46;
+}
+
+.skill-item img {
+  height: 20px;
+}
+
+.skill-item .skill-name {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #eeeeee;
+  line-height: 1;
+}
+
+/* --- Styles for Certifications Section --- */
+.certifications-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.cert-item {
+  background-color: #393e46;
+  border-radius: 5px;
+  padding: 0.75rem 1rem;
+  text-align: center;
+  color: #eeeeee;
+  font-size: 0.9rem;
+}
+
 
 /* PROJECT & FILTER STYLES */
 #project {
@@ -603,7 +797,7 @@ body {
   font-size: 1.1rem;
   font-weight: 600;
   transition: background-color 0.3s ease;
-  align-self: center; 
+  align-self: center;
 }
 
 #contact .btn-talk:hover {
@@ -677,7 +871,6 @@ footer p {
   position: relative;
 }
 
-/* UPDATED: Changed .dropdown-toggle to .more-btn and removed default button styles */
 .more-btn {
   background: transparent;
   border: none;
@@ -786,20 +979,20 @@ footer p {
   #about {
     padding: 1.5rem 0;
   }
-  
+
   .expertise-gallery {
     grid-template-columns: repeat(2, 1fr);
   }
-  
-  .gallery-item:nth-child(n) {
-    grid-column: span 1; 
-  }
 
-  #experience, #education {
-    padding: 1.5rem;
+  .gallery-item:nth-child(n) {
+    grid-column: span 1;
   }
 
   .content-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .activities-grid {
     grid-template-columns: 1fr;
   }
 
@@ -855,11 +1048,15 @@ footer p {
 
   #about-me-card h2,
   #about h2,
-  #experience h2, 
-  #education h2,
+  #experience h2,
+  #activities-skills h2,
   #project h2,
   #contact h2 {
     font-size: 2rem;
+  }
+
+  .content-box h3 {
+      font-size: 1.3rem;
   }
 
   #about-me-card .tagline {
@@ -914,13 +1111,13 @@ footer p {
 
   #about-me-card h2,
   #about h2,
-  #experience h2, 
-  #education h2,
+  #experience h2,
+  #activities-skills h2,
   #project h2,
   #contact h2 {
     font-size: 1.8rem;
   }
-  
+
   .expertise-gallery {
     grid-template-columns: 1fr;
   }
