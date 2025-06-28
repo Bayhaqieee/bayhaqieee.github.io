@@ -641,12 +641,24 @@ body {
 .skills-grid.show-names .skill-item[data-skill="TypeScript"]:hover { background: linear-gradient(90deg, #ffffff 10%, #007ACC 100%); }
 .skills-grid.show-names .skill-item[data-skill="HTML5"]:hover { background: linear-gradient(90deg, #ffffff 10%, #E34F26 100%); }
 .skills-grid.show-names .skill-item[data-skill="CSS3"]:hover { background: linear-gradient(90deg, #ffffff 10%, #1572B6 100%); }
+.skills-grid.show-names .skill-item[data-skill="Bash"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4EAA25 100%); }
 .skills-grid.show-names .skill-item[data-skill="React"]:hover { background: linear-gradient(90deg, #ffffff 10%, #61DAFB 100%); }
+.skills-grid.show-names .skill-item[data-skill="Node.js"]:hover { background: linear-gradient(90deg, #ffffff 10%, #339933 100%); }
+.skills-grid.show-names .skill-item[data-skill="Express"]:hover { background: linear-gradient(90deg, #ffffff 10%, #000000 100%); }
+.skills-grid.show-names .skill-item[data-skill="Next.js"]:hover { background: linear-gradient(90deg, #ffffff 10%, #000000 100%); }
 .skills-grid.show-names .skill-item[data-skill="Bootstrap"]:hover { background: linear-gradient(90deg, #ffffff 10%, #7952B3 100%); }
 .skills-grid.show-names .skill-item[data-skill="TensorFlow"]:hover { background: linear-gradient(90deg, #ffffff 10%, #FF6F00 100%); }
+.skills-grid.show-names .skill-item[data-skill="Keras"]:hover { background: linear-gradient(90deg, #ffffff 10%, #D00000 100%); }
 .skills-grid.show-names .skill-item[data-skill="PyTorch"]:hover { background: linear-gradient(90deg, #ffffff 10%, #EE4C2C 100%); }
 .skills-grid.show-names .skill-item[data-skill="Scikit-learn"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F7931E 100%); }
+.skills-grid.show-names .skill-item[data-skill="Pandas"]:hover { background: linear-gradient(90deg, #ffffff 10%, #150458 100%); }
+.skills-grid.show-names .skill-item[data-skill="NumPy"]:hover { background: linear-gradient(90deg, #ffffff 10%, #013243 100%); }
+.skills-grid.show-names .skill-item[data-skill="Matplotlib"]:hover { background: linear-gradient(90deg, #ffffff 10%, #821010 100%); }
+.skills-grid.show-names .skill-item[data-skill="Seaborn"]:hover { background: linear-gradient(90deg, #ffffff 10%, #3d5a80 100%); }
 .skills-grid.show-names .skill-item[data-skill="OpenCV"]:hover { background: linear-gradient(90deg, #ffffff 10%, #5C8BEE 100%); }
+.skills-grid.show-names .skill-item[data-skill="FastAPI"]:hover { background: linear-gradient(90deg, #ffffff 10%, #009688 100%); }
+.skills-grid.show-names .skill-item[data-skill="Flask"]:hover { background: linear-gradient(90deg, #ffffff 10%, #000000 100%); }
+.skills-grid.show-names .skill-item[data-skill="YOLO"]:hover { background: linear-gradient(90deg, #ffffff 10%, #00FFFF 100%); }
 .skills-grid.show-names .skill-item[data-skill="MySQL"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4479A1 100%); }
 .skills-grid.show-names .skill-item[data-skill="MongoDB"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4EA94B 100%); }
 .skills-grid.show-names .skill-item[data-skill="Google Cloud"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4285F4 100%); }
@@ -658,7 +670,12 @@ body {
 .skills-grid.show-names .skill-item[data-skill="Jira"]:hover { background: linear-gradient(90deg, #ffffff 10%, #0052CC 100%); }
 .skills-grid.show-names .skill-item[data-skill="Hapi"]:hover { background: linear-gradient(90deg, #ffffff 10%, #16A785 100%); }
 .skills-grid.show-names .skill-item[data-skill="Looker"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4285F4 100%); }
+.skills-grid.show-names .skill-item[data-skill="Power BI"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F2C811 100%); }
 .skills-grid.show-names .skill-item[data-skill="Tableau"]:hover { background: linear-gradient(90deg, #ffffff 10%, #E97627 100%); }
+.skills-grid.show-names .skill-item[data-skill="Postman"]:hover { background: linear-gradient(90deg, #ffffff 10%, #FF6C37 100%); }
+.skills-grid.show-names .skill-item[data-skill="Netlify"]:hover { background: linear-gradient(90deg, #ffffff 10%, #00C7B7 100%); }
+.skills-grid.show-names .skill-item[data-skill="ClickUp"]:hover { background: linear-gradient(90deg, #ffffff 10%, #7B68EE 100%); }
+.skills-grid.show-names .skill-item[data-skill="Trello"]:hover { background: linear-gradient(90deg, #ffffff 10%, #0079BF 100%); }
 
 
 /* On hover, text should be a consistent dark gray for contrast on the new light backgrounds */
