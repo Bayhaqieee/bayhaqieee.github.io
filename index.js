@@ -70,7 +70,6 @@ $(document).ready(function () {
   });
 
   // --- Quick Links Dropdown Functionality ---
-  // UPDATED: Changed the selector to target the new class
   const dropdownToggle = $('.more-btn'); 
   const dropdownMenu = $('.dropdown-menu');
 
@@ -122,4 +121,45 @@ $(document).ready(function () {
     iconGrid.toggle();
     iconList.toggle();
   });
+
+  // --- Function to sync card heights ---
+  function syncCardHeights() {
+    const grid = $('.activities-grid');
+    
+    // Only run this logic for screen widths where the grid is 2 columns
+    if (window.innerWidth > 1024) {
+      // --- Sync Row 1 ---
+      const leftCardRow1 = grid.find('.content-box:nth-child(1)');
+      const rightCardRow1 = grid.find('.content-box:nth-child(2)');
+      
+      // Get height from the left card
+      const targetHeight1 = leftCardRow1.outerHeight();
+      // Apply it to the right card
+      rightCardRow1.css('height', targetHeight1);
+
+      // --- Sync Row 2 ---
+      const leftCardRow2 = grid.find('.content-box:nth-child(3)');
+      const rightCardRow2 = grid.find('.content-box:nth-child(4)');
+
+      // Get height from the left card in the second row
+      const targetHeight2 = leftCardRow2.outerHeight();
+      // Apply it to the right card in the second row
+      rightCardRow2.css('height', targetHeight2);
+
+    } else {
+      // On smaller, single-column screens, let height be automatic
+      grid.find('.content-box').css('height', 'auto');
+    }
+  }
+
+  // Run the function on page load after a short delay to ensure rendering is complete
+  setTimeout(function() {
+      syncCardHeights();
+  }, 100);
+
+  // Re-run the function on window resize
+  $(window).on('resize', function() {
+    syncCardHeights();
+  });
+
 });
