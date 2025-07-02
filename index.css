@@ -583,6 +583,7 @@ body {
 }
 
 .skill-item img {
+  margin-top: 0.25rem;
   height: 32px;
   width: 32px;
   transition: filter 0.3s ease;
@@ -623,7 +624,7 @@ body {
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 1.25rem;
+    gap: 2.5rem;
     padding: 1rem 1.25rem;
     border-radius: 8px;
     border: 1px solid #393e46;
@@ -644,57 +645,56 @@ body {
 }
 
 .skills-grid.show-names .skill-item:hover {
-    transform: translateY(-4px);
-    border-color: #a0a0a0;
+    transform: translateY(-1px);
     z-index: 2;
 }
 .skills-grid.show-names .skill-item:hover img {
-    filter: invert(67%) sepia(8%) saturate(0%) hue-rotate(200deg) brightness(92%) contrast(89%);
+    filter: invert(10%) sepia(8%) saturate(0%) hue-rotate(200deg) brightness(92%) contrast(89%);
 }
 
-.skills-grid.show-names .skill-item[data-skill="Python"]:hover { background: linear-gradient(90deg, #ffffff 10%, #3670A0 100%); }
-.skills-grid.show-names .skill-item[data-skill="R"]:hover { background: linear-gradient(90deg, #ffffff 10%, #276DC3 100%); }
-.skills-grid.show-names .skill-item[data-skill="C++"]:hover { background: linear-gradient(90deg, #ffffff 10%, #00599C 100%); }
-.skills-grid.show-names .skill-item[data-skill="Java"]:hover { background: linear-gradient(90deg, #ffffff 10%, #ED8B00 100%); }
-.skills-grid.show-names .skill-item[data-skill="JavaScript"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F7DF1E 100%); }
-.skills-grid.show-names .skill-item[data-skill="TypeScript"]:hover { background: linear-gradient(90deg, #ffffff 10%, #007ACC 100%); }
-.skills-grid.show-names .skill-item[data-skill="HTML5"]:hover { background: linear-gradient(90deg, #ffffff 10%, #E34F26 100%); }
-.skills-grid.show-names .skill-item[data-skill="CSS3"]:hover { background: linear-gradient(90deg, #ffffff 10%, #1572B6 100%); }
-.skills-grid.show-names .skill-item[data-skill="Bash"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4EAA25 100%); }
-.skills-grid.show-names .skill-item[data-skill="React"]:hover { background: linear-gradient(90deg, #ffffff 10%, #61DAFB 100%); }
-.skills-grid.show-names .skill-item[data-skill="Node.js"]:hover { background: linear-gradient(90deg, #ffffff 10%, #339933 100%); }
-.skills-grid.show-names .skill-item[data-skill="Express"]:hover { background: linear-gradient(90deg, #ffffff 10%, #000000 100%); }
-.skills-grid.show-names .skill-item[data-skill="Next.js"]:hover { background: linear-gradient(90deg, #ffffff 10%, #000000 100%); }
-.skills-grid.show-names .skill-item[data-skill="Bootstrap"]:hover { background: linear-gradient(90deg, #ffffff 10%, #7952B3 100%); }
-.skills-grid.show-names .skill-item[data-skill="TensorFlow"]:hover { background: linear-gradient(90deg, #ffffff 10%, #FF6F00 100%); }
-.skills-grid.show-names .skill-item[data-skill="Keras"]:hover { background: linear-gradient(90deg, #ffffff 10%, #D00000 100%); }
-.skills-grid.show-names .skill-item[data-skill="PyTorch"]:hover { background: linear-gradient(90deg, #ffffff 10%, #EE4C2C 100%); }
-.skills-grid.show-names .skill-item[data-skill="Scikit-learn"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F7931E 100%); }
-.skills-grid.show-names .skill-item[data-skill="Pandas"]:hover { background: linear-gradient(90deg, #ffffff 10%, #150458 100%); }
-.skills-grid.show-names .skill-item[data-skill="NumPy"]:hover { background: linear-gradient(90deg, #ffffff 10%, #013243 100%); }
-.skills-grid.show-names .skill-item[data-skill="Matplotlib"]:hover { background: linear-gradient(90deg, #ffffff 10%, #821010 100%); }
-.skills-grid.show-names .skill-item[data-skill="Seaborn"]:hover { background: linear-gradient(90deg, #ffffff 10%, #3d5a80 100%); }
-.skills-grid.show-names .skill-item[data-skill="OpenCV"]:hover { background: linear-gradient(90deg, #ffffff 10%, #5C8BEE 100%); }
-.skills-grid.show-names .skill-item[data-skill="FastAPI"]:hover { background: linear-gradient(90deg, #ffffff 10%, #009688 100%); }
-.skills-grid.show-names .skill-item[data-skill="Flask"]:hover { background: linear-gradient(90deg, #ffffff 10%, #000000 100%); }
-.skills-grid.show-names .skill-item[data-skill="YOLO"]:hover { background: linear-gradient(90deg, #ffffff 10%, #00FFFF 100%); }
-.skills-grid.show-names .skill-item[data-skill="MySQL"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4479A1 100%); }
-.skills-grid.show-names .skill-item[data-skill="MongoDB"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4EA94B 100%); }
-.skills-grid.show-names .skill-item[data-skill="Google Cloud"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4285F4 100%); }
-.skills-grid.show-names .skill-item[data-skill="Git"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F05033 100%); }
-.skills-grid.show-names .skill-item[data-skill="Docker"]:hover { background: linear-gradient(90deg, #ffffff 10%, #2496ED 100%); }
-.skills-grid.show-names .skill-item[data-skill="Firebase"]:hover { background: linear-gradient(90deg, #ffffff 10%, #FFCA28 100%); }
-.skills-grid.show-names .skill-item[data-skill="Figma"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F24E1E 100%); }
-.skills-grid.show-names .skill-item[data-skill="Notion"]:hover { background: linear-gradient(90deg, #ffffff 10%, #333333 100%); }
-.skills-grid.show-names .skill-item[data-skill="Jira"]:hover { background: linear-gradient(90deg, #ffffff 10%, #0052CC 100%); }
-.skills-grid.show-names .skill-item[data-skill="Hapi"]:hover { background: linear-gradient(90deg, #ffffff 10%, #16A785 100%); }
-.skills-grid.show-names .skill-item[data-skill="Looker"]:hover { background: linear-gradient(90deg, #ffffff 10%, #4285F4 100%); }
-.skills-grid.show-names .skill-item[data-skill="Power BI"]:hover { background: linear-gradient(90deg, #ffffff 10%, #F2C811 100%); }
-.skills-grid.show-names .skill-item[data-skill="Tableau"]:hover { background: linear-gradient(90deg, #ffffff 10%, #E97627 100%); }
-.skills-grid.show-names .skill-item[data-skill="Postman"]:hover { background: linear-gradient(90deg, #ffffff 10%, #FF6C37 100%); }
-.skills-grid.show-names .skill-item[data-skill="Netlify"]:hover { background: linear-gradient(90deg, #ffffff 10%, #00C7B7 100%); }
-.skills-grid.show-names .skill-item[data-skill="ClickUp"]:hover { background: linear-gradient(90deg, #ffffff 10%, #7B68EE 100%); }
-.skills-grid.show-names .skill-item[data-skill="Trello"]:hover { background: linear-gradient(90deg, #ffffff 10%, #0079BF 100%); }
+.skills-grid.show-names .skill-item[data-skill="Python"]:hover { background: linear-gradient(90deg, #ffffff 5%, #3670A0 100%); }
+.skills-grid.show-names .skill-item[data-skill="R"]:hover { background: linear-gradient(90deg, #ffffff 5%, #276DC3 100%); }
+.skills-grid.show-names .skill-item[data-skill="C++"]:hover { background: linear-gradient(90deg, #ffffff 5%, #00599C 100%); }
+.skills-grid.show-names .skill-item[data-skill="Java"]:hover { background: linear-gradient(90deg, #ffffff 5%, #ED8B00 100%); }
+.skills-grid.show-names .skill-item[data-skill="JavaScript"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F7DF1E 100%); }
+.skills-grid.show-names .skill-item[data-skill="TypeScript"]:hover { background: linear-gradient(90deg, #ffffff 5%, #007ACC 100%); }
+.skills-grid.show-names .skill-item[data-skill="HTML5"]:hover { background: linear-gradient(90deg, #ffffff 5%, #E34F26 100%); }
+.skills-grid.show-names .skill-item[data-skill="CSS3"]:hover { background: linear-gradient(90deg, #ffffff 5%, #1572B6 100%); }
+.skills-grid.show-names .skill-item[data-skill="Bash"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4EAA25 100%); }
+.skills-grid.show-names .skill-item[data-skill="React"]:hover { background: linear-gradient(90deg, #ffffff 5%, #61DAFB 100%); }
+.skills-grid.show-names .skill-item[data-skill="Node.js"]:hover { background: linear-gradient(90deg, #ffffff 5%, #339933 100%); }
+.skills-grid.show-names .skill-item[data-skill="Express"]:hover { background: linear-gradient(90deg, #ffffff 5%, #000000 100%); }
+.skills-grid.show-names .skill-item[data-skill="Next.js"]:hover { background: linear-gradient(90deg, #ffffff 5%, #000000 100%); }
+.skills-grid.show-names .skill-item[data-skill="Bootstrap"]:hover { background: linear-gradient(90deg, #ffffff 5%, #7952B3 100%); }
+.skills-grid.show-names .skill-item[data-skill="TensorFlow"]:hover { background: linear-gradient(90deg, #ffffff 5%, #FF6F00 100%); }
+.skills-grid.show-names .skill-item[data-skill="Keras"]:hover { background: linear-gradient(90deg, #ffffff 5%, #D00000 100%); }
+.skills-grid.show-names .skill-item[data-skill="PyTorch"]:hover { background: linear-gradient(90deg, #ffffff 5%, #EE4C2C 100%); }
+.skills-grid.show-names .skill-item[data-skill="Scikit-learn"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F7931E 100%); }
+.skills-grid.show-names .skill-item[data-skill="Pandas"]:hover { background: linear-gradient(90deg, #ffffff 5%, #150458 100%); }
+.skills-grid.show-names .skill-item[data-skill="NumPy"]:hover { background: linear-gradient(90deg, #ffffff 5%, #013243 100%); }
+.skills-grid.show-names .skill-item[data-skill="Matplotlib"]:hover { background: linear-gradient(90deg, #ffffff 5%, #821010 100%); }
+.skills-grid.show-names .skill-item[data-skill="Seaborn"]:hover { background: linear-gradient(90deg, #ffffff 5%, #3d5a80 100%); }
+.skills-grid.show-names .skill-item[data-skill="OpenCV"]:hover { background: linear-gradient(90deg, #ffffff 5%, #5C8BEE 100%); }
+.skills-grid.show-names .skill-item[data-skill="FastAPI"]:hover { background: linear-gradient(90deg, #ffffff 5%, #009688 100%); }
+.skills-grid.show-names .skill-item[data-skill="Flask"]:hover { background: linear-gradient(90deg, #ffffff 5%, #000000 100%); }
+.skills-grid.show-names .skill-item[data-skill="YOLO"]:hover { background: linear-gradient(90deg, #ffffff 5%, #00FFFF 100%); }
+.skills-grid.show-names .skill-item[data-skill="MySQL"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4479A1 100%); }
+.skills-grid.show-names .skill-item[data-skill="MongoDB"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4EA94B 100%); }
+.skills-grid.show-names .skill-item[data-skill="Google Cloud"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4285F4 100%); }
+.skills-grid.show-names .skill-item[data-skill="Git"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F05033 100%); }
+.skills-grid.show-names .skill-item[data-skill="Docker"]:hover { background: linear-gradient(90deg, #ffffff 5%, #2496ED 100%); }
+.skills-grid.show-names .skill-item[data-skill="Firebase"]:hover { background: linear-gradient(90deg, #ffffff 5%, #FFCA28 100%); }
+.skills-grid.show-names .skill-item[data-skill="Figma"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F24E1E 100%); }
+.skills-grid.show-names .skill-item[data-skill="Notion"]:hover { background: linear-gradient(90deg, #ffffff 5%, #333333 100%); }
+.skills-grid.show-names .skill-item[data-skill="Jira"]:hover { background: linear-gradient(90deg, #ffffff 5%, #0052CC 100%); }
+.skills-grid.show-names .skill-item[data-skill="Hapi"]:hover { background: linear-gradient(90deg, #ffffff 5%, #16A785 100%); }
+.skills-grid.show-names .skill-item[data-skill="Looker"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4285F4 100%); }
+.skills-grid.show-names .skill-item[data-skill="Power BI"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F2C811 100%); }
+.skills-grid.show-names .skill-item[data-skill="Tableau"]:hover { background: linear-gradient(90deg, #ffffff 5%, #E97627 100%); }
+.skills-grid.show-names .skill-item[data-skill="Postman"]:hover { background: linear-gradient(90deg, #ffffff 5%, #FF6C37 100%); }
+.skills-grid.show-names .skill-item[data-skill="Netlify"]:hover { background: linear-gradient(90deg, #ffffff 5%, #00C7B7 100%); }
+.skills-grid.show-names .skill-item[data-skill="ClickUp"]:hover { background: linear-gradient(90deg, #ffffff 5%, #7B68EE 100%); }
+.skills-grid.show-names .skill-item[data-skill="Trello"]:hover { background: linear-gradient(90deg, #ffffff 5%, #0079BF 100%); }
 
 .skills-grid.show-names .skill-item:hover .skill-name {
     color: #393e46;
