@@ -491,7 +491,6 @@ body {
     height: 60px;
     border-radius: 8px;
     object-fit: contain;
-    background-color: #393e46;
     flex-shrink: 0;
 }
 
