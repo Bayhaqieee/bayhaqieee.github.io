@@ -164,44 +164,12 @@ $(document).ready(function () {
     }
   }
 
-  // --- Certificate Modal Functionality ---
-  const certModal = $('#cert-modal');
-  const modalImage = $('#modal-cert-image');
-  const closeModalBtn = $('.modal-close');
-  const certItems = $('.cert-item');
-
-  certItems.on('click', function() {
-      // Get the certificate URL from the data attribute
-      const certUrl = $(this).data('gdrive-url');
-      // Create a placeholder URL with the certificate title
-      const certTitle = $(this).find('.cert-title').text();
-      const placeholderUrl = `https://placehold.co/1200x800/222831/eeeeee?text=${encodeURIComponent(certTitle)}`;
-      
-      // Use the placeholder for now. In a real scenario, you'd use certUrl.
-      modalImage.attr('src', placeholderUrl); 
-      certModal.css('display', 'flex');
-  });
-
-  // Function to close the modal
-  function closeModal() {
-      certModal.css('display', 'none');
-      modalImage.attr('src', ''); // Clear src to prevent old image flashing on next open
-  }
-
-  // Event listener for the close button
-  closeModalBtn.on('click', closeModal);
-
-  // Event listener to close modal by clicking on the overlay
-  certModal.on('click', function(e) {
-      if ($(e.target).is(certModal)) {
-          closeModal();
-      }
-  });
-  
-  // Event listener to close modal with the Escape key
-  $(document).on('keydown', function(e) {
-    if (e.key === "Escape" && certModal.css('display') === 'flex') {
-      closeModal();
+  // --- Certificate Card Navigation ---
+  $('.cert-item').on('click', function() {
+    const url = $(this).data('gdrive-url');
+    if (url) {
+      // Open the URL from the data-gdrive-url attribute in a new tab
+      window.open(url, '_blank');
     }
   });
 
