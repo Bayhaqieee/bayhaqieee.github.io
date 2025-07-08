@@ -122,38 +122,99 @@ $(document).ready(function () {
   });
 
 
-  // --- Function to sync card heights ---
+  // --- Function to sync card heights (CORRECTED LOGIC) ---
   function syncCardHeights() {
     const grid = $('.activities-grid');
     
+    // Only run on desktop where grid has 2 columns
     if (window.innerWidth > 1024) {
-      // Row 1
+      // --- Row 1: Activities & Skills ---
       const activitiesBox = grid.find('.content-box:nth-child(1)');
       const skillsBox = grid.find('.content-box:nth-child(2)');
+      
+      // Reset heights to auto to get the natural height of each element
       activitiesBox.css('height', 'auto');
       skillsBox.css('height', 'auto');
-      const targetHeight1 = activitiesBox.outerHeight();
-      skillsBox.css('height', targetHeight1);
+      
+      // Find the minimum height in the first row
+      const minHeight1 = Math.min(activitiesBox.outerHeight(), skillsBox.outerHeight());
+      
+      // Apply the min height to both boxes in the first row
+      activitiesBox.css('height', minHeight1);
+      skillsBox.css('height', minHeight1);
 
-      // Row 2
+      // --- Row 2: Education & Certifications ---
       const educationBox = grid.find('.content-box:nth-child(3)');
       const certsBox = grid.find('.content-box:nth-child(4)');
+
+      // Reset heights to auto
       educationBox.css('height', 'auto');
       certsBox.css('height', 'auto');
-      const targetHeight2 = educationBox.outerHeight();
-      certsBox.css('height', targetHeight2);
+      
+      // Find the minimum height in the second row
+      const minHeight2 = Math.min(educationBox.outerHeight(), certsBox.outerHeight());
+
+      // Apply the min height to both boxes in the second row
+      educationBox.css('height', minHeight2);
+      certsBox.css('height', minHeight2);
 
     } else {
+      // On smaller screens, reset all heights to auto to allow natural flow
       grid.find('.content-box').css('height', 'auto');
     }
   }
 
+  // --- Certificate Modal Functionality ---
+  const certModal = $('#cert-modal');
+  const modalImage = $('#modal-cert-image');
+  const closeModalBtn = $('.modal-close');
+  const certItems = $('.cert-item');
+
+  certItems.on('click', function() {
+      // Get the certificate URL from the data attribute
+      const certUrl = $(this).data('gdrive-url');
+      // Create a placeholder URL with the certificate title
+      const certTitle = $(this).find('.cert-title').text();
+      const placeholderUrl = `https://placehold.co/1200x800/222831/eeeeee?text=${encodeURIComponent(certTitle)}`;
+      
+      // Use the placeholder for now. In a real scenario, you'd use certUrl.
+      modalImage.attr('src', placeholderUrl); 
+      certModal.css('display', 'flex');
+  });
+
+  // Function to close the modal
+  function closeModal() {
+      certModal.css('display', 'none');
+      modalImage.attr('src', ''); // Clear src to prevent old image flashing on next open
+  }
+
+  // Event listener for the close button
+  closeModalBtn.on('click', closeModal);
+
+  // Event listener to close modal by clicking on the overlay
+  certModal.on('click', function(e) {
+      if ($(e.target).is(certModal)) {
+          closeModal();
+      }
+  });
+  
+  // Event listener to close modal with the Escape key
+  $(document).on('keydown', function(e) {
+    if (e.key === "Escape" && certModal.css('display') === 'flex') {
+      closeModal();
+    }
+  });
+
+
+  // Initial and resize calls for height syncing
   $(window).on('load', function() {
       syncCardHeights();
   });
 
+  let resizeTimer;
   $(window).on('resize', function() {
-    syncCardHeights();
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(syncCardHeights, 100);
   });
 
 });

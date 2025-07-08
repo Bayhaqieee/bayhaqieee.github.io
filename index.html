@@ -514,9 +514,31 @@
           </div>
           <div class="content-box">
             <h3>Certifications</h3>
-            <div class="certifications-grid">
-              <div class="cert-item"><span>TensorFlow Developer</span></div>
-              <div class="cert-item"><span>GCP Associate Cloud Engineer</span></div>
+            <div class="info-box-content" id="certifications-container">
+              <div class="cert-item" data-provider="udemy" data-gdrive-url="image/Certs/placeholder.jpg">
+                  <span class="cert-title">The Complete 2024 Web Development Bootcamp</span>
+                  <img src="https://placehold.co/100x40/393e46/a435f0?text=Udemy" class="cert-logo" alt="Udemy">
+              </div>
+              <div class="cert-item" data-provider="deeplearning" data-gdrive-url="image/Certs/placeholder.jpg">
+                  <span class="cert-title">AI For Everyone</span>
+                   <img src="https://placehold.co/100x40/393e46/e6007e?text=D.A.I" class="cert-logo" alt="DeepLearning.AI">
+              </div>
+              <div class="cert-item" data-provider="dicoding" data-gdrive-url="image/Certs/placeholder.jpg">
+                  <span class="cert-title">Belajar Machine Learning untuk Pemula</span>
+                   <img src="https://placehold.co/100x40/393e46/2d3e50?text=Dicoding" class="cert-logo" alt="Dicoding">
+              </div>
+              <div class="cert-item" data-provider="dqlab" data-gdrive-url="image/Certs/placeholder.jpg">
+                  <span class="cert-title">Data Science with Python</span>
+                   <img src="https://placehold.co/100x40/393e46/76c83a?text=DQLab" class="cert-logo" alt="DQLab">
+              </div>
+              <div class="cert-item" data-provider="udemy" data-gdrive-url="image/Certs/placeholder.jpg">
+                  <span class="cert-title">TensorFlow Developer Certificate</span>
+                  <img src="https://placehold.co/100x40/393e46/a435f0?text=Udemy" class="cert-logo" alt="Udemy">
+              </div>
+              <div class="cert-item" data-provider="google" data-gdrive-url="image/Certs/placeholder.jpg">
+                  <span class="cert-title">GCP Associate Cloud Engineer</span>
+                   <img src="https://placehold.co/100x40/393e46/4285F4?text=Google" class="cert-logo" alt="Google">
+              </div>
             </div>
           </div>
         </div>
@@ -727,7 +749,7 @@
         </div>
       </div>
 
-<div id="contact" class="scroll-animate">
+      <div id="contact" class="scroll-animate">
           <h2>LET'S WORK <span>TOGETHER</span></h2>
           <p>Bringing your ideas to life with clean, efficient, and scalable code.</p>
           <form action="https://formspree.io/f/xqabyqoa" method="POST">
@@ -749,6 +771,14 @@
       </footer>
 
     </div>
+  </div>
+
+  <!-- Certificate Modal -->
+  <div id="cert-modal" class="modal-overlay">
+      <div class="modal-content">
+          <span class="modal-close" title="Close">&times;</span>
+          <img id="modal-cert-image" src="" alt="Certificate Preview">
+      </div>
   </div>
 </body>
 
