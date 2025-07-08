@@ -429,7 +429,7 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
-    align-items: stretch;
+    align-items: start;
 }
 
 .content-box {
@@ -440,6 +440,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 0; 
+  overflow: hidden; /* Fixes potential overflow issues */
 }
 
 .content-box h3 {
@@ -522,12 +523,12 @@ body {
 }
 
 
-/* --- Technical Skills Section --- */
+/* --- Technical Skills Section (REVISED) --- */
 .skills-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   flex-shrink: 0;
 }
 
@@ -553,151 +554,164 @@ body {
   background-color: #4a515c;
 }
 
-#skills-container {
-    overflow-y: auto;
-    padding-right: 10px;
-    min-height: 0;
-    flex-grow: 1; 
+#skill-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #393e46;
 }
 
-.skills-grid {
-  display: grid;
-  gap: 1.5rem;
-  transition: grid-template-columns 0.4s ease;
+.skill-filter-btn {
+    background-color: transparent;
+    color: #a0a0a0;
+    border: 1px solid #393e46;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.skill-filter-btn:hover {
+    color: #eeeeee;
+    border-color: #5c636e;
+}
+
+.skill-filter-btn.active {
+    background-color: #fd7014;
+    color: #ffffff;
+    border-color: #fd7014;
+}
+
+#skills-container {
+    overflow-y: auto;
+    padding: 0 5px; /* Adjusted padding to prevent horizontal scroll */
+    min-height: 0;
+    flex-grow: 1; 
 }
 
 #skills-container::-webkit-scrollbar {
   width: 8px;
 }
 #skills-container::-webkit-scrollbar-track {
-  background: transparent;
+  background: #222831;
+  border-radius: 10px;
 }
 #skills-container::-webkit-scrollbar-thumb {
   background-color: #393e46;
   border-radius: 10px;
-  border: 2px solid #222831;
 }
 #skills-container::-webkit-scrollbar-thumb:hover {
   background-color: #fd7014;
 }
 
-.skill-item img {
-  margin-top: 0.25rem;
-  height: 32px;
-  width: 32px;
-  transition: filter 0.3s ease;
-}
-.skill-item .skill-name {
-  font-size: 1rem;
-  font-weight: 500;
-  color: #eeeeee;
-  line-height: 1;
-  transition: color 0.3s ease;
+.skill-category {
+    margin-bottom: 1.5rem;
 }
 
-.skills-grid:not(.show-names) {
-  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-}
-.skills-grid:not(.show-names) .skill-item {
-  justify-content: center;
-  display: flex;
-}
-.skills-grid:not(.show-names) .skill-item img {
-  filter: invert(90%) sepia(0%) saturate(24%) hue-rotate(134deg) brightness(108%) contrast(95%);
-  transition: all 0.3s ease;
-}
-.skills-grid:not(.show-names) .skill-item:hover img {
-    filter: invert(56%) sepia(98%) saturate(1353%) hue-rotate(349deg) brightness(100%) contrast(98%);
-    transform: scale(1.1);
-}
-.skills-grid:not(.show-names) .skill-name {
+/* MODIFICATION: Hide category titles */
+.skill-category h4 {
     display: none;
 }
 
-.skills-grid.show-names {
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+  gap: 1.5rem;
+  transition: all 0.4s ease;
+}
+
+.skill-item {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.skill-item img {
+  height: 32px;
+  width: 32px;
+  transition: all 0.3s ease;
+  filter: brightness(0) invert(1); /* Default color: white */
+}
+
+.skill-item:hover img {
+    /* This filter combination approximates the orange color #fd7014 */
+    filter: invert(60%) sepia(99%) saturate(1353%) hue-rotate(349deg) brightness(100%) contrast(98%);
+    transform: scale(1.1);
+}
+
+.skill-name {
+    display: none; /* Hidden in logo view */
+    font-size: 1rem;
+    font-weight: 500;
+    color: #eeeeee;
+    line-height: 1;
+}
+
+/* --- Card View Styles --- */
+#skills-container.show-cards .skills-grid {
   grid-template-columns: 1fr;
   gap: 1rem;
 }
-.skills-grid.show-names .skill-item {
+
+#skills-container.show-cards .skill-item {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: 2.5rem;
-    padding: 1rem 1.25rem;
+    gap: 1.5rem;
+    padding: 0.75rem 1rem;
     border-radius: 8px;
     border: 1px solid #393e46;
-    transition: all 0.3s ease-in-out;
-    position: relative;
-    background: linear-gradient(90deg, #222831 10%, #fd7014 100%);
+    background: #2b3038;
 }
-.skills-grid.show-names .skill-item img {
+
+#skills-container.show-cards .skill-item img {
     height: 28px;
     width: 28px;
-    filter: brightness(0) invert(1);
-}
-.skills-grid.show-names .skill-item .skill-name {
-    color: #eeeeee;
-}
-.skills-grid.show-names .skill-name {
-    display: block;
+    filter: brightness(0) invert(1); /* Keep logo white in card view */
 }
 
-.skills-grid.show-names .skill-item:hover {
-    transform: translateY(-1px);
-    z-index: 2;
-}
-.skills-grid.show-names .skill-item:hover img {
-    filter: invert(10%) sepia(8%) saturate(0%) hue-rotate(200deg) brightness(92%) contrast(89%);
+#skills-container.show-cards .skill-item:hover img {
+    filter: brightness(0) invert(1); /* Keep logo white on hover in card view */
+    transform: scale(1); /* Disable scale on hover in card view */
 }
 
-.skills-grid.show-names .skill-item[data-skill="Python"]:hover { background: linear-gradient(90deg, #ffffff 5%, #3670A0 100%); }
-.skills-grid.show-names .skill-item[data-skill="R"]:hover { background: linear-gradient(90deg, #ffffff 5%, #276DC3 100%); }
-.skills-grid.show-names .skill-item[data-skill="C++"]:hover { background: linear-gradient(90deg, #ffffff 5%, #00599C 100%); }
-.skills-grid.show-names .skill-item[data-skill="Java"]:hover { background: linear-gradient(90deg, #ffffff 5%, #ED8B00 100%); }
-.skills-grid.show-names .skill-item[data-skill="JavaScript"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F7DF1E 100%); }
-.skills-grid.show-names .skill-item[data-skill="TypeScript"]:hover { background: linear-gradient(90deg, #ffffff 5%, #007ACC 100%); }
-.skills-grid.show-names .skill-item[data-skill="HTML5"]:hover { background: linear-gradient(90deg, #ffffff 5%, #E34F26 100%); }
-.skills-grid.show-names .skill-item[data-skill="CSS3"]:hover { background: linear-gradient(90deg, #ffffff 5%, #1572B6 100%); }
-.skills-grid.show-names .skill-item[data-skill="Bash"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4EAA25 100%); }
-.skills-grid.show-names .skill-item[data-skill="React"]:hover { background: linear-gradient(90deg, #ffffff 5%, #61DAFB 100%); }
-.skills-grid.show-names .skill-item[data-skill="Node.js"]:hover { background: linear-gradient(90deg, #ffffff 5%, #339933 100%); }
-.skills-grid.show-names .skill-item[data-skill="Express"]:hover { background: linear-gradient(90deg, #ffffff 5%, #000000 100%); }
-.skills-grid.show-names .skill-item[data-skill="Next.js"]:hover { background: linear-gradient(90deg, #ffffff 5%, #000000 100%); }
-.skills-grid.show-names .skill-item[data-skill="Bootstrap"]:hover { background: linear-gradient(90deg, #ffffff 5%, #7952B3 100%); }
-.skills-grid.show-names .skill-item[data-skill="TensorFlow"]:hover { background: linear-gradient(90deg, #ffffff 5%, #FF6F00 100%); }
-.skills-grid.show-names .skill-item[data-skill="Keras"]:hover { background: linear-gradient(90deg, #ffffff 5%, #D00000 100%); }
-.skills-grid.show-names .skill-item[data-skill="PyTorch"]:hover { background: linear-gradient(90deg, #ffffff 5%, #EE4C2C 100%); }
-.skills-grid.show-names .skill-item[data-skill="Scikit-learn"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F7931E 100%); }
-.skills-grid.show-names .skill-item[data-skill="Pandas"]:hover { background: linear-gradient(90deg, #ffffff 5%, #150458 100%); }
-.skills-grid.show-names .skill-item[data-skill="NumPy"]:hover { background: linear-gradient(90deg, #ffffff 5%, #013243 100%); }
-.skills-grid.show-names .skill-item[data-skill="Matplotlib"]:hover { background: linear-gradient(90deg, #ffffff 5%, #821010 100%); }
-.skills-grid.show-names .skill-item[data-skill="Seaborn"]:hover { background: linear-gradient(90deg, #ffffff 5%, #3d5a80 100%); }
-.skills-grid.show-names .skill-item[data-skill="OpenCV"]:hover { background: linear-gradient(90deg, #ffffff 5%, #5C8BEE 100%); }
-.skills-grid.show-names .skill-item[data-skill="FastAPI"]:hover { background: linear-gradient(90deg, #ffffff 5%, #009688 100%); }
-.skills-grid.show-names .skill-item[data-skill="Flask"]:hover { background: linear-gradient(90deg, #ffffff 5%, #000000 100%); }
-.skills-grid.show-names .skill-item[data-skill="YOLO"]:hover { background: linear-gradient(90deg, #ffffff 5%, #00FFFF 100%); }
-.skills-grid.show-names .skill-item[data-skill="MySQL"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4479A1 100%); }
-.skills-grid.show-names .skill-item[data-skill="MongoDB"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4EA94B 100%); }
-.skills-grid.show-names .skill-item[data-skill="Google Cloud"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4285F4 100%); }
-.skills-grid.show-names .skill-item[data-skill="Git"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F05033 100%); }
-.skills-grid.show-names .skill-item[data-skill="Docker"]:hover { background: linear-gradient(90deg, #ffffff 5%, #2496ED 100%); }
-.skills-grid.show-names .skill-item[data-skill="Firebase"]:hover { background: linear-gradient(90deg, #ffffff 5%, #FFCA28 100%); }
-.skills-grid.show-names .skill-item[data-skill="Figma"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F24E1E 100%); }
-.skills-grid.show-names .skill-item[data-skill="Notion"]:hover { background: linear-gradient(90deg, #ffffff 5%, #333333 100%); }
-.skills-grid.show-names .skill-item[data-skill="Jira"]:hover { background: linear-gradient(90deg, #ffffff 5%, #0052CC 100%); }
-.skills-grid.show-names .skill-item[data-skill="Hapi"]:hover { background: linear-gradient(90deg, #ffffff 5%, #16A785 100%); }
-.skills-grid.show-names .skill-item[data-skill="Looker"]:hover { background: linear-gradient(90deg, #ffffff 5%, #4285F4 100%); }
-.skills-grid.show-names .skill-item[data-skill="Power BI"]:hover { background: linear-gradient(90deg, #ffffff 5%, #F2C811 100%); }
-.skills-grid.show-names .skill-item[data-skill="Tableau"]:hover { background: linear-gradient(90deg, #ffffff 5%, #E97627 100%); }
-.skills-grid.show-names .skill-item[data-skill="Postman"]:hover { background: linear-gradient(90deg, #ffffff 5%, #FF6C37 100%); }
-.skills-grid.show-names .skill-item[data-skill="Netlify"]:hover { background: linear-gradient(90deg, #ffffff 5%, #00C7B7 100%); }
-.skills-grid.show-names .skill-item[data-skill="ClickUp"]:hover { background: linear-gradient(90deg, #ffffff 5%, #7B68EE 100%); }
-.skills-grid.show-names .skill-item[data-skill="Trello"]:hover { background: linear-gradient(90deg, #ffffff 5%, #0079BF 100%); }
-
-.skills-grid.show-names .skill-item:hover .skill-name {
-    color: #393e46;
+#skills-container.show-cards .skill-name {
+    display: block; /* Show name in card view */
 }
+
+/* Custom background colors for card view on hover */
+#skills-container.show-cards .skill-item[data-skill="Python"]:hover { background: linear-gradient(90deg, #30363d 20%, #3670A0 120%); }
+#skills-container.show-cards .skill-item[data-skill="R"]:hover { background: linear-gradient(90deg, #30363d 20%, #276DC3 120%); }
+#skills-container.show-cards .skill-item[data-skill="C++"]:hover { background: linear-gradient(90deg, #30363d 20%, #00599C 120%); }
+#skills-container.show-cards .skill-item[data-skill="Java"]:hover { background: linear-gradient(90deg, #30363d 20%, #ED8B00 120%); }
+#skills-container.show-cards .skill-item[data-skill="JavaScript"]:hover { background: linear-gradient(90deg, #30363d 20%, #F7DF1E 120%); }
+#skills-container.show-cards .skill-item[data-skill="TypeScript"]:hover { background: linear-gradient(90deg, #30363d 20%, #007ACC 120%); }
+#skills-container.show-cards .skill-item[data-skill="HTML5"]:hover { background: linear-gradient(90deg, #30363d 20%, #E34F26 120%); }
+#skills-container.show-cards .skill-item[data-skill="CSS3"]:hover { background: linear-gradient(90deg, #30363d 20%, #1572B6 120%); }
+#skills-container.show-cards .skill-item[data-skill="React"]:hover { background: linear-gradient(90deg, #30363d 20%, #61DAFB 120%); }
+#skills-container.show-cards .skill-item[data-skill="Next.js"]:hover { background: linear-gradient(90deg, #30363d 20%, #ffffff 120%); }
+#skills-container.show-cards .skill-item[data-skill="Bootstrap"]:hover { background: linear-gradient(90deg, #30363d 20%, #7952B3 120%); }
+#skills-container.show-cards .skill-item[data-skill="TensorFlow"]:hover { background: linear-gradient(90deg, #30363d 20%, #FF6F00 120%); }
+#skills-container.show-cards .skill-item[data-skill="Keras"]:hover { background: linear-gradient(90deg, #30363d 20%, #D00000 120%); }
+#skills-container.show-cards .skill-item[data-skill="PyTorch"]:hover { background: linear-gradient(90deg, #30363d 20%, #EE4C2C 120%); }
+#skills-container.show-cards .skill-item[data-skill="Power BI"]:hover { background: linear-gradient(90deg, #30363d 20%, #F2C811 120%); }
+#skills-container.show-cards .skill-item[data-skill="Tableau"]:hover { background: linear-gradient(90deg, #30363d 20%, #E97627 120%); }
+#skills-container.show-cards .skill-item[data-skill="Google Cloud"]:hover { background: linear-gradient(90deg, #30363d 20%, #4285F4 120%); }
+#skills-container.show-cards .skill-item[data-skill="Microsoft Azure"]:hover { background: linear-gradient(90deg, #30363d 20%, #0078D4 120%); }
+#skills-container.show-cards .skill-item[data-skill="Firebase"]:hover { background: linear-gradient(90deg, #30363d 20%, #FFCA28 120%); }
+#skills-container.show-cards .skill-item[data-skill="Git"]:hover { background: linear-gradient(90deg, #30363d 20%, #F05033 120%); }
+#skills-container.show-cards .skill-item[data-skill="Figma"]:hover { background: linear-gradient(90deg, #30363d 20%, #F24E1E 120%); }
+#skills-container.show-cards .skill-item[data-skill="Canva"]:hover { background: linear-gradient(90deg, #30363d 20%, #00C4CC 120%); }
+/* Default hover for others */
+#skills-container.show-cards .skill-item:hover { background-color: #393e46; }
+
 
 /* --- Certifications Section --- */
 .certifications-grid {
