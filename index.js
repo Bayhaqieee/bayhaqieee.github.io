@@ -22,36 +22,31 @@ $(document).ready(function () {
     primaryFilters.removeClass('active');
     $(this).addClass('active');
     const primaryFilterValue = $(this).data('filter');
+
+    // Reset visibility for all cards before applying filters
+    projectCards.hide();
+
     if (primaryFilterValue === 'tech') {
       secondaryFilters.removeClass('hidden');
-      secondaryFilters.find('.filter-btn').removeClass('active');
+      secondaryFilters.find('.filter-btn').removeClass('active'); // Reset secondary filters
+      projectCards.filter('[data-category="tech"]').show();
     } else {
       secondaryFilters.addClass('hidden');
-    }
-    projectCards.each(function() {
-      const cardCategory = $(this).data('category');
-      if (primaryFilterValue === 'all' || cardCategory === primaryFilterValue) {
-        $(this).removeClass('hide');
+      if (primaryFilterValue === 'all') {
+        projectCards.show();
       } else {
-        $(this).addClass('hide');
+        projectCards.filter(`[data-category="${primaryFilterValue}"]`).show();
       }
-    });
+    }
   });
 
   secondaryFilters.find('.filter-btn').on('click', function() {
     secondaryFilters.find('.filter-btn').removeClass('active');
     $(this).addClass('active');
     const secondaryFilterValue = $(this).data('filter');
-    projectCards.each(function() {
-      const cardCategory = $(this).data('category');
-      const cardFocus = $(this).data('focus');
-      if (cardCategory === 'tech' && cardFocus === secondaryFilterValue) {
-        $(this).removeClass('hide');
-      } else {
-        $(this).addClass('hide');
-      }
-    });
+    projectCards.hide().filter(`[data-focus="${secondaryFilterValue}"]`).show();
   });
+
 
   // --- Quick Links Dropdown Functionality ---
   const dropdownToggle = $('.more-btn'); 
@@ -76,8 +71,6 @@ $(document).ready(function () {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('is-visible');
-      } else {
-        entry.target.classList.remove('is-visible');
       }
     });
   }, {
@@ -104,13 +97,11 @@ $(document).ready(function () {
   const skillCategories = $('.skill-category');
 
   skillFilterBtns.on('click', function() {
-    // Manage active state for buttons
     skillFilterBtns.removeClass('active');
     $(this).addClass('active');
 
     const filter = $(this).data('filter');
 
-    // Show/hide categories based on filter
     skillCategories.each(function() {
         const category = $(this).data('category');
         if (filter === 'all' || category === filter) {
@@ -121,25 +112,44 @@ $(document).ready(function () {
     });
   });
 
+  // --- Certification Category Filtering (NEW) ---
+  const certFilterBtns = $('#cert-filters .cert-filter-btn');
+  const certItems = $('#certifications-container .cert-item');
 
-  // --- Function to sync card heights (CORRECTED LOGIC) ---
+  certFilterBtns.on('click', function() {
+    certFilterBtns.removeClass('active');
+    $(this).addClass('active');
+
+    const filterValue = $(this).data('filter');
+
+    certItems.each(function() {
+      const itemCategory = $(this).data('category');
+      if (filterValue === 'all' || itemCategory === filterValue) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
+  });
+
+
+  // --- Function to sync card heights (CORRECTED) ---
   function syncCardHeights() {
     const grid = $('.activities-grid');
     
-    // Only run on desktop where grid has 2 columns
     if (window.innerWidth > 1024) {
       // --- Row 1: Activities & Skills ---
       const activitiesBox = grid.find('.content-box:nth-child(1)');
       const skillsBox = grid.find('.content-box:nth-child(2)');
       
-      // Reset heights to auto to get the natural height of each element
+      // Reset heights to auto to get the natural height
       activitiesBox.css('height', 'auto');
       skillsBox.css('height', 'auto');
       
       // Find the minimum height in the first row
       const minHeight1 = Math.min(activitiesBox.outerHeight(), skillsBox.outerHeight());
       
-      // Apply the min height to both boxes in the first row
+      // Apply the min height to both boxes
       activitiesBox.css('height', minHeight1);
       skillsBox.css('height', minHeight1);
 
@@ -154,21 +164,20 @@ $(document).ready(function () {
       // Find the minimum height in the second row
       const minHeight2 = Math.min(educationBox.outerHeight(), certsBox.outerHeight());
 
-      // Apply the min height to both boxes in the second row
+      // Apply the min height to both boxes
       educationBox.css('height', minHeight2);
       certsBox.css('height', minHeight2);
 
     } else {
-      // On smaller screens, reset all heights to auto to allow natural flow
+      // On smaller screens, reset all heights to auto
       grid.find('.content-box').css('height', 'auto');
     }
   }
 
   // --- Certificate Card Navigation ---
-  $('.cert-item').on('click', function() {
+  $('#certifications-container').on('click', '.cert-item', function() {
     const url = $(this).data('gdrive-url');
-    if (url) {
-      // Open the URL from the data-gdrive-url attribute in a new tab
+    if (url && url !== '#') {
       window.open(url, '_blank');
     }
   });

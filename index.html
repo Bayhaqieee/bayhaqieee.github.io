@@ -514,31 +514,46 @@
           </div>
           <div class="content-box">
             <h3>Certifications</h3>
+            <div id="cert-filters">
+                <button class="cert-filter-btn active" data-filter="all">All</button>
+                <button class="cert-filter-btn" data-filter="ai_ml">AI/ML</button>
+                <button class="cert-filter-btn" data-filter="data_science">Data Science</button>
+                <button class="cert-filter-btn" data-filter="software_dev">Software Dev</button>
+                <button class="cert-filter-btn" data-filter="cloud_devops">Cloud & DevOps</button>
+                <button class="cert-filter-btn" data-filter="agile">Agile</button>
+            </div>
             <div class="info-box-content" id="certifications-container">
-              <div class="cert-item" data-provider="udemy" data-gdrive-url="https://drive.google.com/file/d/12d2tMPfz2gvDKp2w00gRAMXN-_f9CvSB/view?usp=sharing">
-                  <span class="cert-title">AI Engineer Associate Certificate Course</span>
-                  <img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy">
-              </div>
-              <div class="cert-item" data-provider="deeplearning" data-gdrive-url="image/Certs/placeholder.jpg">
-                  <span class="cert-title">AI For Everyone</span>
-                   <img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI">
-              </div>
-              <div class="cert-item" data-provider="dicoding" data-gdrive-url="image/Certs/placeholder.jpg">
-                  <span class="cert-title">Belajar Machine Learning untuk Pemula</span>
-                   <img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding">
-              </div>
-              <div class="cert-item" data-provider="dqlab" data-gdrive-url="image/Certs/placeholder.jpg">
-                  <span class="cert-title">Data Science with Python</span>
-                   <img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab">
-              </div>
-              <div class="cert-item" data-provider="udemy" data-gdrive-url="image/Certs/placeholder.jpg">
-                  <span class="cert-title">TensorFlow Developer Certificate</span>
-                  <img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy">
-              </div>
-              <div class="cert-item" data-provider="google" data-gdrive-url="image/Certs/placeholder.jpg">
-                  <span class="cert-title">GCP Associate Cloud Engineer</span>
-                   <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" class="cert-logo" alt="Google">
-              </div>
+                <div class="cert-item" data-provider="udemy" data-category="ai_ml" data-gdrive-url="https://www.udemy.com/certificate/UC-8e3a2260-3aac-47c4-b395-dc6ca5420d37/"><span class="cert-title">AI Engineer Associate Certificate Course</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
+                <div class="cert-item" data-provider="udemy" data-category="ai_ml" data-gdrive-url="https://www.udemy.com/certificate/UC-f95b3f1d-12eb-4a74-97e3-d9e9df02149e/"><span class="cert-title">AI Engineer Explorer Certificate Course</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
+                <div class="cert-item" data-provider="udemy" data-category="agile" data-gdrive-url="https://www.udemy.com/certificate/UC-05ba36ac-15c2-474f-813c-2aa17e94ba4f/"><span class="cert-title">Agile Basics for Developers, Scrum Masters & Product Owners</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
+                <div class="cert-item" data-provider="dicoding" data-category="cloud_devops" data-gdrive-url="https://www.dicoding.com/certificates/MEPJ2R5VWP3V"><span class="cert-title">Belajar Dasar Cloud dan Gen AI di AWS</span><img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding"></div>
+                <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABDTWR1JTVHTI#mycertificate"><span class="cert-title">Data Preparation in Data Science using R</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
+                <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABDTVISUKJSBJ#mycertificate"><span class="cert-title">Data Visualization in Data Science using R</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
+                <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABSQLFNETRUQUO#mycertificate"><span class="cert-title">Database - SQL Track</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
+                <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABINTR1AVSGMR#mycertificate"><span class="cert-title">R Fundamental for Data Science</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
+                <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="#"><span class="cert-title">R for Data Professional</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
+                <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABINTS1DVRTON#mycertificate"><span class="cert-title">Statistics using R for Data Science</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/specialization/OTFKBW4NRZKC#"><span class="cert-title">TensorFlow: Data and Deployment</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/3XGZ0GFHQWJ8"><span class="cert-title">Custom Models, Layers, and Loss Functions with TensorFlow</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="data_science" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/TUUM2I0UEIT5"><span class="cert-title">Data Pipelines with TensorFlow Data Services</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/specialization/LHOB9P3X5KNK"><span class="cert-title">DeepLearning.AI TensorFlow Developer Specialization</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/040YZJ57MX6E"><span class="cert-title">Device-based Models with TensorFlow Lite</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/DF1AJ894OPB0"><span class="cert-title">Generative AI for Everyone</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/specialization/8X35QLDJO7AM"><span class="cert-title">Generative Adversarial Networks (GANs) Specialization</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/U9ZR9ZKONVO0"><span class="cert-title">Neural Networks and Deep Learning</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/7DYB40C87JUF"><span class="cert-title">Sequences, Time Series and Prediction</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="image/Certs/Coursera 8KDQ20AI06Y3.pdf"><span class="cert-title">Advanced Learning Algorithms</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="dicoding" data-category="data_science" data-gdrive-url="https://www.dicoding.com/certificates/2VX34JE0JZYQ"><span class="cert-title">Belajar Analisis Data dengan Python</span><img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/6XSL11217OT6"><span class="cert-title">Convolutional Neural Networks in TensorFlow</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/68VS48PLGVBK"><span class="cert-title">Introduction to TensorFlow for Artificial Intelligence, Machine Learning, and Deep Learning</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="data_science" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/HTV5LC5MVT5P"><span class="cert-title">Linear Algebra for Machine Learning and Data Science</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/specialization/1XTSVZ25GX0A"><span class="cert-title">Machine Learning Specialization</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="deeplearning" data-category="ai_ml" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/GRI6ACJ9SZM3"><span class="cert-title">Supervised Machine Learning: Regression and Classification</span><img src="image/certs/deeplearning.png" class="cert-logo" alt="DeepLearning.AI"></div>
+                <div class="cert-item" data-provider="dicoding" data-category="cloud_devops" data-gdrive-url="https://www.dicoding.com/certificates/07Z60O722ZQR"><span class="cert-title">Belajar Dasar Git dengan GitHub</span><img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding"></div>
+                <div class="cert-item" data-provider="google" data-category="software_dev" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/6J66NRVU4LHG"><span class="cert-title">Crash Course on Python</span><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" class="cert-logo" alt="Google"></div>
+                <div class="cert-item" data-provider="dicoding" data-category="software_dev" data-gdrive-url="https://www.dicoding.com/certificates/4EXGQDJD1ZRL"><span class="cert-title">Memulai Dasar Pemrograman untuk Menjadi Pengembang Software</span><img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding"></div>
+                <div class="cert-item" data-provider="dicoding" data-category="software_dev" data-gdrive-url="https://www.dicoding.com/certificates/MRZME9Y93PYQ"><span class="cert-title">Pengenalan ke Logika Pemrograman (Programming Logic 101)</span><img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding"></div>
+                <div class="cert-item" data-provider="google" data-category="software_dev" data-gdrive-url="https://www.coursera.org/account/accomplishments/records/DT35CS1JQ8HZ"><span class="cert-title">Using Python to Interact with the Operating System</span><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" class="cert-logo" alt="Google"></div>
             </div>
           </div>
         </div>
@@ -773,7 +788,6 @@
     </div>
   </div>
 
-  <!-- Certificate Modal -->
   <div id="cert-modal" class="modal-overlay">
       <div class="modal-content">
           <span class="modal-close" title="Close">&times;</span>
