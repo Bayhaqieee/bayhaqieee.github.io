@@ -359,16 +359,22 @@
                     <svg id="icon-list" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" style="display: none;"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/></svg>
                 </button>
               </div>
-              <div id="skill-filters">
-                <button class="skill-filter-btn active" data-filter="all">All</button>
-                <button class="skill-filter-btn" data-filter="languages">Languages</button>
-                <button class="skill-filter-btn" data-filter="frontend">Frontend</button>
-                <button class="skill-filter-btn" data-filter="backend">Backend</button>
-                <button class="skill-filter-btn" data-filter="ai_ml">AI/ML</button>
-                <button class="skill-filter-btn" data-filter="data_bi">Data & BI</button>
-                <button class="skill-filter-btn" data-filter="cloud_devops">Cloud & DevOps</button>
-                <button class="skill-filter-btn" data-filter="tools">Tools</button>
-                <button class="skill-filter-btn" data-filter="design">Design</button>
+              <div id="skill-filters" class="filter-dropdown">
+                  <button class="filter-dropdown-toggle">
+                      <span>All</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                  </button>
+                  <div class="filter-dropdown-menu">
+                      <a href="#" class="filter-dropdown-item active" data-filter="all">All</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="languages">Languages</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="frontend">Frontend</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="backend">Backend</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="ai_ml">AI/ML</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="data_bi">Data & BI</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="cloud_devops">Cloud & DevOps</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="tools">Tools</a>
+                      <a href="#" class="filter-dropdown-item" data-filter="design">Design</a>
+                  </div>
               </div>
               <div id="skills-container">
                   <div class="skill-category" data-category="languages">
@@ -514,19 +520,28 @@
           </div>
           <div class="content-box">
             <h3>Certifications</h3>
-            <div id="cert-filters">
-                <button class="cert-filter-btn active" data-filter="all">All</button>
-                <button class="cert-filter-btn" data-filter="ai_ml">AI/ML</button>
-                <button class="cert-filter-btn" data-filter="data_science">Data Science</button>
-                <button class="cert-filter-btn" data-filter="software_dev">Software Dev</button>
-                <button class="cert-filter-btn" data-filter="cloud_devops">Cloud & DevOps</button>
-                <button class="cert-filter-btn" data-filter="agile">Agile</button>
+             <div id="cert-filters" class="filter-dropdown">
+                <button class="filter-dropdown-toggle">
+                    <span>All</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/></svg>
+                </button>
+                <div class="filter-dropdown-menu">
+                    <a href="#" class="filter-dropdown-item active" data-filter="all">All</a>
+                    <a href="#" class="filter-dropdown-item" data-filter="ai_ml">AI/ML</a>
+                    <a href="#" class="filter-dropdown-item" data-filter="data_science">Data Science</a>
+                    <a href="#" class="filter-dropdown-item" data-filter="software_dev">Software Dev</a>
+                    <a href="#" class="filter-dropdown-item" data-filter="cloud_devops">Cloud & DevOps</a>
+                    <a href="#" class="filter-dropdown-item" data-filter="prodev">Project Management</a>
+                    <a href="#" class="filter-dropdown-item" data-filter="productivity">Productivity</a>
+                </div>
             </div>
             <div class="info-box-content" id="certifications-container">
                 <div class="cert-item" data-provider="udemy" data-category="ai_ml" data-gdrive-url="https://www.udemy.com/certificate/UC-8e3a2260-3aac-47c4-b395-dc6ca5420d37/"><span class="cert-title">AI Engineer Associate Certificate Course</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
                 <div class="cert-item" data-provider="udemy" data-category="ai_ml" data-gdrive-url="https://www.udemy.com/certificate/UC-f95b3f1d-12eb-4a74-97e3-d9e9df02149e/"><span class="cert-title">AI Engineer Explorer Certificate Course</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
-                <div class="cert-item" data-provider="udemy" data-category="agile" data-gdrive-url="https://www.udemy.com/certificate/UC-05ba36ac-15c2-474f-813c-2aa17e94ba4f/"><span class="cert-title">Agile Basics for Developers, Scrum Masters & Product Owners</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
+                <div class="cert-item" data-provider="udemy" data-category="prodev" data-gdrive-url="https://www.udemy.com/certificate/UC-05ba36ac-15c2-474f-813c-2aa17e94ba4f/"><span class="cert-title">Agile Basics for Developers, Scrum Masters & Product Owners</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
+                <div class="cert-item" data-provider="udemy" data-category="productivity" data-gdrive-url="https://www.udemy.com/certificate/UC-a1d992a2-0f06-4821-8bcc-beefa7ac3db1/"><span class="cert-title">Productivity with Notion 2025</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
                 <div class="cert-item" data-provider="dicoding" data-category="cloud_devops" data-gdrive-url="https://www.dicoding.com/certificates/MEPJ2R5VWP3V"><span class="cert-title">Belajar Dasar Cloud dan Gen AI di AWS</span><img src="image/certs/dicoding.png" class="cert-logo" alt="Dicoding"></div>
+                <div class="cert-item" data-provider="udemy" data-category="data_science" data-gdrive-url="https://www.udemy.com/certificate/UC-f3523296-5fcb-46f6-a804-51ffe6fed249/"><span class="cert-title">Looker Studio /Google Data Studio Complete Advanced Tutorial</span><img src="image/certs/udemy.svg" class="cert-logo" alt="Udemy"></div>
                 <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABDTWR1JTVHTI#mycertificate"><span class="cert-title">Data Preparation in Data Science using R</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
                 <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABDTVISUKJSBJ#mycertificate"><span class="cert-title">Data Visualization in Data Science using R</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>
                 <div class="cert-item" data-provider="dqlab" data-category="data_science" data-gdrive-url="https://academy.dqlab.id/Certificate_check/result/DQLABSQLFNETRUQUO#mycertificate"><span class="cert-title">Database - SQL Track</span><img src="image/certs/dqlab.png" class="cert-logo" alt="DQLab"></div>

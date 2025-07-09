@@ -550,36 +550,78 @@ body {
   background-color: #4a515c;
 }
 
-#skill-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+/* --- NEW FILTER DROPDOWN STYLES --- */
+.filter-dropdown {
+    position: relative;
     margin-bottom: 1.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid #393e46;
 }
 
-.skill-filter-btn {
+.filter-dropdown-toggle {
+    width: 100%;
     background-color: transparent;
-    color: #a0a0a0;
     border: 1px solid #393e46;
-    padding: 0.4rem 0.8rem;
+    color: #a0a0a0;
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
     font-weight: 500;
     transition: all 0.3s ease;
 }
 
-.skill-filter-btn:hover {
+.filter-dropdown-toggle:hover {
     color: #eeeeee;
     border-color: #5c636e;
 }
 
-.skill-filter-btn.active {
-    background-color: #fd7014;
+.filter-dropdown-toggle svg {
+    transition: transform 0.3s ease;
+}
+
+.filter-dropdown.open .filter-dropdown-toggle svg {
+    transform: rotate(180deg);
+}
+
+.filter-dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #393e46;
+    border: 1px solid #5c636e;
+    border-radius: 5px;
+    margin-top: 0.25rem;
+    z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.filter-dropdown-menu.show {
+    display: block;
+}
+
+.filter-dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #a0a0a0;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.filter-dropdown-item:hover {
+    background-color: #4a515c;
+    color: #eeeeee;
+}
+
+.filter-dropdown-item.active {
     color: #ffffff;
-    border-color: #fd7014;
+    background-color: #fd7014;
 }
 
 #skills-container {
@@ -781,40 +823,6 @@ body {
 #skills-container.show-cards .skill-item[data-skill="Illustrator"]:hover::after { background: linear-gradient(90deg, #FF9A00, #D17F00 120%); }
 #skills-container.show-cards .skill-item[data-skill="Adobe Premiere Pro"]:hover::after { background: linear-gradient(90deg, #9999FF, #6666D1 120%); }
 #skills-container.show-cards .skill-item[data-skill="CorelDRAW"]:hover::after { background: linear-gradient(90deg, #009A4D, #006D36 120%); }
-
-
-/* --- Certification Filter Styles --- */
-#cert-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid #393e46;
-}
-
-.cert-filter-btn {
-    background-color: transparent;
-    color: #a0a0a0;
-    border: 1px solid #393e46;
-    padding: 0.4rem 0.8rem;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.cert-filter-btn:hover {
-    color: #eeeeee;
-    border-color: #5c636e;
-}
-
-.cert-filter-btn.active {
-    background-color: #fd7014;
-    color: #ffffff;
-    border-color: #fd7014;
-}
 
 
 /* --- Certifications Section --- */

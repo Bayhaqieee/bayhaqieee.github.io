@@ -22,13 +22,11 @@ $(document).ready(function () {
     primaryFilters.removeClass('active');
     $(this).addClass('active');
     const primaryFilterValue = $(this).data('filter');
-
-    // Reset visibility for all cards before applying filters
-    projectCards.hide();
+    projectCards.hide(); // Hide all cards first
 
     if (primaryFilterValue === 'tech') {
       secondaryFilters.removeClass('hidden');
-      secondaryFilters.find('.filter-btn').removeClass('active'); // Reset secondary filters
+      secondaryFilters.find('.filter-btn').removeClass('active');
       projectCards.filter('[data-category="tech"]').show();
     } else {
       secondaryFilters.addClass('hidden');
@@ -49,7 +47,7 @@ $(document).ready(function () {
 
 
   // --- Quick Links Dropdown Functionality ---
-  const dropdownToggle = $('.more-btn'); 
+  const dropdownToggle = $('.more-btn');
   const dropdownMenu = $('.dropdown-menu');
 
   dropdownToggle.on('click', function(e) {
@@ -91,47 +89,59 @@ $(document).ready(function () {
     iconGrid.toggle();
     iconList.toggle();
   });
+  
+  // --- Reusable Filter Dropdown Logic ---
+  function setupFilterDropdown(dropdownId, itemSelector, categorySelector) {
+    const dropdown = $(`#${dropdownId}`);
+    const toggle = dropdown.find('.filter-dropdown-toggle');
+    const menu = dropdown.find('.filter-dropdown-menu');
+    const items = dropdown.find('.filter-dropdown-item');
+    const contentToFilter = $(itemSelector);
 
-  // --- Technical Skills Category Filtering ---
-  const skillFilterBtns = $('.skill-filter-btn');
-  const skillCategories = $('.skill-category');
+    toggle.on('click', function(e) {
+      e.stopPropagation();
+      // Close other dropdowns
+      $('.filter-dropdown-menu').not(menu).removeClass('show');
+      $('.filter-dropdown').not(dropdown).removeClass('open');
+      // Toggle current dropdown
+      menu.toggleClass('show');
+      dropdown.toggleClass('open');
+    });
 
-  skillFilterBtns.on('click', function() {
-    skillFilterBtns.removeClass('active');
-    $(this).addClass('active');
+    items.on('click', function(e) {
+      e.preventDefault();
+      const filterValue = $(this).data('filter');
+      const filterText = $(this).text();
 
-    const filter = $(this).data('filter');
+      toggle.find('span').text(filterText);
+      items.removeClass('active');
+      $(this).addClass('active');
 
-    skillCategories.each(function() {
-        const category = $(this).data('category');
-        if (filter === 'all' || category === filter) {
-            $(this).show();
+      contentToFilter.each(function() {
+        const itemCategory = $(this).data(categorySelector);
+        if (filterValue === 'all' || itemCategory === filterValue) {
+          $(this).show();
         } else {
-            $(this).hide();
+          $(this).hide();
+        }
+      });
+      
+      // --- Automatically close the dropdown after selection ---
+      menu.removeClass('show');
+      dropdown.removeClass('open');
+    });
+    
+    $(document).on('click', function(e) {
+        if (!dropdown.is(e.target) && dropdown.has(e.target).length === 0) {
+            menu.removeClass('show');
+            dropdown.removeClass('open');
         }
     });
-  });
+  }
 
-  // --- Certification Category Filtering (NEW) ---
-  const certFilterBtns = $('#cert-filters .cert-filter-btn');
-  const certItems = $('#certifications-container .cert-item');
-
-  certFilterBtns.on('click', function() {
-    certFilterBtns.removeClass('active');
-    $(this).addClass('active');
-
-    const filterValue = $(this).data('filter');
-
-    certItems.each(function() {
-      const itemCategory = $(this).data('category');
-      if (filterValue === 'all' || itemCategory === filterValue) {
-        $(this).show();
-      } else {
-        $(this).hide();
-      }
-    });
-  });
-
+  // Initialize dropdowns
+  setupFilterDropdown('skill-filters', '.skill-category', 'category');
+  setupFilterDropdown('cert-filters', '#certifications-container .cert-item', 'category');
 
   // --- Function to sync card heights (CORRECTED) ---
   function syncCardHeights() {
@@ -142,46 +152,29 @@ $(document).ready(function () {
       const activitiesBox = grid.find('.content-box:nth-child(1)');
       const skillsBox = grid.find('.content-box:nth-child(2)');
       
-      // Reset heights to auto to get the natural height
-      activitiesBox.css('height', 'auto');
-      skillsBox.css('height', 'auto');
-      
-      // Find the minimum height in the first row
-      const minHeight1 = Math.min(activitiesBox.outerHeight(), skillsBox.outerHeight());
-      
-      // Apply the min height to both boxes
-      activitiesBox.css('height', minHeight1);
-      skillsBox.css('height', minHeight1);
+      // Set height of right card to match left card
+      skillsBox.height(activitiesBox.height());
 
       // --- Row 2: Education & Certifications ---
       const educationBox = grid.find('.content-box:nth-child(3)');
       const certsBox = grid.find('.content-box:nth-child(4)');
-
-      // Reset heights to auto
-      educationBox.css('height', 'auto');
-      certsBox.css('height', 'auto');
       
-      // Find the minimum height in the second row
-      const minHeight2 = Math.min(educationBox.outerHeight(), certsBox.outerHeight());
-
-      // Apply the min height to both boxes
-      educationBox.css('height', minHeight2);
-      certsBox.css('height', minHeight2);
+      // Set height of right card to match left card
+      certsBox.height(educationBox.height());
 
     } else {
       // On smaller screens, reset all heights to auto
       grid.find('.content-box').css('height', 'auto');
     }
   }
-
-  // --- Certificate Card Navigation ---
+  
+  // --- Certificate Card Click Navigation ---
   $('#certifications-container').on('click', '.cert-item', function() {
     const url = $(this).data('gdrive-url');
     if (url && url !== '#') {
       window.open(url, '_blank');
     }
   });
-
 
   // Initial and resize calls for height syncing
   $(window).on('load', function() {
@@ -193,5 +186,4 @@ $(document).ready(function () {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(syncCardHeights, 100);
   });
-
 });
