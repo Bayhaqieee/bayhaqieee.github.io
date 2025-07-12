@@ -175,6 +175,47 @@ $(document).ready(function () {
       window.open(url, '_blank');
     }
   });
+  
+  // --- START: NEW EXPERIENCE TIMELINE SCRIPT ---
+  const timelineItems = $('.timeline-item');
+  const prevBtn = $('#prev-btn');
+  const nextBtn = $('#next-btn');
+  let currentIndex = 0;
+
+  function updateTimeline(newIndex, isInitial = false) {
+    if (!isInitial) {
+      timelineItems.eq(currentIndex).removeClass('active');
+    }
+    
+    currentIndex = newIndex;
+    timelineItems.eq(currentIndex).addClass('active');
+
+    // Update button states
+    prevBtn.prop('disabled', currentIndex === 0);
+    nextBtn.prop('disabled', currentIndex === timelineItems.length - 1);
+  }
+
+  nextBtn.on('click', function() {
+    if (currentIndex < timelineItems.length - 1) {
+      updateTimeline(currentIndex + 1);
+    }
+  });
+
+  prevBtn.on('click', function() {
+    if (currentIndex > 0) {
+      updateTimeline(currentIndex - 1);
+    }
+  });
+
+  timelineItems.find('.timeline-point').on('click', function() {
+    const newIndex = $(this).data('step') - 1;
+    updateTimeline(newIndex);
+  });
+
+  // Initial setup
+  updateTimeline(0, true);
+  // --- END: NEW EXPERIENCE TIMELINE SCRIPT ---
+
 
   // Initial and resize calls for height syncing
   $(window).on('load', function() {
