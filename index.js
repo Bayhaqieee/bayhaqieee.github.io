@@ -176,45 +176,49 @@ $(document).ready(function () {
     }
   });
   
-  // --- START: NEW EXPERIENCE TIMELINE SCRIPT ---
-  const timelineItems = $('.timeline-item');
-  const prevBtn = $('#prev-btn');
-  const nextBtn = $('#next-btn');
-  let currentIndex = 0;
+  // --- START: NEW EXPERIENCE TIMELINE SCRIPT V2 ---
+  const timelineItemsV2 = $('.timeline-item');
+  const timelineCards = $('.timeline-card');
+  const prevBtnV2 = $('#prev-btn');
+  const nextBtnV2 = $('#next-btn');
+  let currentIndexV2 = 0;
 
-  function updateTimeline(newIndex, isInitial = false) {
-    if (!isInitial) {
-      timelineItems.eq(currentIndex).removeClass('active');
-    }
+  function updateTimelineV2(newIndex) {
+    // Update timeline points
+    timelineItemsV2.removeClass('active');
+    timelineItemsV2.eq(newIndex).addClass('active');
+
+    // Update timeline cards
+    timelineCards.removeClass('active');
+    timelineCards.filter(`[data-step="${newIndex + 1}"]`).addClass('active');
     
-    currentIndex = newIndex;
-    timelineItems.eq(currentIndex).addClass('active');
+    currentIndexV2 = newIndex;
 
     // Update button states
-    prevBtn.prop('disabled', currentIndex === 0);
-    nextBtn.prop('disabled', currentIndex === timelineItems.length - 1);
+    prevBtnV2.prop('disabled', currentIndexV2 === 0);
+    nextBtnV2.prop('disabled', currentIndexV2 === timelineItemsV2.length - 1);
   }
 
-  nextBtn.on('click', function() {
-    if (currentIndex < timelineItems.length - 1) {
-      updateTimeline(currentIndex + 1);
+  nextBtnV2.on('click', function() {
+    if (currentIndexV2 < timelineItemsV2.length - 1) {
+      updateTimelineV2(currentIndexV2 + 1);
     }
   });
 
-  prevBtn.on('click', function() {
-    if (currentIndex > 0) {
-      updateTimeline(currentIndex - 1);
+  prevBtnV2.on('click', function() {
+    if (currentIndexV2 > 0) {
+      updateTimelineV2(currentIndexV2 - 1);
     }
   });
 
-  timelineItems.find('.timeline-point').on('click', function() {
+  timelineItemsV2.on('click', function() {
     const newIndex = $(this).data('step') - 1;
-    updateTimeline(newIndex);
+    updateTimelineV2(newIndex);
   });
 
   // Initial setup
-  updateTimeline(0, true);
-  // --- END: NEW EXPERIENCE TIMELINE SCRIPT ---
+  updateTimelineV2(0);
+  // --- END: NEW EXPERIENCE TIMELINE SCRIPT V2 ---
 
 
   // Initial and resize calls for height syncing
