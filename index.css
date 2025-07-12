@@ -384,40 +384,40 @@ body {
     width: 100%;
     height: 50px;
     margin: 3rem 0;
+}
+
+.timeline-items-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 83.33%;
+    z-index: 3;
 }
 
 .timeline-line, .timeline-line-progress {
     position: absolute;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
     height: 8px;
     border-radius: 4px;
 }
 
 .timeline-line {
     background-color: #393e46;
-    width: 100%;
-    left: 0;
+    width: 83.33%;
     z-index: 1;
 }
 
 .timeline-line-progress {
     background: linear-gradient(90deg, #8f94fb, #4e54c8);
     width: 0;
-    left: 0;
+    left: 8.33%; /* (100% - 83.33%) / 2 */
     z-index: 2;
     transition: width 0.4s ease-in-out;
-}
-
-.timeline-items-container {
-    display: flex;
-    justify-content: space-between;
-    position: relative;
-    width: 90%; /* Creates overhang for the line */
-    z-index: 3;
 }
 
 .timeline-item {
@@ -442,6 +442,7 @@ body {
     font-weight: bold;
     transition: all 0.4s ease;
     position: relative;
+    z-index: 4;
 }
 
 .timeline-connector {

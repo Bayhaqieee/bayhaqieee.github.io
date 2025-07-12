@@ -176,62 +176,49 @@ $(document).ready(function () {
     }
   });
   
-  // --- START: NEW EXPERIENCE TIMELINE SCRIPT V3 ---
-  const timelineItemsV3 = $('.timeline-item');
-  const timelineCardsV3 = $('.timeline-card');
-  const prevBtnV3 = $('#prev-btn');
-  const nextBtnV3 = $('#next-btn');
-  const progressLine = $('.timeline-line-progress');
-  let currentIndexV3 = 0;
+  // --- START: NEW EXPERIENCE TIMELINE SCRIPT V2 ---
+  const timelineItemsV2 = $('.timeline-item');
+  const timelineCards = $('.timeline-card');
+  const prevBtnV2 = $('#prev-btn');
+  const nextBtnV2 = $('#next-btn');
+  let currentIndexV2 = 0;
 
-  function updateTimelineV3(newIndex) {
-    const totalItems = timelineItemsV3.length;
-    
-    // Update timeline points and connectors
-    timelineItemsV3.removeClass('active completed');
-    for (let i = 0; i < totalItems; i++) {
-        if (i < newIndex) {
-            timelineItemsV3.eq(i).addClass('completed');
-        } else if (i === newIndex) {
-            timelineItemsV3.eq(i).addClass('active');
-        }
-    }
+  function updateTimelineV2(newIndex) {
+    // Update timeline points
+    timelineItemsV2.removeClass('active');
+    timelineItemsV2.eq(newIndex).addClass('active');
 
     // Update timeline cards
-    timelineCardsV3.removeClass('active');
-    timelineCardsV3.filter(`[data-step="${newIndex + 1}"]`).addClass('active');
+    timelineCards.removeClass('active');
+    timelineCards.filter(`[data-step="${newIndex + 1}"]`).addClass('active');
     
-    // Update progress line width
-    const progressPercentage = (newIndex / (totalItems - 1)) * 100;
-    progressLine.css('width', `${progressPercentage}%`);
-
-    currentIndexV3 = newIndex;
+    currentIndexV2 = newIndex;
 
     // Update button states
-    prevBtnV3.prop('disabled', currentIndexV3 === 0);
-    nextBtnV3.prop('disabled', currentIndexV3 === totalItems - 1);
+    prevBtnV2.prop('disabled', currentIndexV2 === 0);
+    nextBtnV2.prop('disabled', currentIndexV2 === timelineItemsV2.length - 1);
   }
 
-  nextBtnV3.on('click', function() {
-    if (currentIndexV3 < timelineItemsV3.length - 1) {
-      updateTimelineV3(currentIndexV3 + 1);
+  nextBtnV2.on('click', function() {
+    if (currentIndexV2 < timelineItemsV2.length - 1) {
+      updateTimelineV2(currentIndexV2 + 1);
     }
   });
 
-  prevBtnV3.on('click', function() {
-    if (currentIndexV3 > 0) {
-      updateTimelineV3(currentIndexV3 - 1);
+  prevBtnV2.on('click', function() {
+    if (currentIndexV2 > 0) {
+      updateTimelineV2(currentIndexV2 - 1);
     }
   });
 
-  timelineItemsV3.on('click', function() {
+  timelineItemsV2.on('click', function() {
     const newIndex = $(this).data('step') - 1;
-    updateTimelineV3(newIndex);
+    updateTimelineV2(newIndex);
   });
 
   // Initial setup
-  updateTimelineV3(0);
-  // --- END: NEW EXPERIENCE TIMELINE SCRIPT V3 ---
+  updateTimelineV2(0);
+  // --- END: NEW EXPERIENCE TIMELINE SCRIPT V2 ---
 
 
   // Initial and resize calls for height syncing
