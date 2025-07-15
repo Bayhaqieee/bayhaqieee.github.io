@@ -481,6 +481,7 @@ body {
     padding: 2rem;
     text-align: left;
     animation: fadeIn 0.5s ease-in-out;
+    min-height: 400px; /* MODIFICATION: Set a minimum height for all cards */
 }
 
 @keyframes fadeIn {
@@ -495,13 +496,15 @@ body {
 .card-gallery {
     flex: 1;
     max-width: 50%;
+    overflow: hidden; /* MODIFICATION: Prevents image overflow */
+    border-radius: 8px; /* MODIFICATION: Apply border radius to the container */
 }
 
 .card-gallery img {
     width: 100%;
-    height: auto;
-    border-radius: 8px;
-    object-fit: cover;
+    height: 100%; /* MODIFICATION: Make image fill the container's height */
+    object-fit: cover; /* MODIFICATION: Crop image to fit without distortion */
+    border-radius: 0; /* MODIFICATION: Remove radius from image as container has it */
 }
 
 .card-details {
@@ -1574,9 +1577,13 @@ footer p {
 @media (max-width: 900px) {
   .timeline-card {
     flex-direction: column;
+    min-height: auto; /* Let height be natural on mobile */
   }
   .card-gallery, .card-details {
     max-width: 100%;
+  }
+  .card-gallery {
+    height: 250px; /* Give a fixed height for images on mobile stack */
   }
 }
 
