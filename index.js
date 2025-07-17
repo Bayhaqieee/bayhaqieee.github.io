@@ -2,11 +2,14 @@ $(document).ready(function () {
   // Typed.js setup for the animated text
   var typed = new Typed("#typed", {
     strings: [
-      "University Student",
-      "Future",
-      "Tech Expert",
-      "Ambassador",
-      "Star",
+      "Generative AI Engineer", 
+      "Machine Learning Engineer",
+      "Data Scientist",
+      "Business Analyst",
+      "Software Engineer",
+      "Project Manager",
+      "Full Stack Developer",
+      "UI/UX Designer",
     ],
     typeSpeed: 100,
     backSpeed: 50,
