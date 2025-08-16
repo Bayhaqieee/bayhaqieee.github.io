@@ -356,7 +356,7 @@ body {
   transform: translateY(0);
 }
 
-/* --- INTERACTIVE EXPERIENCE TIMELINE V5 --- */
+/* INTERACTIVE EXPERIENCE TIMELINE V5 */
 #experience {
     padding: 2rem 0;
     margin: 2.5rem auto 0;
@@ -567,7 +567,7 @@ body {
 }
 
 
-/* --- Activities & Skills Section --- */
+/* Activities & Skills Section */
 #activities-skills {
   padding: 2rem 0;
   margin: 2.5rem auto 0;
@@ -688,7 +688,7 @@ body {
 }
 
 
-/* --- Technical Skills Section (REVISED) --- */
+/* Technical Skills Section (REVISED) */
 .skills-header {
   display: flex;
   justify-content: space-between;
@@ -715,7 +715,7 @@ body {
   background-color: #4a515c;
 }
 
-/* --- NEW FILTER DROPDOWN STYLES --- */
+/* NEW FILTER DROPDOWN STYLES */
 .filter-dropdown {
     position: relative;
     margin-bottom: 1.5rem;
@@ -850,7 +850,7 @@ body {
 }
 
 
-/* --- Card View Styles (REVISED TO MATCH CERTIFICATIONS) --- */
+/* Card View Styles (REVISED TO MATCH CERTIFICATIONS) */
 #skills-container.show-cards .skills-grid {
   grid-template-columns: 1fr;
   gap: 0; /* Remove gap as margin is now on items */
@@ -924,7 +924,7 @@ body {
 }
 
 
-/* --- Tech Stack Hover Colors --- */
+/* Tech Stack Hover Colors */
 #skills-container.show-cards .skill-item[data-skill="Python"]:hover::after { background: linear-gradient(90deg, #3670A0, #30363d 120%); }
 #skills-container.show-cards .skill-item[data-skill="R"]:hover::after { background: linear-gradient(90deg, #276DC3, #16437E 120%); }
 #skills-container.show-cards .skill-item[data-skill="C++"]:hover::after { background: linear-gradient(90deg, #00599C, #00447A 120%); }
@@ -990,7 +990,7 @@ body {
 #skills-container.show-cards .skill-item[data-skill="CorelDRAW"]:hover::after { background: linear-gradient(90deg, #009A4D, #006D36 120%); }
 
 
-/* --- Certifications Section --- */
+/* Certifications Section */
 #certifications-container {
     overflow-y: auto;
     padding-right: 10px;
@@ -1324,7 +1324,7 @@ footer p {
 }
 
 
-/* --- QUICK LINKS BAR --- */
+/* QUICK LINKS BAR */
 #quick-links {
   position: fixed;
   top: 50%;
@@ -1370,7 +1370,7 @@ footer p {
 }
 
 
-/* --- DROPDOWN --- */
+/* DROPDOWN */
 .dropdown {
   position: relative;
 }
@@ -1418,7 +1418,7 @@ footer p {
   color: #ffffff;
 }
 
-/* --- MODAL STYLES --- */
+/* MODAL STYLES */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -1730,7 +1730,7 @@ footer p {
   }
 }
 
-/* --- SCROLL ANIMATION --- */
+/* SCROLL ANIMATION */
 .scroll-animate {
   opacity: 0;
   transform: translateY(50px);
@@ -1740,4 +1740,32 @@ footer p {
 .scroll-animate.is-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Experience Card Tags */
+.card-tags {
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag-link {
+    display: inline-block;
+    padding: 0.3rem 0.8rem;
+    background-color: #393e46; /* A neutral color from your theme */
+    color: #c9c9c9;
+    border-radius: 1rem; /* Pill shape */
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 1px solid #5c636e; /* Subtle border */
+}
+
+.tag-link:hover {
+    background-color: #fd7014; /* Your highlight color */
+    color: #ffffff;
+    border-color: #fd7014;
+    transform: translateY(-2px);
 }
