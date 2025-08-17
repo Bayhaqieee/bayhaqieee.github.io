@@ -1,3 +1,14 @@
+// Preloader Logic
+$(window).on('load', function() {
+  const preloader = $('#preloader');
+  
+  // Fade out the preloader
+  preloader.fadeOut(750, function() {
+    // Remove it from the DOM after fading out
+    $(this).remove();
+  });
+});
+
 $(document).ready(function () {
   // Typed.js setup for the animated text
   var typed = new Typed("#typed", {
@@ -16,7 +27,7 @@ $(document).ready(function () {
     loop: true,
   });
 
-  // --- Project Filter Functionality ---
+  // Project Filter Functionality
   const primaryFilters = $('#primary-filters .filter-btn');
   const secondaryFilters = $('#secondary-filters');
   const projectCards = $('.project-card');
@@ -49,7 +60,7 @@ $(document).ready(function () {
   });
 
 
-  // --- Quick Links Dropdown Functionality ---
+  // Quick Links Dropdown Functionality
   const dropdownToggle = $('.more-btn');
   const dropdownMenu = $('.dropdown-menu');
 
@@ -66,7 +77,7 @@ $(document).ready(function () {
     }
   });
 
-  // --- Scroll Animation ---
+  // Scroll Animation
   const animatedElements = document.querySelectorAll('.scroll-animate');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -81,7 +92,7 @@ $(document).ready(function () {
     observer.observe(element);
   });
 
-  // --- Technical Skills View Toggle ---
+  // Technical Skills View Toggle
   const skillToggleBtn = $('#skill-view-toggle');
   const skillsContainer = $('#skills-container');
   const iconGrid = $('#icon-grid');
@@ -93,7 +104,7 @@ $(document).ready(function () {
     iconList.toggle();
   });
   
-  // --- Reusable Filter Dropdown Logic ---
+  // Reusable Filter Dropdown Logic
   function setupFilterDropdown(dropdownId, itemSelector, categorySelector) {
     const dropdown = $(`#${dropdownId}`);
     const toggle = dropdown.find('.filter-dropdown-toggle');
@@ -129,7 +140,7 @@ $(document).ready(function () {
         }
       });
       
-      // --- Automatically close the dropdown after selection ---
+      // Automatically close the dropdown after selection
       menu.removeClass('show');
       dropdown.removeClass('open');
     });
@@ -146,19 +157,19 @@ $(document).ready(function () {
   setupFilterDropdown('skill-filters', '.skill-category', 'category');
   setupFilterDropdown('cert-filters', '#certifications-container .cert-item', 'category');
 
-  // --- Function to sync card heights (CORRECTED) ---
+  // Function to sync card heights (CORRECTED)
   function syncCardHeights() {
     const grid = $('.activities-grid');
     
     if (window.innerWidth > 1024) {
-      // --- Row 1: Activities & Skills ---
+      // Row 1: Activities & Skills
       const activitiesBox = grid.find('.content-box:nth-child(1)');
       const skillsBox = grid.find('.content-box:nth-child(2)');
       
       // Set height of right card to match left card
       skillsBox.height(activitiesBox.height());
 
-      // --- Row 2: Education & Certifications ---
+      // Row 2: Education & Certifications
       const educationBox = grid.find('.content-box:nth-child(3)');
       const certsBox = grid.find('.content-box:nth-child(4)');
       
@@ -171,7 +182,7 @@ $(document).ready(function () {
     }
   }
   
-  // --- Certificate Card Click Navigation ---
+  // Certificate Card Click Navigation
   $('#certifications-container').on('click', '.cert-item', function() {
     const url = $(this).data('gdrive-url');
     if (url && url !== '#') {
@@ -179,7 +190,7 @@ $(document).ready(function () {
     }
   });
   
-  // --- START: NEW EXPERIENCE TIMELINE SCRIPT V2 ---
+  // START: NEW EXPERIENCE TIMELINE SCRIPT V2
   const timelineItemsV2 = $('.timeline-item');
   const timelineCards = $('.timeline-card');
   const prevBtnV2 = $('#prev-btn');
@@ -221,7 +232,7 @@ $(document).ready(function () {
 
   // Initial setup
   updateTimelineV2(0);
-  // --- END: NEW EXPERIENCE TIMELINE SCRIPT V2 ---
+  // END: NEW EXPERIENCE TIMELINE SCRIPT V2
 
 
   // Initial and resize calls for height syncing
