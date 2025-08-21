@@ -1085,6 +1085,9 @@ body {
 }
 
 /* Provider-specific hover styles */
+.cert-item[data-provider="devcert"]:hover::after {
+  background: linear-gradient(90deg, #f08935ff, #9e5a2cff 120%);
+}
 .cert-item[data-provider="udemy"]:hover::after {
   background: linear-gradient(90deg, #a435f0, #6a2c9e 120%);
 }
