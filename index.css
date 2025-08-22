@@ -925,6 +925,12 @@ body {
 
 
 /* Tech Stack Hover Colors */
+#skills-container.show-cards .skill-item[data-skill="Ollama"]:hover::after { background: linear-gradient(90deg, #444444, #222222 120%); }
+#skills-container.show-cards .skill-item[data-skill="Milvus"]:hover::after { background: linear-gradient(90deg, #363A3F, #1E2023 120%); }
+#skills-container.show-cards .skill-item[data-skill="FAISS"]:hover::after { background: linear-gradient(90deg, #0062E0, #004194 120%); }
+#skills-container.show-cards .skill-item[data-skill="n8n"]:hover::after { background: linear-gradient(90deg, #1A1A64, #0D0D32 120%); }
+#skills-container.show-cards .skill-item[data-skill="Kaggle"]:hover::after { background: linear-gradient(90deg, #20BEFF, #1890C7 120%); }
+#skills-container.show-cards .skill-item[data-skill="Google Colab"]:hover::after { background: linear-gradient(90deg, #F9AB00, #C98A00 120%); }
 #skills-container.show-cards .skill-item[data-skill="Python"]:hover::after { background: linear-gradient(90deg, #3670A0, #30363d 120%); }
 #skills-container.show-cards .skill-item[data-skill="R"]:hover::after { background: linear-gradient(90deg, #276DC3, #16437E 120%); }
 #skills-container.show-cards .skill-item[data-skill="C++"]:hover::after { background: linear-gradient(90deg, #00599C, #00447A 120%); }
@@ -1492,6 +1498,111 @@ footer p {
     color: #fff;
 }
 
+/* Project Modal Styles */
+#project-modal {
+  /* This uses the same base styles as your certificate modal */
+  display: none; /* Hidden by default */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.project-modal-content {
+  position: relative;
+  background-color: #222831;
+  border-radius: 10px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+  overflow-y: auto;
+}
+
+/* Custom scrollbar for the modal */
+.project-modal-content::-webkit-scrollbar { width: 6px; }
+.project-modal-content::-webkit-scrollbar-track { background: transparent; }
+.project-modal-content::-webkit-scrollbar-thumb { background-color: #393e46; border-radius: 10px; }
+
+.project-modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr; /* 2-column layout */
+  gap: 2rem;
+  padding: 2.5rem;
+}
+
+.modal-image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  min-height: 300px;
+}
+
+.modal-details-container {
+  color: #eeeeee;
+}
+
+.modal-details-container h3 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.modal-details-container p {
+  font-size: 1rem;
+  color: #c9c9c9;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.modal-details-container h4 {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #fd7014;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #393e46;
+  padding-bottom: 0.5rem;
+}
+
+.repo-button {
+  display: inline-block;
+  background-color: #fd7014;
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.repo-button:hover {
+  background-color: #ff9650;
+}
+
+/* Responsive adjustments for the modal */
+@media (max-width: 768px) {
+  .project-modal-grid {
+    grid-template-columns: 1fr; /* Stack columns on mobile */
+    padding: 1.5rem;
+  }
+  .modal-details-container h3 {
+    font-size: 1.5rem;
+  }
+}
 
 /* RESPONSIVE ADJUSTMENTS */
 @media (max-width: 1024px) {
