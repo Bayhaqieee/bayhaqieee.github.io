@@ -256,23 +256,20 @@ $(document).ready(function () {
 
   // When a project card is clicked
   $('#project-grid').on('click', '.project-card', function(e) {
-    e.preventDefault(); // Prevent the link from navigating immediately
+    e.preventDefault(); 
 
-    // Get data from the clicked card's data attributes
     const title = $(this).data('title');
     const description = $(this).data('description');
-    const tags = $(this).data('tags').split(','); // Split tags string into an array
+    const tags = $(this).data('tags').split(',');
     const buttonText = $(this).data('button-text');
     const imageUrl = $(this).find('img').attr('src');
     const repoUrl = $(this).attr('href');
 
-    // Populate the modal with the data
     modalTitle.text(title);
     modalDescription.text(description);
     modalImage.attr('src', imageUrl);
     modalLink.attr('href', repoUrl).text(buttonText);
     
-    // Clear previous tags and create new ones
     modalTags.empty();
     tags.forEach(function(tag) {
       const tagUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(tag.trim())}`;
@@ -280,28 +277,25 @@ $(document).ready(function () {
       modalTags.append(tagElement);
     });
 
-    // Show the modal
-    projectModal.css('display', 'flex').hide().fadeIn(400);
+    // Show the modal by adding the 'visible' class
+    projectModal.addClass('visible');
   });
 
   // Function to close the modal
   function closeModal() {
-    projectModal.fadeOut(400);
+    // Hide the modal by removing the 'visible' class
+    projectModal.removeClass('visible');
   }
 
-  // Close modal when the close button is clicked
-  projectModal.on('click', '.modal-close', function() {
-    closeModal();
-  });
+  // Event listeners for closing the modal
+  projectModal.on('click', '.modal-close', closeModal);
 
-  // Close modal when clicking on the overlay (outside the content)
-  project-modal.on('click', function(e) {
+  projectModal.on('click', function(e) {
     if ($(e.target).is(projectModal)) {
       closeModal();
     }
   });
 
-  // Close modal when the 'Escape' key is pressed
   $(document).on('keyup', function(e) {
     if (e.key === "Escape") {
       closeModal();

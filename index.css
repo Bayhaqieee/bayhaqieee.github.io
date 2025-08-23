@@ -1500,8 +1500,9 @@ footer p {
 
 /* Project Modal Styles */
 #project-modal {
-  /* This uses the same base styles as your certificate modal */
-  display: none; /* Hidden by default */
+  display: flex; /* Changed from none to flex for transition */
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -1509,10 +1510,18 @@ footer p {
   height: 100%;
   background-color: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(5px);
-  justify-content: center;
-  align-items: center;
   z-index: 2000;
   padding: 1rem;
+  /* New properties for smooth fade transition */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+/* New class to control visibility */
+#project-modal.visible {
+  opacity: 1;
+  visibility: visible;
 }
 
 .project-modal-content {
@@ -1521,19 +1530,19 @@ footer p {
   border-radius: 10px;
   max-width: 900px;
   width: 100%;
-  max-height: 90vh;
+  max-height: 90vh; /* Keep a max height for consistency */
   box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-  overflow-y: auto;
+  /* REMOVED: overflow-y is now handled by the details container */
 }
 
-/* Custom scrollbar for the modal */
-.project-modal-content::-webkit-scrollbar { width: 6px; }
-.project-modal-content::-webkit-scrollbar-track { background: transparent; }
-.project-modal-content::-webkit-scrollbar-thumb { background-color: #393e46; border-radius: 10px; }
+/* This is the fix for the close button */
+.project-modal-content .modal-close {
+  z-index: 10;
+}
 
 .project-modal-grid {
   display: grid;
-  grid-template-columns: 1fr 1.5fr; /* 2-column layout */
+  grid-template-columns: 1fr 1.5fr;
   gap: 2rem;
   padding: 2.5rem;
 }
@@ -1548,7 +1557,16 @@ footer p {
 
 .modal-details-container {
   color: #eeeeee;
+  /* This is the fix for the scrollbar */
+  max-height: calc(90vh - 5rem); /* Prevents content from overflowing the modal */
+  overflow-y: auto; /* Adds a scrollbar ONLY to the text if needed */
+  padding-right: 1rem; /* Adds space for the scrollbar */
 }
+
+/* Custom scrollbar for the details container */
+.modal-details-container::-webkit-scrollbar { width: 6px; }
+.modal-details-container::-webkit-scrollbar-track { background: transparent; }
+.modal-details-container::-webkit-scrollbar-thumb { background-color: #393e46; border-radius: 10px; }
 
 .modal-details-container h3 {
   font-size: 2rem;
@@ -1591,6 +1609,21 @@ footer p {
 
 .repo-button:hover {
   background-color: #ff9650;
+}
+
+@media (max-width: 768px) {
+  .project-modal-grid {
+    grid-template-columns: 1fr;
+    padding: 1.5rem;
+  }
+  .modal-details-container {
+    max-height: none; /* Let content flow naturally on mobile stack */
+    overflow-y: visible;
+    padding-right: 0;
+  }
+  .modal-details-container h3 {
+    font-size: 1.5rem;
+  }
 }
 
 /* Responsive adjustments for the modal */
