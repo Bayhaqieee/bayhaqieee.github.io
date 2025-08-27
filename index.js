@@ -302,4 +302,74 @@ $(document).ready(function () {
     }
   });
 
+  // Expertise Modal Logic
+  const expertiseModal = $('#expertise-modal');
+  const skillIcons = {}; // Object to store skill names and their icon URLs
+
+  // 1. Build the skill icon library on page load
+  $('#skills-container .skill-item').each(function() {
+    const skillName = $(this).data('skill');
+    const iconSrc = $(this).find('img').attr('src');
+    if (skillName && iconSrc) {
+      skillIcons[skillName] = iconSrc;
+    }
+  });
+
+  // 2. Set up the click event for gallery items
+  $('.expertise-gallery').on('click', '.gallery-item', function() {
+    // Get data from the clicked item
+    const title = $(this).find('h3').text();
+    const description = $(this).data('description');
+    const tags = $(this).data('tags').split(',');
+    const stack = $(this).data('stack').split(',');
+    
+    // Populate the modal
+    expertiseModal.find('#modal-expertise-title').text(title);
+    expertiseModal.find('#modal-expertise-description').text(description);
+    
+    // Populate concept tags
+    const tagsContainer = expertiseModal.find('#modal-expertise-tags').empty();
+    tags.forEach(function(tag) {
+      const tagUrl = `https://en.wikipedia.org/wiki/${encodeURIComponent(tag.trim())}`;
+      const tagElement = `<a href="${tagUrl}" target="_blank" class="tag-link">${tag.trim()}</a>`;
+      tagsContainer.append(tagElement);
+    });
+
+    // Populate tech stack
+    const stackContainer = expertiseModal.find('#modal-expertise-stack').empty();
+    stack.forEach(function(skill) {
+      const skillName = skill.trim();
+      const iconSrc = skillIcons[skillName];
+      if (iconSrc) {
+        const stackElement = `
+          <div class="stack-item">
+            <img src="${iconSrc}" alt="${skillName} logo">
+            <span class="stack-name">${skillName}</span>
+          </div>
+        `;
+        stackContainer.append(stackElement);
+      }
+    });
+    
+    // Show the modal
+    expertiseModal.addClass('visible');
+  });
+
+  // 3. Set up closing functionality
+  function closeExpertiseModal() {
+    expertiseModal.removeClass('visible');
+  }
+
+  expertiseModal.on('click', '.modal-close', closeExpertiseModal);
+  expertiseModal.on('click', function(e) {
+    if ($(e.target).is(expertiseModal)) {
+      closeExpertiseModal();
+    }
+  });
+  $(document).on('keyup', function(e) {
+    if (e.key === "Escape" && expertiseModal.hasClass('visible')) {
+      closeExpertiseModal();
+    }
+  });
+
 });

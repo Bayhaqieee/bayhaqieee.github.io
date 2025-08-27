@@ -231,56 +231,80 @@
 
       <div id="about" class="scroll-animate">
         <div class="expertise-gallery">
-          <div class="gallery-item">
+          <div class="gallery-item" 
+              data-description="I design, build, and deploy end-to-end machine learning systems. This includes everything from data preprocessing and model training to deploying scalable AI solutions using modern MLOps principles. My focus is on creating robust, efficient, and intelligent applications that solve real-world problems."
+              data-tags="Generative AI,RAG,Multi-Agent Systems,Deep Learning,NLP,Computer Vision"
+              data-stack="Python,TensorFlow,PyTorch,Scikit-learn,Ollama,FAISS,Milvus">
             <img src="image/Icon/mldev.png" alt="AI/ML Engineer Icon" />
             <div class="gallery-item-overlay">
               <h3>AI/ML Engineer</h3>
               <p>Building intelligent ML models for image recognition, NLP, and recommendations.</p>
             </div>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item"
+              data-description="I leverage statistical analysis and machine learning to uncover hidden patterns and insights from complex datasets. My process involves formulating hypotheses, performing exploratory data analysis (EDA), building predictive models, and communicating findings to drive data-informed decision-making."
+              data-tags="Predictive Modeling,Statistical Analysis,EDA,Feature Engineering,A/B Testing"
+              data-stack="Python,R,Pandas,NumPy,Jupyter,Kaggle,Scikit-learn">
             <img src="image/Icon/data.png" alt="Data Science Icon" />
             <div class="gallery-item-overlay">
               <h3>Data Science</h3>
               <p>Analyzing complex data to extract actionable insights for business.</p>
             </div>
           </div>
-          <div class="gallery-item">
-            <img src="image/Icon/analysis.png" alt="Data Science Icon" />
+          <div class="gallery-item"
+              data-description="I specialize in transforming raw data into clear, actionable insights. My work involves querying databases, cleaning and preparing data, and creating compelling visualizations and dashboards that empower stakeholders to understand business performance and identify key trends."
+              data-tags="Data Visualization,Dashboarding,SQL,Data Cleaning,Reporting,Statistical Inference"
+              data-stack="SQL,Excel,Power BI,Tableau,Google Sheets,Python,Matplotlib,Seaborn">
+            <img src="image/Icon/analysis.png" alt="Data Analyst Icon" />
             <div class="gallery-item-overlay">
               <h3>Data Analyst</h3>
-              <p>Interpreting also visualizing data to extract insights and support decision-making.</p>
+              <p>Interpreting and visualizing data to extract insights and support decision-making.</p>
             </div>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item"
+              data-description="I build and maintain BI solutions that provide a single source of truth for business metrics. By developing automated data pipelines and interactive dashboards, I enable organizations to monitor KPIs, track goals, and make strategic decisions with confidence."
+              data-tags="ETL,Data Warehousing,KPIs,Dashboarding,Data Modeling"
+              data-stack="Power BI,Tableau,Looker,MySQL,SQL">
             <img src="image/Icon/business.png" alt="Business Intelligence Icon" />
             <div class="gallery-item-overlay">
               <h3>Business Intelligence</h3>
               <p>Creating dashboards and reports to guide strategic business decisions.</p>
             </div>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item"
+              data-description="I focus on creating intuitive, accessible, and aesthetically pleasing user experiences. My process involves user research, wireframing, prototyping, and usability testing to ensure the final product is not only beautiful but also easy and enjoyable to use."
+              data-tags="User Research,Wireframing,Prototyping,Usability Testing,User-Centered Design"
+              data-stack="Figma,Canva,Adobe Photoshop,Adobe Illustrator">
             <img src="image/Icon/handphone.png" alt="UI/UX Development Icon" />
             <div class="gallery-item-overlay">
               <h3>UI/UX Development</h3>
               <p>Designing intuitive and engaging user interfaces for web and mobile apps.</p>
             </div>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item"
+              data-description="I build responsive, high-performance, and interactive user interfaces for web applications. I translate UI/UX designs into clean and maintainable code, ensuring a seamless experience across all browsers and devices using modern frameworks and best practices."
+              data-tags="Responsive Design,Web Performance,Component-Based Architecture,State Management"
+              data-stack="HTML5,CSS3,JavaScript,React,Next.js,Bootstrap">
             <img src="image/Icon/webdev.png" alt="Front End Development Icon" />
             <div class="gallery-item-overlay">
               <h3>Front End Development</h3>
               <p>Crafting responsive and interactive front-ends with modern frameworks.</p>
             </div>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item"
+              data-description="I guide projects from conception to completion, ensuring they are delivered on time, within scope, and on budget. I facilitate communication between stakeholders, manage resources, and mitigate risks using Agile and Scrum methodologies to drive successful outcomes."
+              data-tags="Agile,Scrum,Risk Management,Stakeholder Communication,Roadmapping"
+              data-stack="Jira,Trello,Notion,Slack,Google Docs">
             <img src="image/Icon/roadmap.png" alt="Project Management Icon" />
             <div class="gallery-item-overlay">
               <h3>Project Management</h3>
               <p>Leading project teams by managing timelines and resources effectively.</p>
             </div>
           </div>
-          <div class="gallery-item">
+          <div class="gallery-item"
+              data-description="I am responsible for a product's success by defining its vision, strategy, and roadmap. I work at the intersection of business, technology, and user experience, gathering requirements and prioritizing features to deliver valuable and market-fitting products."
+              data-tags="Product Strategy,Roadmapping,User Stories,Market Research,A/B Testing"
+              data-stack="Jira,Notion,Figma,Trello,Slack">
             <img src="image/Icon/prodev.png" alt="Product Management Icon" />
             <div class="gallery-item-overlay">
               <h3>Product Management</h3>
@@ -998,6 +1022,21 @@
             </a>
         </div>
       </div>
+    </div>
+  </div>
+  <div id="expertise-modal" class="modal-overlay">
+    <div class="expertise-modal-content">
+      <span class="modal-close" title="Close">&times;</span>
+      <h3 id="modal-expertise-title"></h3>
+      <p id="modal-expertise-description"></p>
+      
+      <h4>Key Concepts</h4>
+      <div id="modal-expertise-tags" class="card-tags">
+        </div>
+      
+      <h4>Core Tech Stack</h4>
+      <div id="modal-expertise-stack">
+        </div>
     </div>
   </div>
 </body>
