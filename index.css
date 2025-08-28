@@ -1473,29 +1473,21 @@ footer p {
 }
 
 .modal-close {
-  position: absolute;
-  top: -12px;
-  right: -12px;
-  color: #000;
-  background-color: #eeeeee;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.5rem;
-  line-height: 1;
+  position: absolute; 
+  top: 15px; 
+  right: 25px; 
+  font-size: 2.5rem; 
   font-weight: bold;
+  color: #eeeeee; 
   cursor: pointer;
-  transition: transform 0.2s, background-color 0.2s;
-  border: 2px solid #222831;
+  z-index: 2001; 
+  transition: color 0.3s ease;
 }
 
-.modal-close:hover {
-    transform: scale(1.1) rotate(90deg);
-    background-color: #fd7014;
-    color: #fff;
+.modal-close:hover,
+.modal-close:focus {
+  color: #fd7014; /* Orange on hover for interactivity */
+  text-decoration: none;
 }
 
 /* Project Modal Styles */
@@ -1611,7 +1603,7 @@ footer p {
   background-color: #ff9650;
 }
 
-/* --- Expertise Modal Styles --- */
+/* Expertise Modal Styles */
 #expertise-modal {
   /* Reusing existing modal overlay styles */
   display: flex;
@@ -1637,14 +1629,26 @@ footer p {
 }
 
 .expertise-modal-content {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
   position: relative;
   background-color: #222831;
   border-radius: 10px;
-  max-width: 600px; /* A bit smaller for focused content */
+  max-width: 600px;
   width: 100%;
   padding: 2.5rem;
   box-shadow: 0 5px 20px rgba(0,0,0,0.5);
   color: #eeeeee;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.expertise-modal-content::-webkit-scrollbar {
+  display: none;
+}
+
+.expertise-modal-content .modal-close {
+  z-index: 10;
 }
 
 .expertise-modal-content h3 {
@@ -1667,6 +1671,7 @@ footer p {
   margin-bottom: 0.75rem;
   border-bottom: 1px solid #393e46;
   padding-bottom: 0.5rem;
+  padding-top: 1.5rem;
 }
 
 #modal-expertise-stack {
