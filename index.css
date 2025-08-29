@@ -226,7 +226,7 @@ body {
 }
 
 
-/* NEW ABOUT ME CARD STYLES */
+/* ABOUT ME CARD STYLES */
 #about-me-card {
   background-color: rgb(34, 40, 49, 0.6);
   border-radius: 0.25rem;
@@ -415,7 +415,7 @@ body {
 .timeline-line-progress {
     background: linear-gradient(90deg, #8f94fb, #4e54c8);
     width: 0;
-    left: 8.33%; /* (100% - 83.33%) / 2 */
+    left: 8.33%;
     z-index: 2;
     transition: width 0.4s ease-in-out;
 }
@@ -481,7 +481,7 @@ body {
     padding: 2rem;
     text-align: left;
     animation: fadeIn 0.5s ease-in-out;
-    min-height: 400px; /* MODIFICATION: Set a minimum height for all cards */
+    min-height: 400px;
 }
 
 @keyframes fadeIn {
@@ -496,15 +496,15 @@ body {
 .card-gallery {
     flex: 1;
     max-width: 50%;
-    overflow: hidden; /* MODIFICATION: Prevents image overflow */
-    border-radius: 8px; /* MODIFICATION: Apply border radius to the container */
+    overflow: hidden;
+    border-radius: 8px;
 }
 
 .card-gallery img {
     width: 100%;
-    height: 100%; /* MODIFICATION: Make image fill the container's height */
-    object-fit: cover; /* MODIFICATION: Crop image to fit without distortion */
-    border-radius: 0; /* MODIFICATION: Remove radius from image as container has it */
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
 }
 
 .card-details {
@@ -605,7 +605,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 0;
-  overflow: hidden; /* Fixes potential overflow issues */
+  overflow: hidden;
 }
 
 .content-box h3 {
@@ -688,7 +688,7 @@ body {
 }
 
 
-/* Technical Skills Section (REVISED) */
+/* Technical Skills Section */
 .skills-header {
   display: flex;
   justify-content: space-between;
@@ -715,7 +715,6 @@ body {
   background-color: #4a515c;
 }
 
-/* NEW FILTER DROPDOWN STYLES */
 .filter-dropdown {
     position: relative;
     margin-bottom: 1.5rem;
@@ -849,11 +848,9 @@ body {
     display: none;
 }
 
-
-/* Card View Styles (REVISED TO MATCH CERTIFICATIONS) */
 #skills-container.show-cards .skills-grid {
   grid-template-columns: 1fr;
-  gap: 0; /* Remove gap as margin is now on items */
+  gap: 0;
 }
 
 #skills-container.show-cards .skill-item {
@@ -920,7 +917,7 @@ body {
 #skills-container.show-cards .skill-item:hover img {
     opacity: 1;
     filter: brightness(0) invert(1);
-    transform: scale(1); /* Disable scale on hover for card view logo */
+    transform: scale(1);
 }
 
 
@@ -1058,7 +1055,7 @@ body {
     z-index: 2;
 }
 
-.cert-item::after { /* For gradient overlay on hover */
+.cert-item::after {
     content: '';
     position: absolute;
     top: 0;
@@ -1467,7 +1464,7 @@ footer p {
 
 #modal-cert-image {
   max-width: 100%;
-  max-height: calc(90vh - 4rem); /* Adjust for padding */
+  max-height: calc(90vh - 4rem);
   display: block;
   border-radius: 5px;
 }
@@ -1486,13 +1483,13 @@ footer p {
 
 .modal-close:hover,
 .modal-close:focus {
-  color: #fd7014; /* Orange on hover for interactivity */
+  color: #fd7014;
   text-decoration: none;
 }
 
 /* Project Modal Styles */
 #project-modal {
-  display: flex; /* Changed from none to flex for transition */
+  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -1504,7 +1501,6 @@ footer p {
   backdrop-filter: blur(5px);
   z-index: 2000;
   padding: 1rem;
-  /* New properties for smooth fade transition */
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s ease, visibility 0.4s ease;
@@ -1522,12 +1518,10 @@ footer p {
   border-radius: 10px;
   max-width: 900px;
   width: 100%;
-  max-height: 90vh; /* Keep a max height for consistency */
+  max-height: 90vh;
   box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-  /* REMOVED: overflow-y is now handled by the details container */
 }
 
-/* This is the fix for the close button */
 .project-modal-content .modal-close {
   z-index: 10;
 }
@@ -1549,10 +1543,9 @@ footer p {
 
 .modal-details-container {
   color: #eeeeee;
-  /* This is the fix for the scrollbar */
-  max-height: calc(90vh - 5rem); /* Prevents content from overflowing the modal */
-  overflow-y: auto; /* Adds a scrollbar ONLY to the text if needed */
-  padding-right: 1rem; /* Adds space for the scrollbar */
+  max-height: calc(90vh - 5rem);
+  overflow-y: auto;
+  padding-right: 1rem;
 }
 
 /* Custom scrollbar for the details container */
@@ -1605,7 +1598,6 @@ footer p {
 
 /* Expertise Modal Styles */
 #expertise-modal {
-  /* Reusing existing modal overlay styles */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1687,7 +1679,7 @@ footer p {
   align-items: center;
   gap: 0.5rem;
   text-align: center;
-  width: 60px; /* Fixed width for alignment */
+  width: 60px;
 }
 
 #modal-expertise-stack img {
@@ -1709,7 +1701,7 @@ footer p {
     padding: 1.5rem;
   }
   .modal-details-container {
-    max-height: none; /* Let content flow naturally on mobile stack */
+    max-height: none;
     overflow-y: visible;
     padding-right: 0;
   }
@@ -1725,22 +1717,21 @@ footer p {
   }
 
   #sidebar {
-    position: fixed; /* This makes the bar "sticky" */
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: auto;
     flex-direction: row;
     justify-content: center;
-    padding: 0.75rem; /* A little more padding for easier tapping */
+    padding: 0.75rem;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    z-index: 1000; /* Ensures it stays on top */
-    background-color: rgba(34, 40, 49, 0.95); /* Add background for sticky bar */
+    z-index: 1000;
+    background-color: rgba(34, 40, 49, 0.95);
   }
 
   #right {
     grid-column: 1 / -1;
-    /* This padding prevents the main content from hiding under the new sticky bars */
     padding: 70px 1rem 80px 1rem; 
   }
 
@@ -1810,20 +1801,19 @@ footer p {
 @media (max-width: 900px) {
   .timeline-card {
     flex-direction: column;
-    min-height: auto; /* Let height be natural on mobile */
+    min-height: auto;
   }
   .card-gallery, .card-details {
     max-width: 100%;
   }
   .card-gallery {
-    height: 250px; /* Give a fixed height for images on mobile stack */
+    height: 250px;
   }
 }
 
 
 @media (max-width: 768px) {
   #right {
-    /* Resets padding for mobile, accounting for sticky bars */
     padding: 70px 1rem 80px 1rem;
   }
 
@@ -1834,8 +1824,8 @@ footer p {
     align-items: flex-start;
     width: auto;
     margin: 0 0 0 -20px;
-    min-height: calc(10vh - 15px); /* Fills the screen between the bars */
-    padding: 1rem 1.5rem; /* Internal padding for the text */
+    min-height: calc(10vh - 15px);
+    padding: 1rem 1.5rem;
   }
 
   #welcome {
@@ -1852,7 +1842,7 @@ footer p {
   }
 
   #welcome-pict {
-    display: none; /* Hides the profile image as requested */
+    display: none;
   }
 
   #quick-links {
@@ -1997,18 +1987,17 @@ footer p {
 .tag-link {
     display: inline-block;
     padding: 0.3rem 0.8rem;
-    background-color: #393e46; /* A neutral color from your theme */
+    background-color: #393e46;
     color: #c9c9c9;
-    border-radius: 1rem; /* Pill shape */
+    border-radius: 1rem;
     font-size: 0.8rem;
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
-    border: 1px solid #5c636e; /* Subtle border */
-}
+    border: 1px solid #5c636e;
 
 .tag-link:hover {
-    background-color: #fd7014; /* Your highlight color */
+    background-color: #fd7014;
     color: #ffffff;
     border-color: #fd7014;
     transform: translateY(-2px);
@@ -2021,19 +2010,19 @@ footer p {
   left: 0;
   width: 100%;
   height: 100vh;
-  background-color: #222831; /* Matches your dark theme */
+  background-color: #222831;
   z-index: 9999;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.75s ease; /* For smooth fade-out */
+  transition: opacity 0.75s ease;
 }
 
 .spinner {
   width: 50px;
   height: 50px;
-  border: 5px solid #393e46; /* Spinner track color */
-  border-top-color: #fd7014; /* Your orange highlight color */
+  border: 5px solid #393e46;
+  border-top-color: #fd7014;
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
