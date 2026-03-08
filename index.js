@@ -1,12 +1,29 @@
 // Preloader Logic
-$(window).on('load', function() {
+$(document).ready(function() {
   const preloader = $('#preloader');
+  const welcomeImage = $('#welcome-pict img')[0];
+
+  function hidePreloader() {
+    if (preloader.length && !preloader.hasClass('hiding')) {
+      preloader.addClass('hiding'); // prevent multiple calls
+      preloader.fadeOut(750, function() {
+        $(this).remove();
+      });
+    }
+  }
+
+  if (welcomeImage) {
+    if (welcomeImage.complete) {
+      hidePreloader();
+    } else {
+      $(welcomeImage).on('load error', hidePreloader);
+    }
+  } else {
+    hidePreloader();
+  }
   
-  // Fade out the preloader
-  preloader.fadeOut(750, function() {
-    // Remove it from the DOM after fading out
-    $(this).remove();
-  });
+  // Fallback: maximum wait time of 3 seconds
+  setTimeout(hidePreloader, 3000);
 });
 
 $(document).ready(function () {
