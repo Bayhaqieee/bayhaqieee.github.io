@@ -1,3 +1,33 @@
+// =============================================
+// SIDEBAR HOVER / POP-OUT BEHAVIOUR
+// =============================================
+(function() {
+  const sidebar = document.getElementById('sidebar');
+  const trigger = document.getElementById('sidebar-trigger');
+  if (!sidebar || !trigger) return;
+
+  let closeTimer = null;
+
+  function openSidebar() {
+    clearTimeout(closeTimer);
+    sidebar.classList.add('sidebar-open');
+  }
+
+  function scheduledClose() {
+    closeTimer = setTimeout(function() {
+      sidebar.classList.remove('sidebar-open');
+    }, 250); // 250ms grace period before hiding
+  }
+
+  // Open when hovering the invisible left-edge trigger strip
+  trigger.addEventListener('mouseenter', openSidebar);
+  trigger.addEventListener('mouseleave', scheduledClose);
+
+  // Keep open while mouse is inside sidebar; close when leaving
+  sidebar.addEventListener('mouseenter', openSidebar);
+  sidebar.addEventListener('mouseleave', scheduledClose);
+})();
+
 // Preloader Logic
 $(document).ready(function() {
   const preloader = $('#preloader');
