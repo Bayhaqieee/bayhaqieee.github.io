@@ -1,12 +1,14 @@
 // =============================================
-// SIDEBAR HOVER / POP-OUT BEHAVIOUR
+// SIDEBAR HOVER / POP-OUT + PIN BEHAVIOUR
 // =============================================
 (function() {
   const sidebar = document.getElementById('sidebar');
   const trigger = document.getElementById('sidebar-trigger');
+  const pinBtn  = document.getElementById('sidebar-pin-btn');
   if (!sidebar || !trigger) return;
 
   let closeTimer = null;
+  let isPinned   = false;
 
   function openSidebar() {
     clearTimeout(closeTimer);
@@ -14,18 +16,158 @@
   }
 
   function scheduledClose() {
+    if (isPinned) return; // Don't close if pinned
     closeTimer = setTimeout(function() {
       sidebar.classList.remove('sidebar-open');
-    }, 250); // 250ms grace period before hiding
+    }, 250);
   }
 
-  // Open when hovering the invisible left-edge trigger strip
+  // Hover-to-reveal
   trigger.addEventListener('mouseenter', openSidebar);
   trigger.addEventListener('mouseleave', scheduledClose);
-
-  // Keep open while mouse is inside sidebar; close when leaving
   sidebar.addEventListener('mouseenter', openSidebar);
   sidebar.addEventListener('mouseleave', scheduledClose);
+
+  // Pin / Unpin on button click
+  if (pinBtn) {
+    pinBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      isPinned = !isPinned;
+      sidebar.classList.toggle('sidebar-pinned', isPinned);
+      sidebar.classList.toggle('sidebar-open',   isPinned);
+      pinBtn.setAttribute('title', isPinned ? 'Unpin sidebar' : 'Pin sidebar open');
+    });
+  }
+})();
+
+// =============================================
+// QUICK-LINKS: SEQUENTIAL ROBOTIC ANIMATION + ACTIVE SECTION
+// =============================================
+(function() {
+  const qlBar      = document.getElementById('quick-links');
+  const collapseBtn = document.getElementById('ql-collapse-btn');
+  const qlItems    = document.getElementById('ql-items');
+  const arrowSvg   = collapseBtn ? collapseBtn.querySelector('svg') : null;
+
+  if (!qlBar || !collapseBtn || !qlItems) return;
+
+  let isOpen      = true;   // tracks current state
+  let isAnimating = false;  // prevents overlapping animations
+
+  /* ── helpers ── */
+  function hideItems(cb) {
+    qlItems.classList.add('items-hidden');
+    if (arrowSvg) arrowSvg.style.transform = 'rotate(180deg)';
+    // Wait for the CSS transition on #ql-items (max-height + opacity: 0.35s)
+    setTimeout(cb, 350);
+  }
+
+  function showItems() {
+    qlItems.classList.remove('items-hidden');
+    if (arrowSvg) arrowSvg.style.transform = '';
+  }
+
+  /* ── COLLAPSE: Phase 1 hide items → Phase 2 slide to dock ── */
+  function collapse() {
+    if (!isOpen || isAnimating) return;
+    isAnimating = true;
+
+    // Phase 1 – collapse items
+    hideItems(function() {
+      // Phase 2 – mechanical slide to bottom-right dock
+      qlBar.classList.add('ql-docked');
+      isOpen = false;
+
+      // Allow next action after slide completes (~600ms)
+      setTimeout(function() { isAnimating = false; }, 600);
+    });
+  }
+
+  /* ── EXPAND: Phase 1 slide to open position → Phase 2 reveal items ── */
+  function expand() {
+    if (isOpen || isAnimating) return;
+    isAnimating = true;
+
+    // Phase 1 – mechanical slide back to vertical-center right position
+    qlBar.classList.remove('ql-docked');
+
+    let handled = false;
+
+    function onMoveEnd(e) {
+      // Wait for the "top" property transition to finish
+      if (e.propertyName !== 'top') return;
+      if (handled) return;
+      handled = true;
+      qlBar.removeEventListener('transitionend', onMoveEnd);
+
+      // Phase 2 – expand items
+      showItems();
+      isOpen = true;
+      isAnimating = false;
+    }
+
+    qlBar.addEventListener('transitionend', onMoveEnd);
+
+    // Fallback: if transitionend never fires (e.g. no transition applied)
+    setTimeout(function() {
+      if (!handled) {
+        handled = true;
+        qlBar.removeEventListener('transitionend', onMoveEnd);
+        showItems();
+        isOpen = true;
+        isAnimating = false;
+      }
+    }, 700);
+  }
+
+  collapseBtn.addEventListener('click', function() {
+    if (isOpen) { collapse(); } else { expand(); }
+  });
+
+  // Active-section highlighting via IntersectionObserver
+  const sections = ['home', 'about-me-card', 'experience', 'project', 'contact'];
+  const qlLinks  = document.querySelectorAll('.quick-link-item[href]');
+
+  if (!qlLinks.length) return;
+
+  const sectionMap = {};
+  sections.forEach(function(id) {
+    const el = document.getElementById(id);
+    if (el) sectionMap[id] = el;
+  });
+
+  let activeId = null;
+
+  function setActive(id) {
+    if (id === activeId) return;
+    activeId = id;
+    qlLinks.forEach(function(link) {
+      const href = link.getAttribute('href');
+      if (href === '#' + id) {
+        link.classList.add('ql-active');
+      } else {
+        link.classList.remove('ql-active');
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    threshold: 0.3,
+    rootMargin: '-80px 0px -20% 0px'
+  });
+
+  Object.values(sectionMap).forEach(function(el) {
+    observer.observe(el);
+  });
+
+  // Highlight first section on load
+  setActive('home');
 })();
 
 // Preloader Logic
