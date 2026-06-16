@@ -160,78 +160,127 @@
     </div>
 
     <div id="right">
-      <div id="home">
-        <div id="welcome">
-          <h2>Semper Ad Meliora<br> Et Ad Maiora </h2>
-          <p><span id="univ">Indonesia </span><span id="typed"></span></p>
-          <a href="https://www.linkedin.com/in/bayhaqieee/">Explore Now</a>
-        </div>
-        <div id="welcome-pict">
-          <img src="image/profile.webp" alt="Aditya Picture" />
-        </div>
-      </div>
 
-      <div id="organization-card">
-        <div class="org-slider">
-          <div class="org-slide-track">
-            <div class="org-slide">
-              <img src="image/Company/aiesec.webp" alt="AIESEC" style="height: 50px;" />
-            </div>
-            <div class="org-slide">
-              <img src="image/Company/gdg.webp" alt="Google Developer Group" style="height: 60px;" />
-            </div>
-            <div class="org-slide">
-                <img src="image/Company/sd.webp" alt="Gonsters" style="height: 40px;"/>
-            </div>
-            <div class="org-slide">
-              <img src="image/Company/airlab.webp" alt="AIRLab" style="height: 40px;" />
-            </div>
-             <div class="org-slide">
-                <img src="image/Company/bangkit.webp" alt="Bangkit" style="height: 40px;"/>
-            </div>
-             <div class="org-slide">
-                <img src="image/Company/gonsters.webp" alt="Gonsters" style="height: 40px;"/>
-            </div>
-            <div class="org-slide">
-              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" alt="Google" />
-            </div>
-            <div class="org-slide">
-              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gojek.svg" alt="Gojek" />
-            </div>
-            <div class="org-slide">
-              <img src="image/Company/traveloka.webp" alt="Traveloka" style="height: 100px;" />
-            </div>
-           
-            <div class="org-slide">
-              <img src="image/Company/aiesec.webp" alt="AIESEC" style="height: 50px;" />
-            </div>
-            <div class="org-slide">
-              <img src="image/Company/gdg.webp" alt="Google Developer Group" style="height: 60px;" />
-            </div>
-            <div class="org-slide">
-                <img src="image/Company/sd.webp" alt="Gonsters" style="height: 40px;"/>
-            </div>
-            <div class="org-slide">
-              <img src="image/Company/airlab.webp" alt="AIRLab" style="height: 40px;" />
-            </div>
-             <div class="org-slide">
-                <img src="image/Company/bangkit.webp" alt="Bangkit" style="height: 40px;"/>
-            </div>
-             <div class="org-slide">
-                <img src="image/Company/gonsters.webp" alt="Gonsters" style="height: 40px;"/>
-            </div>
-            <div class="org-slide">
-              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" alt="Google" />
-            </div>
-            <div class="org-slide">
-              <img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gojek.svg" alt="Gojek" />
-            </div>
-            <div class="org-slide">
-              <img src="image/Company/traveloka.webp" alt="Traveloka" style="height: 100px;" />
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- NEW PARALLAX HERO SECTION                   -->
+      <!-- ═══════════════════════════════════════════ -->
+      <section id="hero-scene" aria-label="Hero illustration">
+
+        <!-- Layer 0: Sky / Background -->
+        <div class="hero-layer" id="layer-bg" data-depth="0.05">
+          <img src="image/header/bg-edited-1.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 1: Mid-ground scenery (flowers, rocks, mushrooms, stream) -->
+        <div class="hero-layer" id="layer-mid" data-depth="0.12">
+          <img src="image/header/layer2-edited-transparent.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 2: Left tree -->
+        <div class="hero-layer" id="layer-tree" data-depth="0.18">
+          <img src="image/header/layer3-edited-transparent-1.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 3: Bug (dung beetle) — bottom left area -->
+        <div class="hero-layer hero-creature" id="layer-bug" data-depth="0.28">
+          <img src="image/header/bug-edited-transparent.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 4: Butterfly — floating mid-left -->
+        <div class="hero-layer hero-creature" id="layer-butterfly" data-depth="0.35">
+          <img src="image/header/butterfly-edited-transparent.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 5: Mantis — upper left on tree -->
+        <div class="hero-layer hero-creature" id="layer-mantis" data-depth="0.22">
+          <img src="image/header/mantis-edited-transparent.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 6: Character body -->
+        <div class="hero-layer" id="layer-character" data-depth="0.30">
+          <img src="image/header/character-edited-transparent-1.png" alt="Aditya character" />
+        </div>
+
+        <!-- Layer 7: Character cosmetic / speech bubble -->
+        <div class="hero-layer" id="layer-cosmetic" data-depth="0.38">
+          <img src="image/header/character-cosmetic-edited-transparent-1.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 8: Front silhouette plants (darkest, closest) -->
+        <div class="hero-layer" id="layer-front1" data-depth="0.50">
+          <img src="image/header/layer1-edited-transparent-1.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Layer 9: Front brown foliage silhouette -->
+        <div class="hero-layer" id="layer-front2" data-depth="0.60">
+          <img src="image/header/layer1-2-edited-transparent-1.png" alt="" aria-hidden="true" />
+        </div>
+
+        <!-- Hero text overlay -->
+        <div id="hero-text" class="hero-layer" data-depth="0.08">
+          <div id="hero-text-inner">
+            <p class="hero-subtitle">Semper Ad Meliora Et Ad Maiora</p>
+            <h1 class="hero-title">Aditya<br><span class="hero-title-accent">Bayhaqie</span></h1>
+            <p class="hero-desc"><span id="univ-hero">Indonesia </span><span id="typed-hero"></span></p>
+            <a href="#content-section" class="hero-cta" id="hero-scroll-cta">Explore Now
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 16.59L6.41 11 5 12.41l7 7 7-7L17.59 11z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div id="hero-scroll-hint" aria-hidden="true">
+          <span></span>
+        </div>
+
+      </section>
+      <!-- END HERO SCENE -->
+
+      <!-- ═══════════════════════════════════════════ -->
+      <!-- CONTENT SECTION — slides over hero on scroll -->
+      <!-- ═══════════════════════════════════════════ -->
+      <div id="content-section">
+
+        <!-- Old welcome card -->
+        <div id="home">
+          <div id="welcome">
+            <h2>Semper Ad Meliora<br> Et Ad Maiora </h2>
+            <p><span id="univ">Indonesia </span><span id="typed"></span></p>
+            <a href="https://www.linkedin.com/in/bayhaqieee/">Explore Now</a>
+          </div>
+          <div id="welcome-pict">
+            <img src="image/profile.webp" alt="Aditya Picture" />
+          </div>
+        </div>
+
+        <!-- Org slider -->
+        <div id="organization-card">
+          <div class="org-slider">
+            <div class="org-slide-track">
+              <div class="org-slide"><img src="image/Company/aiesec.webp" alt="AIESEC" /></div>
+              <div class="org-slide"><img src="image/Company/gdg.webp" alt="Google Developer Group" /></div>
+              <div class="org-slide"><img src="image/Company/sd.webp" alt="SD" /></div>
+              <div class="org-slide"><img src="image/Company/airlab.webp" alt="AIRLab" /></div>
+              <div class="org-slide"><img src="image/Company/bangkit.webp" alt="Bangkit" /></div>
+              <div class="org-slide"><img src="image/Company/gonsters.webp" alt="Gonsters" /></div>
+              <div class="org-slide"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" alt="Google" /></div>
+              <div class="org-slide"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gojek.svg" alt="Gojek" /></div>
+              <div class="org-slide"><img src="image/Company/traveloka.webp" alt="Traveloka" /></div>
+              <!-- Duplicate set for seamless loop -->
+              <div class="org-slide"><img src="image/Company/aiesec.webp" alt="AIESEC" /></div>
+              <div class="org-slide"><img src="image/Company/gdg.webp" alt="Google Developer Group" /></div>
+              <div class="org-slide"><img src="image/Company/sd.webp" alt="SD" /></div>
+              <div class="org-slide"><img src="image/Company/airlab.webp" alt="AIRLab" /></div>
+              <div class="org-slide"><img src="image/Company/bangkit.webp" alt="Bangkit" /></div>
+              <div class="org-slide"><img src="image/Company/gonsters.webp" alt="Gonsters" /></div>
+              <div class="org-slide"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg" alt="Google" /></div>
+              <div class="org-slide"><img src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/gojek.svg" alt="Gojek" /></div>
+              <div class="org-slide"><img src="image/Company/traveloka.webp" alt="Traveloka" /></div>
             </div>
           </div>
         </div>
-      </div>
+
+      </div><!-- /#content-section -->
 
       <div id="about-me-card" class="scroll-animate">
         <h2>About Me <span class="highlight">Aditya</span></h2>

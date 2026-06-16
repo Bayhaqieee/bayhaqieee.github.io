@@ -200,17 +200,266 @@ body {
 }
 
 #right {
-  padding: 1rem 85px 1rem 1rem;
+  padding: 0;
   width: 100%;
 }
 
+/* ═══════════════════════════════════════════════
+   PARALLAX HERO SCENE
+   ═══════════════════════════════════════════════ */
+#hero-scene {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 600px;
+  overflow: hidden;
+  background: #0d1b2a; /* fallback while images load */
+}
+
+/* Each parallax layer fills the scene */
+.hero-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+  transition: transform 0.08s linear;
+  pointer-events: none;
+}
+
+.hero-layer img {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center bottom;
+  display: block;
+}
+
+/* ── Background (sky + fireflies) ── */
+#layer-bg img    { object-position: center center; }
+
+/* ── Mid scenery ── */
+#layer-mid img   { object-fit: cover; object-position: center bottom; }
+
+/* ── Tree — anchored to upper-left ── */
+#layer-tree img  {
+  object-fit: contain;
+  object-position: left top;
+  width: 55%;
+  height: 90%;
+  left: 0;
+  top: 0;
+}
+
+/* ── Creatures — each positioned specifically ── */
+.hero-creature { pointer-events: none; }
+
+#layer-bug img {
+  object-fit: contain;
+  width: 14%;
+  height: auto;
+  bottom: 8%;
+  left: 10%;
+  top: auto;
+}
+
+#layer-butterfly img {
+  object-fit: contain;
+  width: 12%;
+  height: auto;
+  top: 25%;
+  left: 22%;
+  animation: butterfly-float 5s ease-in-out infinite;
+}
+
+@keyframes butterfly-float {
+  0%, 100% { transform: translateY(0) rotate(-5deg); }
+  50%       { transform: translateY(-18px) rotate(5deg); }
+}
+
+#layer-mantis img {
+  object-fit: contain;
+  width: 9%;
+  height: auto;
+  top: 5%;
+  left: 33%;
+}
+
+/* ── Character — right side ── */
+#layer-character img {
+  object-fit: contain;
+  object-position: right bottom;
+  width: 32%;
+  height: 85%;
+  left: auto;
+  right: 6%;
+  bottom: 0;
+  top: auto;
+}
+
+/* ── Cosmetic / speech bubble — above character ── */
+#layer-cosmetic img {
+  object-fit: contain;
+  width: 18%;
+  height: auto;
+  top: 8%;
+  right: 24%;
+  left: auto;
+  animation: bubble-bounce 3s ease-in-out infinite;
+}
+
+@keyframes bubble-bounce {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50%       { transform: translateY(-8px) scale(1.03); }
+}
+
+/* ── Front silhouettes (darkest plants) ── */
+#layer-front1 img {
+  object-fit: cover;
+  object-position: center bottom;
+  height: 45%;
+  top: auto;
+  bottom: 0;
+}
+
+#layer-front2 img {
+  object-fit: cover;
+  object-position: center bottom;
+  height: 40%;
+  top: auto;
+  bottom: 0;
+}
+
+/* ── Hero text overlay ── */
+#hero-text {
+  pointer-events: none;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+}
+
+#hero-text-inner {
+  pointer-events: all;
+  position: absolute;
+  left: 6%;
+  top: 50%;
+  transform: translateY(-50%);
+  max-width: 480px;
+}
+
+.hero-subtitle {
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(253, 224, 160, 0.85);
+  margin: 0 0 0.75rem 0;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+
+.hero-title {
+  font-size: clamp(2.8rem, 5.5vw, 5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #ffffff;
+  margin: 0 0 0.5rem 0;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 0 40px rgba(0,0,0,0.4);
+}
+
+.hero-title-accent {
+  color: #fd7014;
+  text-shadow: 0 2px 20px rgba(253,112,20,0.4), 0 0 40px rgba(0,0,0,0.4);
+}
+
+.hero-desc {
+  font-size: 1.1rem;
+  color: rgba(238,238,238,0.9);
+  margin: 0.5rem 0 2rem 0;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 2.2rem;
+  background: linear-gradient(135deg, #fd7014, #c45200);
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 50px;
+  box-shadow: 0 4px 24px rgba(253,112,20,0.4);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+
+.hero-cta:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(253,112,20,0.55);
+  background: linear-gradient(135deg, #ff9650, #fd7014);
+}
+
+/* ── Bottom gradient fade into content section ── */
+#hero-scene::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 180px;
+  background: linear-gradient(to bottom, transparent, rgba(22,27,35,0.95) 85%, rgb(22,27,35));
+  z-index: 25;
+  pointer-events: none;
+}
+
+/* ── Scroll hint chevron ── */
+#hero-scroll-hint {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scroll-hint 2.2s ease-in-out infinite;
+}
+
+#hero-scroll-hint span {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-right: 2px solid rgba(255,255,255,0.7);
+  border-bottom: 2px solid rgba(255,255,255,0.7);
+  transform: rotate(45deg);
+}
+
+@keyframes scroll-hint {
+  0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+  50%       { opacity: 1;   transform: translateX(-50%) translateY(8px); }
+}
+
+/* ═══════════════════════════════════════════════
+   CONTENT SECTION — slides over hero on scroll
+   ═══════════════════════════════════════════════ */
+#content-section {
+  position: relative;
+  z-index: 10;
+  background: linear-gradient(180deg, rgb(22,27,35) 0%, rgb(34,40,49) 60px);
+  border-radius: 28px 28px 0 0;
+  margin-top: -28px;
+  padding-top: 2rem;
+}
+
+/* Old #home welcome card — now inside content-section */
 #home {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  background-color: rgb(34, 40, 49, 0.6);
+  background-color: rgba(34, 40, 49, 0.6);
   border-radius: 0.25rem;
   padding: 2rem;
-  margin: 2.5rem auto 0;
+  margin: 1rem auto 0;
   max-width: 1200px;
   width: 90%;
   box-shadow: 0 0.1rem 0.2rem rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.07),
@@ -280,16 +529,19 @@ body {
   z-index: 1;
 }
 
-/* ORGANIZATION SLIDER STYLES */
+/* ═══════════════════════════════════════════════
+   ORGANIZATION SLIDER — FIXED
+   ═══════════════════════════════════════════════ */
 #organization-card {
   max-width: 1200px;
   width: 90%;
-  margin: 1.5rem auto 5rem auto;
+  margin: 1.5rem auto 3rem auto;
   padding: 1rem 0;
   background-color: rgba(45, 51, 60, 0.7);
   border-radius: 0.25rem;
   position: relative;
   z-index: 5;
+  overflow: hidden;
 }
 
 .org-slider {
@@ -306,6 +558,7 @@ body {
   width: 150px;
   height: 100%;
   z-index: 2;
+  pointer-events: none;
 }
 
 .org-slider::before {
@@ -318,47 +571,45 @@ body {
   background: linear-gradient(to right, rgba(45, 51, 60, 0), rgb(45, 51, 60));
 }
 
+/* 9 items × 160px × 2 sets = 2880px */
 .org-slide-track {
   display: flex;
-  width: calc(200px * 14);
-  animation: scroll 40s linear infinite;
+  width: calc(160px * 18);
+  animation: scroll 35s linear infinite;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translateZ(0);
 }
 
-.org-slider:hover .org-slide-track {
-    animation-play-state: paused;
-}
+/* Remove hover pause — animation keeps going */
 
 @keyframes scroll {
-  0% {
-    transform: translateX(0) translateZ(0);
-  }
-  100% {
-    transform: translateX(calc(-200px * 7)) translateZ(0);
-  }
+  0%   { transform: translateX(0) translateZ(0); }
+  100% { transform: translateX(calc(-160px * 9)) translateZ(0); }
 }
 
 .org-slide {
-  height: 60px;
-  width: 200px;
+  height: 70px;
+  width: 160px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0 1rem;
+  padding: 0 1.2rem;
+  flex-shrink: 0;
 }
 
 .org-slide img {
   height: 35px;
   width: auto;
+  max-width: 120px;
+  object-fit: contain;
   filter: brightness(0) invert(0.9) grayscale(1);
-  opacity: 0.6;
+  opacity: 0.55;
   transition: opacity 0.3s ease;
 }
 
 .org-slide:hover img {
-    opacity: 1;
+  opacity: 1;
 }
 
 
@@ -2157,18 +2408,37 @@ footer p {
 
 @media (max-width: 768px) {
   #right {
-    padding: 70px 1rem 80px 1rem;
+    padding: 0;
   }
+
+  /* Hero shrinks on mobile */
+  #hero-scene {
+    height: 100svh;
+    min-height: 500px;
+  }
+
+  #hero-text-inner {
+    left: 4%;
+    max-width: 90vw;
+  }
+
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3rem);
+  }
+
+  /* Character smaller on mobile */
+  #layer-character img { width: 45%; right: 0; }
+  #layer-cosmetic img  { width: 28%; right: 15%; top: 12%; }
 
   #home {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: auto;
-    margin: 0 0 0 -20px;
-    min-height: calc(10vh - 15px);
-    padding: 1rem 1.5rem;
+    width: 90%;
+    margin: 0 auto;
+    min-height: auto;
+    padding: 1.5rem;
   }
 
   #welcome {

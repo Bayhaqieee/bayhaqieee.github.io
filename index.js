@@ -1,4 +1,68 @@
 // =============================================
+// HERO PARALLAX SCENE — mouse-move depth effect
+// =============================================
+(function() {
+  const scene  = document.getElementById('hero-scene');
+  if (!scene) return;
+
+  const layers = scene.querySelectorAll('.hero-layer[data-depth]');
+
+  let targetX = 0, targetY = 0;
+  let currentX = 0, currentY = 0;
+  let raf = null;
+
+  // Max pixel shift per axis at full mouse offset
+  const MAX_SHIFT = 28;
+
+  scene.addEventListener('mousemove', function(e) {
+    const rect = scene.getBoundingClientRect();
+    // Normalised from -1 to +1
+    const nx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
+    const ny = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
+    targetX = nx * MAX_SHIFT;
+    targetY = ny * MAX_SHIFT;
+    if (!raf) raf = requestAnimationFrame(tick);
+  });
+
+  scene.addEventListener('mouseleave', function() {
+    targetX = 0;
+    targetY = 0;
+    if (!raf) raf = requestAnimationFrame(tick);
+  });
+
+  function tick() {
+    // Lerp toward target (smooth follow)
+    currentX += (targetX - currentX) * 0.08;
+    currentY += (targetY - currentY) * 0.08;
+
+    layers.forEach(function(layer) {
+      const depth = parseFloat(layer.dataset.depth) || 0;
+      const dx = -currentX * depth;
+      const dy = -currentY * depth;
+      layer.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+    });
+
+    const stillMoving = Math.abs(targetX - currentX) > 0.05 ||
+                        Math.abs(targetY - currentY) > 0.05;
+    if (stillMoving) {
+      raf = requestAnimationFrame(tick);
+    } else {
+      raf = null;
+    }
+  }
+
+  // Smooth scroll for the CTA button
+  const cta = document.getElementById('hero-scroll-cta');
+  if (cta) {
+    cta.addEventListener('click', function(e) {
+      e.preventDefault();
+      const target = document.getElementById('content-section');
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  }
+})();
+
+// =============================================
 // SIDEBAR HOVER / POP-OUT + PIN BEHAVIOUR
 // =============================================
 (function() {
@@ -199,7 +263,7 @@ $(document).ready(function() {
 });
 
 $(document).ready(function () {
-  // Typed.js setup for the animated text
+  // Typed.js setup for the animated text (welcome card)
   var typed = new Typed("#typed", {
     strings: [
       "Generative AI Engineer", 
@@ -215,6 +279,26 @@ $(document).ready(function () {
     backSpeed: 50,
     loop: true,
   });
+
+  // Typed.js for the hero section (same strings, same loop)
+  if (document.getElementById('typed-hero')) {
+    var typedHero = new Typed("#typed-hero", {
+      strings: [
+        "Generative AI Engineer", 
+        "Machine Learning Engineer",
+        "Data Scientist",
+        "Business Analyst",
+        "Software Engineer",
+        "Project Manager",
+        "Full Stack Developer",
+        "UI/UX Designer",
+      ],
+      typeSpeed: 90,
+      backSpeed: 45,
+      startDelay: 800,
+      loop: true,
+    });
+  }
 
   // Project Filter Functionality
   const primaryFilters = $('#primary-filters .filter-btn');
