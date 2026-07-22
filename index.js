@@ -1,55 +1,79 @@
 // =============================================
-// HERO PARALLAX SCENE — mouse-move depth effect
+// HERO PARALLAX SCENE — scroll & mouse reactivity
 // =============================================
 (function() {
-  const scene  = document.getElementById('hero-scene');
+  const scene = document.getElementById('hero-scene');
   if (!scene) return;
 
   const layers = scene.querySelectorAll('.hero-layer[data-depth]');
 
-  let targetX = 0, targetY = 0;
-  let currentX = 0, currentY = 0;
+  const SCALE = 0.45;
+
+  let currentY = 0;
+  let targetY  = 0;
+
+  let currentMouseX = 0;
+  let currentMouseY = 0;
+  let targetMouseX  = 0;
+  let targetMouseY  = 0;
+
   let raf = null;
 
-  // Max pixel shift per axis at full mouse offset
-  const MAX_SHIFT = 28;
+  function onScroll() {
+    targetY = window.pageYOffset || document.documentElement.scrollTop || window.scrollY || 0;
+    if (!raf) raf = requestAnimationFrame(tick);
+  }
 
-  scene.addEventListener('mousemove', function(e) {
+  function onMouseMove(e) {
     const rect = scene.getBoundingClientRect();
-    // Normalised from -1 to +1
-    const nx = ((e.clientX - rect.left) / rect.width  - 0.5) * 2;
-    const ny = ((e.clientY - rect.top)  / rect.height - 0.5) * 2;
-    targetX = nx * MAX_SHIFT;
-    targetY = ny * MAX_SHIFT;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    // Normalize mouse offset between -1 and 1
+    targetMouseX = (e.clientX - rect.left - centerX) / centerX;
+    targetMouseY = (e.clientY - rect.top - centerY) / centerY;
     if (!raf) raf = requestAnimationFrame(tick);
-  });
-
-  scene.addEventListener('mouseleave', function() {
-    targetX = 0;
-    targetY = 0;
-    if (!raf) raf = requestAnimationFrame(tick);
-  });
+  }
 
   function tick() {
-    // Lerp toward target (smooth follow)
-    currentX += (targetX - currentX) * 0.08;
-    currentY += (targetY - currentY) * 0.08;
+    // Smooth lerp toward target scroll and mouse coordinates
+    currentY += (targetY - currentY) * 0.12;
+    currentMouseX += (targetMouseX - currentMouseX) * 0.08;
+    currentMouseY += (targetMouseY - currentMouseY) * 0.08;
 
     layers.forEach(function(layer) {
       const depth = parseFloat(layer.dataset.depth) || 0;
-      const dx = -currentX * depth;
-      const dy = -currentY * depth;
-      layer.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+      
+      let dy = -(currentY * depth * SCALE);
+      let dx = currentMouseX * depth * 18;
+      let my = currentMouseY * depth * 12;
+
+      // Smooth scroll parallax for front silhouette:
+      // Follows scroll up and down smoothly with dynamic depth offset
+      if (layer.id === 'layer-front-orange') {
+        dy = -(currentY * 0.42);
+      }
+
+      layer.style.transform = 'translate3d(' + dx.toFixed(2) + 'px, ' + (dy + my).toFixed(2) + 'px, 0)';
     });
 
-    const stillMoving = Math.abs(targetX - currentX) > 0.05 ||
-                        Math.abs(targetY - currentY) > 0.05;
-    if (stillMoving) {
+    const scrollDiff = Math.abs(targetY - currentY);
+    const mouseDiff  = Math.abs(targetMouseX - currentMouseX) + Math.abs(targetMouseY - currentMouseY);
+
+    if (scrollDiff > 0.05 || mouseDiff > 0.005) {
       raf = requestAnimationFrame(tick);
     } else {
       raf = null;
     }
   }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  scene.addEventListener('mousemove', onMouseMove, { passive: true });
+
+  scene.addEventListener('mouseleave', function() {
+    targetMouseX = 0;
+    targetMouseY = 0;
+    if (!raf) raf = requestAnimationFrame(tick);
+  });
 
   // Smooth scroll for the CTA button
   const cta = document.getElementById('hero-scroll-cta');
@@ -61,6 +85,7 @@
     });
   }
 })();
+
 
 // =============================================
 // SIDEBAR HOVER / POP-OUT + PIN BEHAVIOUR
