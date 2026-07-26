@@ -2153,17 +2153,123 @@ body {
 }
 
 
-/* FOOTER STYLES */
-footer {
-  text-align: center;
-  padding: 2rem 1rem;
-  margin-top: 2rem;
-  border-top: 1px solid #393e46;
+/* ═══════════════════════════════════════════════
+   SCATTERED FOSSILS (HEAD TO TAIL)
+   ═══════════════════════════════════════════════ */
+.fossil-scatter {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 1;
 }
 
-footer p {
+.fossil-img {
+  position: absolute;
+  opacity: 0.55;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.4));
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  animation: fossil-float 7s ease-in-out infinite alternate;
+}
+
+#fossil-s1 { width: 95px;  top: 3%;  left: 3%;   transform: rotate(-15deg); animation-delay: 0s; }
+#fossil-s2 { width: 90px;  top: 14%; right: 4%;  transform: rotate(20deg);  animation-delay: 1.2s; }
+#fossil-s3 { width: 105px; top: 28%; left: 4%;   transform: rotate(-8deg);  animation-delay: 2.1s; }
+#fossil-m2 { width: 165px; top: 42%; right: 5%;  transform: rotate(12deg);  animation-delay: 0.6s; }
+#fossil-s4 { width: 100px; top: 56%; left: 3%;   transform: rotate(-22deg); animation-delay: 2.8s; }
+#fossil-s5 { width: 110px; top: 70%; right: 4%;  transform: rotate(15deg);  animation-delay: 1.4s; }
+#fossil-s6 { width: 95px;  top: 84%; left: 5%;   transform: rotate(-10deg); animation-delay: 0.9s; }
+
+@keyframes fossil-float {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   DINOSAUR FOSSIL FOOTER — Tail of Website
+   ═══════════════════════════════════════════════ */
+#fossil-footer {
+  position: relative;
+  text-align: center;
+  padding: 4rem 1rem 3rem;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.fossil-footer-inner {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.8rem;
+}
+
+.fossil-tail-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.fossil-tail-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(400px, 80vw);
+  height: 200px;
+  background: radial-gradient(ellipse at center, rgba(30, 48, 80, 0.5) 0%, rgba(26, 28, 40, 0) 75%);
+  filter: blur(25px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.dino-fossil-tail-img {
+  position: relative;
+  z-index: 1;
+  width: min(380px, 75vw);
+  height: auto;
+  filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
+  animation: fossil-tail-breathe 6s ease-in-out infinite alternate;
+}
+
+@keyframes fossil-tail-breathe {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  100% {
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+.end-of-site-text {
+  position: relative;
+  z-index: 2;
+  font-family: "Gabarito", sans-serif;
+  font-size: clamp(0.95rem, 2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: rgba(220, 230, 245, 0.85);
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0.6rem 1.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 30px;
+  background: rgba(26, 28, 40, 0.6);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.footer-copy {
   color: #a0a0a0;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   margin: 0;
 }
 
