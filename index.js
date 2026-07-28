@@ -1,5 +1,5 @@
 // =============================================
-// HERO PARALLAX SCENE — scroll & mouse reactivity
+// HERO PARALLAX SCENE â€” scroll & mouse reactivity
 // =============================================
 (function() {
   const scene = document.getElementById('hero-scene');
@@ -143,7 +143,7 @@
   let isOpen      = true;   // tracks current state
   let isAnimating = false;  // prevents overlapping animations
 
-  /* ── helpers ── */
+  /* â”€â”€ helpers â”€â”€ */
   function hideItems(cb) {
     qlItems.classList.add('items-hidden');
     if (arrowSvg) arrowSvg.style.transform = 'rotate(180deg)';
@@ -156,14 +156,14 @@
     if (arrowSvg) arrowSvg.style.transform = '';
   }
 
-  /* ── COLLAPSE: Phase 1 hide items → Phase 2 slide to dock ── */
+  /* â”€â”€ COLLAPSE: Phase 1 hide items â†’ Phase 2 slide to dock â”€â”€ */
   function collapse() {
     if (!isOpen || isAnimating) return;
     isAnimating = true;
 
-    // Phase 1 – collapse items
+    // Phase 1 â€“ collapse items
     hideItems(function() {
-      // Phase 2 – mechanical slide to bottom-right dock
+      // Phase 2 â€“ mechanical slide to bottom-right dock
       qlBar.classList.add('ql-docked');
       isOpen = false;
 
@@ -172,12 +172,12 @@
     });
   }
 
-  /* ── EXPAND: Phase 1 slide to open position → Phase 2 reveal items ── */
+  /* â”€â”€ EXPAND: Phase 1 slide to open position â†’ Phase 2 reveal items â”€â”€ */
   function expand() {
     if (isOpen || isAnimating) return;
     isAnimating = true;
 
-    // Phase 1 – mechanical slide back to vertical-center right position
+    // Phase 1 â€“ mechanical slide back to vertical-center right position
     qlBar.classList.remove('ql-docked');
 
     let handled = false;
@@ -189,7 +189,7 @@
       handled = true;
       qlBar.removeEventListener('transitionend', onMoveEnd);
 
-      // Phase 2 – expand items
+      // Phase 2 â€“ expand items
       showItems();
       isOpen = true;
       isAnimating = false;
@@ -671,3 +671,6 @@ $(document).ready(function () {
   });
 
 });
+
+
+
