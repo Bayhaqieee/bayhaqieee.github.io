@@ -674,3 +674,23 @@ $(document).ready(function () {
 
 
 
+
+// ------------------------------------------------
+// AVATAR POP-UP SCROLL ANIMATION
+// Triggers the pop-up spring animation when the user
+// scrolls down to the welcome card section.
+// ------------------------------------------------
+(function () {
+  var avatarBox = document.getElementById('avatar-box');
+  if (!avatarBox) return;
+
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        avatarBox.classList.add('popped');
+      }
+    });
+  }, { threshold: 0.25 });
+
+  observer.observe(avatarBox);
+})();
