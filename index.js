@@ -289,21 +289,23 @@ $(document).ready(function() {
 
 $(document).ready(function () {
   // Typed.js setup for the animated text (welcome card)
-  var typed = new Typed("#typed", {
-    strings: [
-      "Generative AI Engineer", 
-      "Machine Learning Engineer",
-      "Data Scientist",
-      "Business Analyst",
-      "Software Engineer",
-      "Project Manager",
-      "Full Stack Developer",
-      "UI/UX Designer",
-    ],
-    typeSpeed: 100,
-    backSpeed: 50,
-    loop: true,
-  });
+  if (document.getElementById('typed')) {
+    var typed = new Typed("#typed", {
+      strings: [
+        "Generative AI Engineer", 
+        "Machine Learning Engineer",
+        "Data Scientist",
+        "Business Analyst",
+        "Software Engineer",
+        "Project Manager",
+        "Full Stack Developer",
+        "UI/UX Designer",
+      ],
+      typeSpeed: 100,
+      backSpeed: 50,
+      loop: true,
+    });
+  }
 
   // Typed.js for the hero section (same strings, same loop)
   if (document.getElementById('typed-hero')) {
@@ -375,20 +377,36 @@ $(document).ready(function () {
     }
   });
 
-  // Scroll Animation
+  // Scroll Animation with early trigger and instant fallback
   const animatedElements = document.querySelectorAll('.scroll-animate');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-      }
+  if (animatedElements.length) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: '0px 0px 150px 0px'
     });
-  }, {
-    threshold: 0.1
-  });
-  animatedElements.forEach(element => {
-    observer.observe(element);
-  });
+    animatedElements.forEach(element => {
+      observer.observe(element);
+    });
+
+    function checkVisibilityFallback() {
+      animatedElements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight + 150 && rect.bottom > -50) {
+          el.classList.add('is-visible');
+        }
+      });
+    }
+    window.addEventListener('scroll', checkVisibilityFallback, { passive: true });
+    window.addEventListener('load', checkVisibilityFallback);
+    checkVisibilityFallback();
+  }
+
 
   // Technical Skills View Toggle
   const skillToggleBtn = $('#skill-view-toggle');
@@ -694,3 +712,74 @@ $(document).ready(function () {
 
   observer.observe(avatarBox);
 })();
+
+// ------------------------------------------------
+// MULTILINGUAL GREETING CYCLER
+// Smoothly cycles "Hello!" in 10 world languages
+// ------------------------------------------------
+(function () {
+  var helloEl = document.getElementById('multilingual-hello');
+  if (!helloEl) return;
+
+  var greetings = [
+    "Hello!",      // English
+    "Halo!",       // Indonesian
+    "Bonjour!",    // French
+    "Konnichiwa!", // Japanese
+    "Ciao!",       // Italian
+    "Hola!",       // Spanish
+    "Olá!",        // Portuguese
+    "Namaste!",    // Hindi
+    "Nǐ Hǎo!",     // Chinese
+    "Guten Tag!"   // German
+  ];
+
+  var index = 0;
+
+  setInterval(function () {
+    helloEl.classList.add('fade-out');
+    
+    setTimeout(function () {
+      index = (index + 1) % greetings.length;
+      helloEl.textContent = greetings[index];
+      helloEl.classList.remove('fade-out');
+      helloEl.classList.add('fade-in');
+
+      setTimeout(function () {
+        helloEl.classList.remove('fade-in');
+      }, 400);
+    }, 400);
+  }, 2600);
+})();
+
+// ------------------------------------------------
+// GITHUB STATS AUTO-FETCHER
+// Dynamically fetches public_repos and account start date
+// for GitHub user 'Bayhaqieee' via GitHub public API.
+// ------------------------------------------------
+(function () {
+  const yearsEl = document.getElementById('stat-years-count');
+  const projectsEl = document.getElementById('stat-projects-count');
+  if (!yearsEl && !projectsEl) return;
+
+  fetch('https://api.github.com/users/Bayhaqieee')
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      if (data) {
+        if (data.public_repos && projectsEl) {
+          projectsEl.textContent = data.public_repos + '+';
+        }
+        if (data.created_at && yearsEl) {
+          var startYear = new Date(data.created_at).getFullYear();
+          var currentYear = new Date().getFullYear();
+          var diffYears = Math.max(1, currentYear - startYear);
+          yearsEl.textContent = diffYears + '+';
+        }
+      }
+    })
+    .catch(function (err) {
+      console.log('GitHub API fetch fallback:', err);
+    });
+})();
+
+
