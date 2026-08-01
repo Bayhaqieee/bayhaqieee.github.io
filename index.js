@@ -722,16 +722,18 @@ $(document).ready(function () {
   if (!helloEl) return;
 
   var greetings = [
-    "Hello!",      // English
-    "Halo!",       // Indonesian
-    "Bonjour!",    // French
-    "Konnichiwa!", // Japanese
-    "Ciao!",       // Italian
-    "Hola!",       // Spanish
-    "Olá!",        // Portuguese
-    "Namaste!",    // Hindi
-    "Nǐ Hǎo!",     // Chinese
-    "Guten Tag!"   // German
+    "Hello!",         // English
+    "Halo!",          // Indonesian
+    "こんにちは!",     // Japanese
+    "你好!",          // Chinese
+    "Привет!",        // Russian
+    "안녕하세요!",    // Korean
+    "مرحبا!",         // Arabic
+    "Bonjour!",       // French
+    "Hola!",          // Spanish
+    "Ciao!",          // Italian
+    "नमस्ते!",        // Hindi
+    "Guten Tag!"      // German
   ];
 
   var index = 0;
@@ -781,5 +783,161 @@ $(document).ready(function () {
       console.log('GitHub API fetch fallback:', err);
     });
 })();
+
+// ------------------------------------------------
+// BACKGROUND AUDIO PLAYER CONTROLLER
+// Controls music playback in the sidebar with track list
+// ------------------------------------------------
+// BACKGROUND AUDIO PLAYER (AUTOPLAY & LOW VOLUME)
+// ------------------------------------------------
+(function () {
+  var audioBtn  = document.getElementById('sidebar-audio-btn');
+  var bgAudio   = document.getElementById('bg-audio');
+  var audioItem = document.getElementById('sidebar-audio-item');
+  if (!bgAudio) return;
+
+  var playlist = ['song/song-1.mp3', 'song/song-2.mp3'];
+  var currentTrack = 0;
+
+  bgAudio.src = playlist[currentTrack];
+  bgAudio.volume = 0.2; // Soft background volume (20%)
+
+  // Auto-loop through playlist tracks
+  bgAudio.addEventListener('ended', function () {
+    currentTrack = (currentTrack + 1) % playlist.length;
+    bgAudio.src = playlist[currentTrack];
+    bgAudio.volume = 0.2;
+    bgAudio.play();
+  });
+
+  function startPlayback() {
+    bgAudio.volume = 0.2;
+    var promise = bgAudio.play();
+    if (promise !== undefined) {
+      promise.then(function () {
+        if (audioItem) {
+          audioItem.classList.add('audio-playing');
+          audioItem.setAttribute('data-label', 'Music: ON');
+        }
+        removeInteractionListeners();
+      }).catch(function () {
+        // Autoplay policy paused audio until user gesture
+      });
+    }
+  }
+
+  function handleFirstGesture() {
+    startPlayback();
+  }
+
+  function addInteractionListeners() {
+    ['click', 'touchstart', 'scroll', 'keydown'].forEach(function (evt) {
+      window.addEventListener(evt, handleFirstGesture, { once: true, passive: true });
+    });
+  }
+
+  function removeInteractionListeners() {
+    ['click', 'touchstart', 'scroll', 'keydown'].forEach(function (evt) {
+      window.removeEventListener(evt, handleFirstGesture);
+    });
+  }
+
+  // Attempt instant autoplay on load
+  startPlayback();
+  // Fallback to first user gesture (click/scroll) if browser blocked instant load audio
+  addInteractionListeners();
+
+  if (audioBtn) {
+    audioBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (bgAudio.paused) {
+        bgAudio.volume = 0.2;
+        bgAudio.play().then(function () {
+          if (audioItem) {
+            audioItem.classList.add('audio-playing');
+            audioItem.setAttribute('data-label', 'Music: ON');
+          }
+        });
+      } else {
+        bgAudio.pause();
+        if (audioItem) {
+          audioItem.classList.remove('audio-playing');
+          audioItem.setAttribute('data-label', 'Music: OFF');
+        }
+      }
+    });
+  }
+})();
+
+
+// ------------------------------------------------
+// EXPERTISE CAROUSEL NAV CONTROLLER
+// Handles smooth left/right arrow sliding
+// ------------------------------------------------
+(function () {
+  var track = document.getElementById('expertise-track');
+  var prevBtn = document.getElementById('exp-prev-btn');
+  var nextBtn = document.getElementById('exp-next-btn');
+
+  if (!track || !prevBtn || !nextBtn) return;
+
+  var scrollStep = 320;
+
+  prevBtn.addEventListener('click', function () {
+    track.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+  });
+
+  nextBtn.addEventListener('click', function () {
+    track.scrollBy({ left: scrollStep, behavior: 'smooth' });
+  });
+})();
+
+// ------------------------------------------------
+// INTERACTIVE CLICK SPARK BURST EFFECT
+// Spawns glowing particle sparks on every user click
+// ------------------------------------------------
+(function () {
+  document.addEventListener('click', function (e) {
+    var x = e.clientX;
+    var y = e.clientY;
+
+    var sparkCount = 8;
+    for (var i = 0; i < sparkCount; i++) {
+      createSpark(x, y);
+    }
+  });
+
+  function createSpark(x, y) {
+    var spark = document.createElement('span');
+    spark.className = 'click-spark-particle';
+
+    var angle = Math.random() * Math.PI * 2;
+    var velocity = 30 + Math.random() * 45;
+    var tx = Math.cos(angle) * velocity;
+    var ty = Math.sin(angle) * velocity;
+    var scale = 0.5 + Math.random() * 0.8;
+
+    var colors = ['#fd7014', '#ffa366', '#ffc299', '#ffffff', '#ff8533'];
+    var color = colors[Math.floor(Math.random() * colors.length)];
+
+    spark.style.left = x + 'px';
+    spark.style.top = y + 'px';
+    spark.style.backgroundColor = color;
+    spark.style.boxShadow = '0 0 8px ' + color;
+    spark.style.setProperty('--tx', tx + 'px');
+    spark.style.setProperty('--ty', ty + 'px');
+    spark.style.setProperty('--scale', scale);
+
+    document.body.appendChild(spark);
+
+    setTimeout(function () {
+      if (spark.parentNode) {
+        spark.parentNode.removeChild(spark);
+      }
+    }, 600);
+  }
+})();
+
+
 
 
