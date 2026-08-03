@@ -740,7 +740,7 @@ $(document).ready(function () {
 
   setInterval(function () {
     helloEl.classList.add('fade-out');
-    
+
     setTimeout(function () {
       index = (index + 1) % greetings.length;
       helloEl.textContent = greetings[index];
@@ -937,6 +937,95 @@ $(document).ready(function () {
     }, 600);
   }
 })();
+
+// ------------------------------------------------
+// EXPERIENCE PERFORMANCE & TECH STACK MODAL
+// Opens modal displaying metrics & tech stack when button is clicked
+// ------------------------------------------------
+(function () {
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest('.view-impact-btn');
+    if (!btn) return;
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    var modal = document.getElementById('exp-impact-modal');
+    if (!modal) return;
+
+    var titleEl = document.getElementById('modal-impact-title');
+    var companyEl = document.getElementById('modal-impact-company');
+    var dateEl = document.getElementById('modal-impact-date');
+    var metricsEl = document.getElementById('modal-impact-metrics');
+    var tagsEl = document.getElementById('modal-impact-tags');
+
+    var title = btn.getAttribute('data-title') || '';
+    var company = btn.getAttribute('data-company') || '';
+    var date = btn.getAttribute('data-date') || '';
+    var metricsStr = btn.getAttribute('data-metrics') || '';
+    var tagsStr = btn.getAttribute('data-tags') || '';
+
+    if (titleEl) titleEl.textContent = title;
+    if (companyEl) companyEl.textContent = company;
+    if (dateEl) dateEl.textContent = date;
+
+    // Populate metrics list safely
+    if (metricsEl) {
+      metricsEl.innerHTML = '';
+      if (metricsStr) {
+        metricsStr.split(';').forEach(function (metric) {
+          var cleanMetric = metric.trim();
+          if (cleanMetric) {
+            var li = document.createElement('li');
+            var bullet = document.createElement('span');
+            bullet.style.color = '#fd7014';
+            bullet.style.fontWeight = 'bold';
+            bullet.style.marginRight = '8px';
+            bullet.textContent = '✦ ';
+            
+            var textNode = document.createTextNode(cleanMetric);
+            li.appendChild(bullet);
+            li.appendChild(textNode);
+            metricsEl.appendChild(li);
+          }
+        });
+      }
+    }
+
+    // Populate tags
+    if (tagsEl) {
+      tagsEl.innerHTML = '';
+      if (tagsStr) {
+        tagsStr.split(',').forEach(function (tag) {
+          if (tag.trim()) {
+            var span = document.createElement('span');
+            span.className = 'tag-link';
+            span.textContent = tag.trim();
+            tagsEl.appendChild(span);
+          }
+        });
+      }
+    }
+
+    modal.classList.add('show');
+    modal.classList.add('visible');
+  });
+
+  // Modal close event handlers
+  document.addEventListener('click', function (e) {
+    var modal = document.getElementById('exp-impact-modal');
+    if (!modal) return;
+
+    if (e.target.classList.contains('modal-close') && modal.contains(e.target)) {
+      modal.classList.remove('show');
+      modal.classList.remove('visible');
+    } else if (e.target === modal) {
+      modal.classList.remove('show');
+      modal.classList.remove('visible');
+    }
+  });
+})();
+
 
 
 

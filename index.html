@@ -372,11 +372,21 @@
           <div class="expertise-carousel-wrapper">
             <button class="carousel-nav-btn prev-btn" id="exp-prev-btn" aria-label="Previous Slide">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
               </svg>
             </button>
 
             <div class="expertise-gallery" id="expertise-track">
+              <div class="gallery-item"
+                data-description="I specialize in full-cycle software engineering, architecting backend systems, scalable RESTful APIs, and clean component-based applications. I emphasize clean architecture, automated E2E testing (Cypress/Gherkin), CI/CD pipelines, and integrating AI agent frameworks (Kiro/Antigravity) into production software ecosystems."
+                data-tags="Software Architecture,RESTful APIs,Clean Architecture,System Design,Cypress & Gherkin E2E,Kiro Agent Framework,Anti gravity AI,CI/CD,Database Engineering"
+                data-stack="Python,TypeScript,JavaScript,C++,Java,PHP,SQL,Node.js,Express,Docker,Cypress,Gherkin,Kiro,Anti gravity,Git">
+                <img src="image/Icon/webdev.webp" alt="Software Developer Icon" />
+                <div class="gallery-item-overlay">
+                  <h3>Software Developer</h3>
+                  <p>Architecting robust backend systems, APIs, and scalable software solutions.</p>
+                </div>
+              </div>
               <div class="gallery-item"
                 data-description="I design, build, and deploy end-to-end machine learning systems. This includes everything from data preprocessing and model training to deploying scalable AI solutions using modern MLOps principles. My focus is on creating robust, efficient, and intelligent applications that solve real-world problems."
                 data-tags="Generative AI,RAG,Multi-Agent Systems,LLMOps,Deep Learning,NLP,Computer Vision,MLOps"
@@ -461,7 +471,7 @@
 
             <button class="carousel-nav-btn next-btn" id="exp-next-btn" aria-label="Next Slide">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="22" height="22">
-                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
               </svg>
             </button>
           </div>
@@ -469,10 +479,8 @@
 
 
         <div id="experience" class="scroll-animate">
-          <!-- Fossil #4  right side -->
-          <!-- Fossil #4b  left side (new image) -->
-          <h2>Experience</h2>
-          <p class="section-subtitle">A snapshot of my growth through hands-on experiences.</p>
+          <h2>Professional <span class="highlight">Experience</span></h2>
+          <p class="section-subtitle">A chronological journey of engineering impact and leadership milestones</p>
 
           <div class="experience-timeline-wrapper">
             <div class="timeline-line"></div>
@@ -496,155 +504,196 @@
               <div class="timeline-item" data-step="6">
                 <div class="timeline-point">6</div>
               </div>
+              <div class="timeline-item" data-step="7">
+                <div class="timeline-point">7</div>
+              </div>
             </div>
           </div>
 
           <div class="timeline-card-container">
             <div class="timeline-card" data-step="1">
               <div class="card-gallery">
-                <img src="image/experience/pmo.webp" alt="Experience Photo">
+                <img src="image/experience/pmo.webp" alt="AIESEC Program Team Leader Photo">
               </div>
               <div class="card-details">
-                <p class="card-date">2023 - 2024</p>
+                <span class="card-date">2023 - 2024</span>
                 <h3 class="card-title">Program Team Leader</h3>
-                <p class="card-company">AIESEC in Unsri</p>
-                <p class="card-description">Led the "Engage with AIESEC" program, where I designed and executed
-                  workshops
-                  and events aimed at fostering leadership qualities and project management skills among university
-                  students.</p>
+                <p class="card-company">AIESEC in Unsri (Palembang)</p>
+                <p class="card-description">Led youth leadership development initiatives, designing interactive
+                  workshops, public speaking forums, and project management training for university students.</p>
                 <div class="card-tags">
-                  <a href="https://en.wikipedia.org/wiki/Project_management" target="_blank" class="tag-link">Project
-                    Management</a>
-                  <a href="https://en.wikipedia.org/wiki/Leadership" target="_blank" class="tag-link">Leadership
-                    Development</a>
-                  <a href="https://en.wikipedia.org/wiki/Event_management" target="_blank" class="tag-link">Event
-                    Planning</a>
-                  <a href="https://en.wikipedia.org/wiki/Public_speaking" target="_blank" class="tag-link">Public
-                    Speaking</a>
+                  <span class="tag-link">Project Management</span>
+                  <span class="tag-link">Leadership Development</span>
+                  <span class="tag-link">Event Planning</span>
+                  <span class="tag-link">Public Speaking</span>
                 </div>
+                <button class="view-impact-btn" data-title="Program Team Leader"
+                  data-company="AIESEC in Unsri (Palembang)" data-date="2023 - 2024"
+                  data-overview="Led youth leadership development initiatives, designing interactive workshops, public speaking forums, and project management training for university students."
+                  data-metrics="Designed and executed 10+ leadership & project management workshops per semester;Mentored 40+ active university student participants;Maintained a 90%+ program completion and satisfaction rate"
+                  data-tags="Project Management,Leadership Development,Event Planning,Public Speaking,Notion">
+                  View Performance & Tech Stack
+                </button>
               </div>
             </div>
+
             <div class="timeline-card" data-step="2">
               <div class="card-gallery">
-                <img src="image/experience/cohort.webp" alt="Experience Photo">
+                <img src="image/experience/cohort.webp" alt="Bangkit Academy ML Cohort Photo">
               </div>
               <div class="card-details">
-                <p class="card-date">2024</p>
+                <span class="card-date">Nov 2024 - Jan 2025</span>
                 <h3 class="card-title">Machine Learning Cohort</h3>
-                <p class="card-company">Bangkit Academy</p>
-                <p class="card-description">Completed an intensive, Google-led training program focused on machine
-                  learning. Developed and deployed ML models, including a capstone project on sentiment analysis and
-                  recommendation systems.</p>
+                <p class="card-company">Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka</p>
+                <p class="card-description">Participated in an intensive Google-led Machine Learning specialization,
+                  building end-to-end ML models, data pipelines, and capstone AI product deployments.</p>
                 <div class="card-tags">
-                  <a href="https://en.wikipedia.org/wiki/Machine_learning" target="_blank" class="tag-link">Machine
-                    Learning</a>
-                  <a href="https://en.wikipedia.org/wiki/Sentiment_analysis" target="_blank" class="tag-link">Sentiment
-                    Analysis</a>
-                  <a href="https://en.wikipedia.org/wiki/Recommender_system" target="_blank"
-                    class="tag-link">Recommendation Systems</a>
-                  <a href="https://en.wikipedia.org/wiki/TensorFlow" target="_blank" class="tag-link">TensorFlow</a>
-                  <a href="https://en.wikipedia.org/wiki/Model_deployment" target="_blank" class="tag-link">Model
-                    Deployment</a>
+                  <span class="tag-link">Machine Learning</span>
+                  <span class="tag-link">TensorFlow</span>
+                  <span class="tag-link">Scikit-learn</span>
+                  <span class="tag-link">Model Deployment</span>
                 </div>
+                <button class="view-impact-btn" data-title="Machine Learning Cohort"
+                  data-company="Bangkit Academy led by Google, Tokopedia, Gojek, & Traveloka"
+                  data-date="Nov 2024 - Jan 2025"
+                  data-overview="Participated in an intensive Google-led Machine Learning specialization, building end-to-end ML models, data pipelines, and capstone AI product deployments."
+                  data-metrics="Graduated with Distinction (Top-tier cohort ranking);Curated and preprocessed datasets across 4+ data sources;Trained and deployed high-accuracy classification & recommendation models using TensorFlow/Keras"
+                  data-tags="Machine Learning,TensorFlow,Keras,Scikit-learn,Model Deployment,Product Strategy,Python">
+                  View Performance & Tech Stack
+                </button>
               </div>
             </div>
+
             <div class="timeline-card" data-step="3">
               <div class="card-gallery">
-                <img src="image/experience/hop.webp" alt="Experience Photo">
+                <img src="image/experience/hop.webp" alt="AIESEC Head of Product Operation Photo">
               </div>
               <div class="card-details">
-                <p class="card-date">2024 - 2025</p>
-                <h3 class="card-title">Head of Product Operation</h3>
-                <p class="card-company">AIESEC in Unsri</p>
-                <p class="card-description">Managed the entire lifecycle of local project operations, from strategic
-                  planning to execution. I led cross-functional teams to deliver impactful community-based programs,
-                  ensuring goals were met.</p>
+                <span class="card-date">Jan 2024 - Jan 2025</span>
+                <h3 class="card-title">Local Head of Product Operation</h3>
+                <p class="card-company">AIESEC in Unsri (Palembang)</p>
+                <p class="card-description">Oversaw local project operations, strategic planning, CRM optimization, and
+                  cross-functional team management to deliver community-focused impact programs.</p>
                 <div class="card-tags">
-                  <a href="https://en.wikipedia.org/wiki/Product_lifecycle" target="_blank" class="tag-link">Product
-                    Lifecycle</a>
-                  <a href="https://en.wikipedia.org/wiki/Strategic_planning" target="_blank" class="tag-link">Strategic
-                    Planning</a>
-                  <a href="https://en.wikipedia.org/wiki/Operations_management" target="_blank"
-                    class="tag-link">Operations Management</a>
-                  <a href="https://en.wikipedia.org/wiki/Team_leadership" target="_blank"
-                    class="tag-link">Cross-Functional Leadership</a>
+                  <span class="tag-link">Product Operations</span>
+                  <span class="tag-link">CRM Optimization</span>
+                  <span class="tag-link">Quality Assurance</span>
+                  <span class="tag-link">Team Leadership</span>
                 </div>
+                <button class="view-impact-btn" data-title="Local Head of Product Operation"
+                  data-company="AIESEC in Unsri (Palembang)" data-date="Jan 2024 - Jan 2025"
+                  data-overview="Oversaw local project operations, strategic planning, CRM optimization, and cross-functional team management to deliver community-focused impact programs."
+                  data-metrics="Spearheaded 3+ major initiatives totaling 90+ agendas across national & international scope;Secured IDR 7.5M in funding with 2 key financial sponsors;Led 8 product teams across 50+ weekly check-ins with 10+ partners;Achieved an outstanding 9.2+ LPS participant satisfaction score"
+                  data-tags="Product Operations,CRM Funnels,Quality Assurance,Strategic Planning,Partnership Management">
+                  View Performance & Tech Stack
+                </button>
               </div>
             </div>
+
             <div class="timeline-card" data-step="4">
               <div class="card-gallery">
-                <img src="image/experience/lab.webp" alt="Experience Photo">
+                <img src="image/experience/lab.webp" alt="Research Scholar & Computer Lab Assistant Photo">
               </div>
               <div class="card-details">
-                <p class="card-date">2024 - Present</p>
-                <h3 class="card-title">Computer Lab Assistant</h3>
-                <p class="card-company">Sriwijaya University</p>
-                <p class="card-description">Assisted in AI, Big Data, and Database labs. My role involved guiding
-                  students
-                  through complex practical coursework, troubleshooting technical issues, and reinforcing key computer
-                  science concepts.</p>
+                <span class="card-date">May 2024 - Present</span>
+                <h3 class="card-title">Research Scholar & Computer Lab Assistant</h3>
+                <p class="card-company">Sriwijaya University (Faculty of Computer Science)</p>
+                <p class="card-description">Assisted in academic AI/data science research while guiding undergraduate
+                  students through practical Big Data, Database Systems, and SQL coursework.</p>
                 <div class="card-tags">
-                  <a href="https://en.wikipedia.org/wiki/Artificial_intelligence" target="_blank"
-                    class="tag-link">Artificial Intelligence</a>
-                  <a href="https://en.wikipedia.org/wiki/Big_data" target="_blank" class="tag-link">Big Data</a>
-                  <a href="https://en.wikipedia.org/wiki/Database" target="_blank" class="tag-link">Database Systems</a>
-                  <a href="https://en.wikipedia.org/wiki/SQL" target="_blank" class="tag-link">SQL</a>
-                  <a href="https://en.wikipedia.org/wiki/Mentorship" target="_blank" class="tag-link">Mentoring</a>
+                  <span class="tag-link">Academic Research</span>
+                  <span class="tag-link">Big Data Systems</span>
+                  <span class="tag-link">Database Architecture</span>
+                  <span class="tag-link">SQL</span>
                 </div>
+                <button class="view-impact-btn" data-title="Research Scholar & Computer Lab Assistant"
+                  data-company="Sriwijaya University (Faculty of Computer Science)" data-date="May 2024 - Present"
+                  data-overview="Assisted in academic AI/data science research while guiding undergraduate students through practical Big Data, Database Systems, and SQL coursework."
+                  data-metrics="Co-authored academic research papers across 10+ research review meetings;Facilitated 24+ practical lab sessions per semester for Big Data & Database Systems;Managed and maintained 30+ lab workstations for student coursework"
+                  data-tags="Academic Research,Big Data Systems,Database Architecture,SQL,Technical Mentoring,Python">
+                  View Performance & Tech Stack
+                </button>
               </div>
             </div>
+
             <div class="timeline-card" data-step="5">
               <div class="card-gallery">
-                <img src="image/experience/core.webp" alt="Experience Photo">
+                <img src="image/experience/core.webp" alt="GDG Machine Learning Core Photo">
               </div>
               <div class="card-details">
-                <p class="card-date">2025 - Present</p>
+                <span class="card-date">Dec 2024 - Oct 2025</span>
                 <h3 class="card-title">Machine Learning Core</h3>
-                <p class="card-company">GDG On-Campus Sriwijaya University</p>
-                <p class="card-description">Leading the machine learning division at Google Developer Group. I am
-                  responsible for developing the curriculum, organizing workshops, and mentoring members on hands-on ML
-                  projects.</p>
+                <p class="card-company">Google Developer Group on Campus: Universitas Sriwijaya</p>
+                <p class="card-description">Led the machine learning division at GDG, developing curricula, organizing
+                  technical workshops, and mentoring members on hands-on AI projects.</p>
                 <div class="card-tags">
-                  <a href="https://en.wikipedia.org/wiki/Curriculum_development" target="_blank"
-                    class="tag-link">Curriculum Development</a>
-                  <a href="https://en.wikipedia.org/wiki/Deep_learning" target="_blank" class="tag-link">Deep
-                    Learning</a>
-                  <a href="https://en.wikipedia.org/wiki/Natural_language_processing" target="_blank"
-                    class="tag-link">NLP</a>
-                  <a href="https://en.wikipedia.org/wiki/Computer_vision" target="_blank" class="tag-link">Computer
-                    Vision</a>
-                  <a href="https://en.wikipedia.org/wiki/Community_organization" target="_blank"
-                    class="tag-link">Community Leadership</a>
+                  <span class="tag-link">Curriculum Engineering</span>
+                  <span class="tag-link">Deep Learning</span>
+                  <span class="tag-link">NLP</span>
+                  <span class="tag-link">Developer Relations</span>
                 </div>
+                <button class="view-impact-btn" data-title="Machine Learning Core"
+                  data-company="Google Developer Group on Campus: Universitas Sriwijaya" data-date="Dec 2024 - Oct 2025"
+                  data-overview="Led the machine learning division at GDG, developing curricula, organizing technical workshops, and mentoring members on hands-on AI projects."
+                  data-metrics="Authored 24+ technical ML session agendas;Designed 10+ hands-on ML mini-projects covering NLP & Computer Vision;Mentored 15+ active university members in foundational and applied AI"
+                  data-tags="Curriculum Engineering,Deep Learning,NLP,Computer Vision,Developer Relations,Python">
+                  View Performance & Tech Stack
+                </button>
               </div>
             </div>
+
             <div class="timeline-card" data-step="6">
               <div class="card-gallery">
-                <img src="image/experience/gonsters.webp" alt="Experience Photo">
+                <img src="image/experience/gonsters.webp" alt="GONSTERS Generative AI Engineer Photo">
               </div>
               <div class="card-details">
-                <p class="card-date">2025 - Present</p>
+                <span class="card-date">July 2025 - Jan 2026</span>
                 <h3 class="card-title">Generative AI Engineer</h3>
-                <p class="card-company">GONSTERS</p>
-                <p class="card-description">Developing generative AI solutions on AWS to power a Digital Twin system. I
-                  am
-                  focusing on implementing a hybrid RAG-CAG framework that leverages a Knowledge Graph for highly
-                  accurate, contextual insights.</p>
+                <p class="card-company">GONSTERS (Ludwigsburg, Germany)</p>
+                <p class="card-description">Engineered generative AI solutions on AWS for a Digital Twin system,
+                  building Hybrid RAG pipelines, live telemetry querying, and automated root cause analysis.</p>
                 <div class="card-tags">
-                  <a href="https://en.wikipedia.org/wiki/Retrieval-augmented_generation" target="_blank"
-                    class="tag-link">Retrieval Augmented Generation</a>
-                  <a href="https://en.wikipedia.org/wiki/Multi-agent_system" target="_blank"
-                    class="tag-link">Multi-Agent
-                    System</a>
-                  <a href="https://medium.com/@jagadeesan.ganesh/cache-augmented-generation-cag-the-next-frontier-in-llm-optimization-d4c83e31ba0b"
-                    target="_blank" class="tag-link">Cache Augmented Generation</a>
-                  <a href="https://en.wikipedia.org/wiki/Knowledge_graph" target="_blank" class="tag-link">Knowledge
-                    Graph</a>
-                  <a href="https://en.wikipedia.org/wiki/Amazon_Web_Services" target="_blank" class="tag-link">AWS Cloud
-                    Environment</a>
+                  <span class="tag-link">Hybrid RAG</span>
+                  <span class="tag-link">Digital Twins</span>
+                  <span class="tag-link">Agentic AI Workflows</span>
+                  <span class="tag-link">AWS Cloud</span>
                 </div>
+                <button class="view-impact-btn" data-title="Generative AI Engineer"
+                  data-company="GONSTERS (Ludwigsburg, Germany)" data-date="July 2025 - Jan 2026"
+                  data-overview="Engineered generative AI solutions on AWS for a Digital Twin system, building Hybrid RAG pipelines, live telemetry querying, and automated root cause analysis."
+                  data-metrics="Reduced telemetry information retrieval latency by 40% across 120+ live telemetry points;Achieved 95% response accuracy and 0 hallucinations across 9+ industrial categories using TOON formatting;Maintained &lt;200ms system response latency via Redis/Nginx caching;Delivered 3+ core AI features for the manufacturing dashboard"
+                  data-tags="Generative AI,Hybrid RAG,Digital Twins,Redis/Nginx,Autonomous AI Agents,TOON Format,AWS">
+                  View Performance & Tech Stack
+                </button>
               </div>
             </div>
+
+            <div class="timeline-card" data-step="7">
+              <div class="card-gallery">
+                <img src="image/experience/simpli.jpeg" alt="Simplidots Generative AI R&D Photo">
+              </div>
+              <div class="card-details">
+                <span class="card-date">August 2025 - Present</span>
+                <h3 class="card-title">Generative AI Research & Development</h3>
+                <p class="card-company">SimpliDots (Jakarta Selatan)</p>
+                <p class="card-description">Spearheading Generative AI R&D, building autonomous LLM agents, automated
+                  reporting workflows, Text2SQL data compression, and tenant health ETL monitoring.</p>
+                <div class="card-tags">
+                  <span class="tag-link">Generative AI R&D</span>
+                  <span class="tag-link">Kiro Agent Framework</span>
+                  <span class="tag-link">Cypress & Gherkin</span>
+                  <span class="tag-link">Activepieces/n8n</span>
+                </div>
+                <button class="view-impact-btn" data-title="Generative AI Research & Development"
+                  data-company="SimpliDots (Jakarta Selatan)" data-date="August 2025 - Present"
+                  data-overview="Spearheading Generative AI R&D, building autonomous LLM agents, automated reporting workflows, Text2SQL data compression, and tenant health ETL monitoring."
+                  data-metrics="Orchestrated 40+ automated Activepieces/n8n workflows generating 125+ Weekly Business Insight PDFs;Engineered a Chaos Logic Tester Kiro Agent for Cypress/Gherkin E2E suites (>80% assertion confidence);Compressed data across 9 business domains with 100% LLM context retention via TOON standard;Automated tenant health ETL monitoring a 30,000+ active outlet proxy"
+                  data-tags="Generative AI R&D,Kiro Agent Framework,Cypress & Gherkin E2E,Text2SQL & Hot/Cold RAG,Activepieces/n8n,MS SQL & Claude">
+                  View Performance & Tech Stack
+                </button>
+              </div>
+            </div>
+
           </div>
 
           <div class="timeline-navigation">
@@ -652,6 +701,7 @@
             <button class="timeline-btn" id="next-btn">Next &gt;</button>
           </div>
         </div>
+
 
         <div id="activities-skills" class="scroll-animate">
           <!-- Fossil #5  left side -->
@@ -664,37 +714,46 @@
               <div class="info-box-content">
                 <div class="activity-item">
                   <img src="image/Company/gdg.webp" alt="GDG On-Campus Logo"
-                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=Logo';">
+                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=GDG';">
                   <div class="activity-details">
-                    <h4>GDG On-Campus: Universitas Sriwijaya</h4>
-                    <p class="role-title">Machine Learning Core</p>
-                    <p class="date">Dec 2024 - Present</p>
+                    <h4>Google Developer Group on Campus: Unsri</h4>
+                    <p class="role-title">Machine Learning Division Lead & Core</p>
+                    <p class="date">Dec 2024 - October 2025</p>
                   </div>
                 </div>
                 <div class="activity-item">
                   <img src="image/Company/airlab.webp" alt="AIRLab Logo"
-                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=Logo';">
+                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=AIRLab';">
                   <div class="activity-details">
-                    <h4>Artificial Intelligence Research Lab</h4>
-                    <p class="role-title">Researcher</p>
-                    <p class="date">Oct 2024 - Present</p>
+                    <h4>Artificial Intelligence & Big Data Lab</h4>
+                    <p class="role-title">Student Research Scholar & Lab Assistant</p>
+                    <p class="date">May 2024 - August 2026</p>
                   </div>
                 </div>
                 <div class="activity-item">
                   <img src="image/Company/aiesec.webp" alt="AIESEC Logo"
-                    onerror="this.onerror=null;this.src='https.placehold.co/60x60/393e46/eeeeee?text=Logo';">
+                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=AIESEC';">
                   <div class="activity-details">
-                    <h4>AIESEC In Unsri</h4>
-                    <p class="role-title">Head of Product Operation</p>
+                    <h4>AIESEC in Unsri</h4>
+                    <p class="role-title">Local Head of Product Operation</p>
                     <p class="date">Jan 2024 - Jan 2025</p>
                   </div>
                 </div>
                 <div class="activity-item">
+                  <img src="image/Company/aiesec.webp" alt="AIESEC Logo"
+                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=AIESEC';">
+                  <div class="activity-details">
+                    <h4>AIESEC in Unsri</h4>
+                    <p class="role-title">Program Team Leader</p>
+                    <p class="date">2023 - 2024</p>
+                  </div>
+                </div>
+                <div class="activity-item">
                   <img src="image/Company/bem.webp" alt="BEM Fasilkom Logo"
-                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=Logo';">
+                    onerror="this.onerror=null;this.src='https://placehold.co/60x60/393e46/eeeeee?text=BEM';">
                   <div class="activity-details">
                     <h4>BEM KM Fasilkom Unsri</h4>
-                    <p class="role-title">Multimedia Staff</p>
+                    <p class="role-title">Creative Multimedia & Brand Specialist</p>
                     <p class="date">Dec 2022 - Dec 2023</p>
                   </div>
                 </div>
@@ -954,6 +1013,18 @@
                     <div class="skill-item" data-skill="VS Code"><img
                         src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/visualstudiocode.svg"
                         alt="VS Code logo"><span class="skill-name">VS Code</span></div>
+                    <div class="skill-item" data-skill="Kiro"><img
+                        src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/openai.svg" alt="Kiro logo"><span
+                        class="skill-name">Kiro</span></div>
+                    <div class="skill-item" data-skill="Anti gravity"><img
+                        src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/google.svg"
+                        alt="Anti gravity logo"><span class="skill-name">Anti gravity</span></div>
+                    <div class="skill-item" data-skill="Gherkin"><img
+                        src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cucumber.svg" alt="Gherkin logo"><span
+                        class="skill-name">Gherkin</span></div>
+                    <div class="skill-item" data-skill="Cypress"><img
+                        src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/cypress.svg" alt="Cypress logo"><span
+                        class="skill-name">Cypress</span></div>
                   </div>
                 </div>
 
@@ -1584,7 +1655,22 @@
       <div id="modal-expertise-stack">
       </div>
     </div>
-  </div>
+    <div id="exp-impact-modal" class="modal-overlay">
+      <div class="expertise-modal-content">
+        <span class="modal-close" title="Close">&times;</span>
+        <h3 id="modal-impact-title"></h3>
+        <p id="modal-impact-company" class="card-company"></p>
+        <span id="modal-impact-date" class="card-date"></span>
+
+        <h4 style="margin-top: 1.5rem; color: #fd7014;">Key Performance Metrics & Achievements</h4>
+        <ul id="modal-impact-metrics" class="impact-metrics-list">
+        </ul>
+
+        <h4 style="margin-top: 1.5rem; color: #fd7014;">Tech Stack & Core Tooling</h4>
+        <div id="modal-impact-tags" class="card-tags">
+        </div>
+      </div>
+    </div>
 </body>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
