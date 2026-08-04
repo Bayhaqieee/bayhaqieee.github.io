@@ -450,9 +450,15 @@ $(document).ready(function () {
       contentToFilter.each(function() {
         const itemCategory = $(this).data(categorySelector);
         if (filterValue === 'all' || itemCategory === filterValue) {
-          $(this).show();
+          $(this).removeClass('hide');
+          if (!$(this).hasClass('skill-category')) {
+            $(this).show();
+          }
         } else {
-          $(this).hide();
+          $(this).addClass('hide');
+          if (!$(this).hasClass('skill-category')) {
+            $(this).hide();
+          }
         }
       });
       
@@ -944,8 +950,11 @@ $(document).ready(function () {
 // ------------------------------------------------
 (function () {
   document.addEventListener('click', function (e) {
-    var btn = e.target.closest('.view-impact-btn');
-    if (!btn) return;
+    var trigger = e.target.closest('.timeline-card, .card-details, .card-click-hint, .view-impact-btn');
+    if (!trigger) return;
+
+    var card = trigger.hasAttribute('data-metrics') ? trigger : trigger.closest('.timeline-card');
+    if (!card || !card.hasAttribute('data-metrics')) return;
 
     e.preventDefault();
     e.stopPropagation();
@@ -959,11 +968,11 @@ $(document).ready(function () {
     var metricsEl = document.getElementById('modal-impact-metrics');
     var tagsEl = document.getElementById('modal-impact-tags');
 
-    var title = btn.getAttribute('data-title') || '';
-    var company = btn.getAttribute('data-company') || '';
-    var date = btn.getAttribute('data-date') || '';
-    var metricsStr = btn.getAttribute('data-metrics') || '';
-    var tagsStr = btn.getAttribute('data-tags') || '';
+    var title = card.getAttribute('data-title') || '';
+    var company = card.getAttribute('data-company') || '';
+    var date = card.getAttribute('data-date') || '';
+    var metricsStr = card.getAttribute('data-metrics') || '';
+    var tagsStr = card.getAttribute('data-tags') || '';
 
     if (titleEl) titleEl.textContent = title;
     if (companyEl) companyEl.textContent = company;
@@ -1024,6 +1033,232 @@ $(document).ready(function () {
       modal.classList.remove('visible');
     }
   });
+})();
+
+// ------------------------------------------------
+// AUTOMATED GITHUB REPOSITORIES FETCH & SHOWCASE
+// Fetches ALL public GitHub repos for Bayhaqieee and injects into portfolio grid
+// ------------------------------------------------
+(function fetchGitHubProjects() {
+  var grid = document.getElementById('project-grid');
+  if (!grid) return;
+
+  fetch('https://api.github.com/users/Bayhaqieee/repos?sort=updated&per_page=100')
+    .then(function (response) {
+      if (!response.ok) throw new Error('GitHub API response status ' + response.status);
+      return response.json();
+    })
+    .then(function (repos) {
+      if (!Array.isArray(repos)) return;
+
+      repos.forEach(function (repo) {
+        if (repo.fork) return; // Showcase original public repositories
+
+        var repoNameLower = repo.name.toLowerCase();
+        var existingCards = grid.querySelectorAll('.project-card');
+        var duplicate = false;
+        existingCards.forEach(function (card) {
+          var cardTitle = (card.getAttribute('data-title') || '').toLowerCase();
+          var cardRepoId = card.getAttribute('data-repo-id');
+          if (cardRepoId === String(repo.id) || cardTitle === repoNameLower) {
+            duplicate = true;
+          }
+        });
+        if (duplicate) return;
+
+        var card = document.createElement('a');
+        card.href = repo.html_url;
+        card.target = '_blank';
+        card.className = 'project-card github-repo-card';
+        card.setAttribute('data-category', 'tech github-auto ai-ml full-stack');
+        card.setAttribute('data-focus', 'open-source');
+        card.setAttribute('data-repo-id', repo.id);
+        card.setAttribute('data-title', repo.name);
+        card.setAttribute('data-description', repo.description || 'Public GitHub repository by ' + (repo.owner ? repo.owner.login : 'Bayhaqieee'));
+        card.setAttribute('data-tags', (repo.language || 'GitHub') + ', Stars: ' + repo.stargazers_count + ', Forks: ' + repo.forks_count);
+        card.setAttribute('data-button-text', 'View GitHub Repo');
+
+        var descText = repo.description ? (repo.description.length > 110 ? repo.description.substring(0, 110) + '...' : repo.description) : 'Public repository on GitHub by Bayhaqieee';
+
+        card.innerHTML =
+          '<div class="repo-card-inner">' +
+            '<div class="repo-badges">' +
+              '<span class="repo-badge" data-tag="tech">Tech</span>' +
+              '<span class="repo-badge sub-badge" data-tag="github-auto">GitHub Repo</span>' +
+            '</div>' +
+            '<h4>' + repo.name + '</h4>' +
+            '<p>' + descText + '</p>' +
+            '<div class="repo-meta">' +
+              '<span>Code: ' + (repo.language || 'Multi') + '</span>' +
+              '<span>Stars: ' + repo.stargazers_count + '</span>' +
+              '<span>Forks: ' + repo.forks_count + '</span>' +
+            '</div>' +
+          '</div>';
+
+        grid.appendChild(card);
+      });
+
+      if (window.updateProjectSearchAndFilters) {
+        window.updateProjectSearchAndFilters();
+      }
+    })
+    .catch(function (err) {
+      console.log('GitHub public repos fetch notice:', err);
+    });
+})();
+
+// ------------------------------------------------
+// REAL-TIME SEARCH & CASCADING FILTER CONTROLLER FOR PROJECTS
+// Primary filters (All / Tech / Non-Tech) dynamically expand relevant sub-filters
+// ------------------------------------------------
+(function () {
+  var searchInput = document.getElementById('project-search-input');
+  var countBadge = document.getElementById('project-search-count');
+  var primaryBtns = document.querySelectorAll('#primary-filters .primary-btn');
+  var subBtns = document.querySelectorAll('#secondary-filters .sub-btn');
+  var grid = document.getElementById('project-grid');
+
+  var techTags = ['ai-ml', 'data-science', 'full-stack', 'ui-ux', 'mobile-ai', 'nlp', 'algorithms', 'github-auto'];
+  var nonTechTags = ['social-project', 'event-management'];
+
+  function updateSubFilterVisibility(primaryFilter) {
+    subBtns.forEach(function (btn) {
+      var tag = btn.getAttribute('data-filter');
+      if (tag === 'all') {
+        btn.style.display = 'inline-flex';
+        return;
+      }
+      if (primaryFilter === 'all') {
+        btn.style.display = 'inline-flex';
+      } else if (primaryFilter === 'tech') {
+        btn.style.display = techTags.indexOf(tag) !== -1 ? 'inline-flex' : 'none';
+      } else if (primaryFilter === 'non-tech') {
+        btn.style.display = nonTechTags.indexOf(tag) !== -1 ? 'inline-flex' : 'none';
+      }
+    });
+  }
+
+  function filterProjects(overrideFilter) {
+    var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    var activePrimary = document.querySelector('#primary-filters .primary-btn.active');
+    var primaryFilter = activePrimary ? activePrimary.getAttribute('data-filter') : 'all';
+    
+    var activeSub = document.querySelector('#secondary-filters .sub-btn.active');
+    var subFilter = activeSub ? activeSub.getAttribute('data-filter') : 'all';
+
+    var activeFilter = overrideFilter || (subFilter !== 'all' ? subFilter : primaryFilter);
+
+    var cards = document.querySelectorAll('#project-grid .project-card');
+    var visibleCount = 0;
+
+    cards.forEach(function (card) {
+      var category = (card.getAttribute('data-category') || '').toLowerCase();
+      var focus = (card.getAttribute('data-focus') || '').toLowerCase();
+      var title = (card.getAttribute('data-title') || card.textContent || '').toLowerCase();
+      var description = (card.getAttribute('data-description') || '').toLowerCase();
+      var tags = (card.getAttribute('data-tags') || '').toLowerCase();
+
+      var matchesCategory = false;
+      if (activeFilter === 'all') {
+        matchesCategory = true;
+      } else if (activeFilter === 'github-auto') {
+        matchesCategory = card.classList.contains('github-repo-card') || category.indexOf('github-auto') !== -1;
+      } else {
+        matchesCategory = category.indexOf(activeFilter) !== -1 || focus.indexOf(activeFilter) !== -1 || tags.indexOf(activeFilter) !== -1;
+      }
+
+      var matchesQuery = true;
+      if (query) {
+        matchesQuery = title.indexOf(query) !== -1 || description.indexOf(query) !== -1 || tags.indexOf(query) !== -1 || category.indexOf(query) !== -1;
+      }
+
+      if (matchesCategory && matchesQuery) {
+        card.classList.remove('hide');
+        visibleCount++;
+      } else {
+        card.classList.add('hide');
+      }
+    });
+
+    if (countBadge) {
+      countBadge.textContent = visibleCount + ' projects found';
+    }
+  }
+
+  window.updateProjectSearchAndFilters = filterProjects;
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function() { filterProjects(); });
+  }
+
+  primaryBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      primaryBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+
+      // Reset sub-filter to 'all'
+      subBtns.forEach(function (sb) {
+        if (sb.getAttribute('data-filter') === 'all') {
+          sb.classList.add('active');
+        } else {
+          sb.classList.remove('active');
+        }
+      });
+
+      var primaryVal = btn.getAttribute('data-filter');
+      updateSubFilterVisibility(primaryVal);
+      filterProjects(primaryVal);
+    });
+  });
+
+  subBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      subBtns.forEach(function (sb) { sb.classList.remove('active'); });
+      btn.classList.add('active');
+      filterProjects();
+    });
+  });
+
+  if (grid) {
+    grid.addEventListener('click', function(e) {
+      var badge = e.target.closest('.repo-badge');
+      if (badge) {
+        e.preventDefault();
+        e.stopPropagation();
+        var tagVal = badge.getAttribute('data-tag') || badge.textContent.toLowerCase().trim();
+
+        // Highlight matching sub-btn or primary-btn
+        var foundSub = false;
+        subBtns.forEach(function (sb) {
+          if (sb.getAttribute('data-filter') === tagVal) {
+            sb.classList.add('active');
+            foundSub = true;
+          } else {
+            sb.classList.remove('active');
+          }
+        });
+
+        if (!foundSub) {
+          primaryBtns.forEach(function (pb) {
+            if (pb.getAttribute('data-filter') === tagVal) {
+              pb.classList.add('active');
+            } else {
+              pb.classList.remove('active');
+            }
+          });
+        }
+
+        filterProjects(tagVal);
+      }
+    }, true);
+  }
+
+  setTimeout(function() {
+    updateSubFilterVisibility('all');
+    filterProjects();
+  }, 200);
 })();
 
 

@@ -1558,6 +1558,106 @@ body {
 
 .timeline-card.active {
   display: flex;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.35s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+.timeline-card.active:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px rgba(253, 112, 20, 0.28), 0 0 24px rgba(253, 112, 20, 0.18);
+  border-color: rgba(253, 112, 20, 0.6);
+}
+
+.card-header-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  width: 100%;
+}
+
+.card-click-hint {
+  font-size: 0.78rem;
+  color: #fd7014;
+  background: rgba(253, 112, 20, 0.12);
+  border: 1px solid rgba(253, 112, 20, 0.3);
+  padding: 0.25rem 0.75rem;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.timeline-card:hover .card-click-hint {
+  background: #fd7014;
+  color: #ffffff;
+}
+
+/* GitHub Live Sync Repo Card Styles */
+.github-repo-card {
+  background: linear-gradient(145deg, rgba(34, 40, 49, 0.9), rgba(22, 27, 35, 0.95)) !important;
+  border: 1px solid rgba(253, 112, 20, 0.35) !important;
+  border-radius: 16px !important;
+  padding: 1.5rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  text-decoration: none !important;
+  transition: all 0.35s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
+  aspect-ratio: auto !important;
+  min-height: 220px !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.github-repo-card:hover {
+  transform: translateY(-6px) scale(1.02) !important;
+  border-color: #fd7014 !important;
+  box-shadow: 0 16px 40px rgba(253, 112, 20, 0.25), 0 0 20px rgba(253, 112, 20, 0.15) !important;
+}
+
+.repo-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.repo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #fd7014;
+  background: rgba(253, 112, 20, 0.12);
+  border: 1px solid rgba(253, 112, 20, 0.3);
+  padding: 3px 10px;
+  border-radius: 12px;
+  align-self: flex-start;
+  margin-bottom: 0.8rem;
+}
+
+.github-repo-card h4 {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+}
+
+.github-repo-card p {
+  color: #c9c9c9;
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin-bottom: 1.2rem;
+  flex: 1;
+}
+
+.repo-meta {
+  display: flex;
+  gap: 12px;
+  font-size: 0.8rem;
+  color: #a0a0a0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.8rem;
 }
 
 .card-gallery {
@@ -2048,27 +2148,61 @@ body {
   margin-bottom: 1.5rem;
 }
 
+.skill-category.hide {
+  display: none !important;
+}
+
+#skills-container:not(.show-cards) {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.9rem 1.1rem;
+  padding: 8px 4px;
+}
+
+#skills-container:not(.show-cards) .skill-category:not(.hide) {
+  display: contents;
+}
+
+#skills-container:not(.show-cards) .skills-grid {
+  display: contents;
+}
+
 .skill-category h4 {
   display: none;
 }
 
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  gap: 1.4rem;
-  padding: 8px 6px;
-  overflow: visible;
-  transition: all 0.4s ease;
+#skills-container.show-cards .skill-category h4 {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #fd7014;
+  margin-top: 0.8rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px dashed rgba(253, 112, 20, 0.3);
+}
+
+#skills-container.show-cards .skill-category:first-child h4 {
+  margin-top: 0;
 }
 
 .skill-item {
   position: relative;
-  display: flex;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  padding: 4px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   overflow: visible;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
+}
+
+.skill-item:hover {
+  background: transparent;
+  transform: translateY(-3px);
 }
 
 .skill-item img {
@@ -2082,48 +2216,58 @@ body {
 
 .skill-item:hover img {
   filter: invert(60%) sepia(99%) saturate(1353%) hue-rotate(349deg) brightness(100%) contrast(98%);
-  transform: scale(1.18);
+  transform: scale(1.2);
 }
 
 .skill-name {
   display: none;
 }
 
+#skills-container.show-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
 #skills-container.show-cards .skills-grid {
-  grid-template-columns: 1fr;
-  gap: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  width: 100%;
 }
 
 #skills-container.show-cards .skill-item {
-  background-color: #2d333b;
+  background-color: #222831;
+  border: 1px solid rgba(253, 112, 20, 0.25);
   border-radius: 8px;
-  padding: 1rem 1.5rem;
+  padding: 0.75rem 1.2rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  width: 100%;
+  transition: transform 0.25s ease, border-color 0.25s ease;
   cursor: default;
-  margin-bottom: 1rem;
+  margin-bottom: 0;
   position: relative;
   overflow: hidden;
-  border: 1px solid #393e46;
 }
 
-#skills-container.show-cards .skill-item:last-child {
-  margin-bottom: 5px;
+#skills-container.show-cards .skill-item:hover {
+  border-color: #fd7014;
+  transform: translateX(4px);
 }
 
 #skills-container.show-cards .skill-item .skill-name {
   display: block;
   color: #eeeeee;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 500;
   z-index: 2;
 }
 
 #skills-container.show-cards .skill-item img {
   height: 24px;
-  width: auto;
+  width: 24px;
   max-width: 28px;
   object-fit: contain;
   filter: brightness(0) invert(0.8);
@@ -2621,79 +2765,247 @@ body {
   display: none;
 }
 
+#project-controls-wrapper {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+#project-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(34, 40, 49, 0.85);
+  border: 1px solid rgba(253, 112, 20, 0.35);
+  border-radius: 30px;
+  padding: 0.7rem 1.4rem;
+  width: 100%;
+  max-width: 580px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#project-search-bar:focus-within {
+  border-color: #fd7014;
+  box-shadow: 0 8px 30px rgba(253, 112, 20, 0.25);
+}
+
+#project-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+#project-search-input::placeholder {
+  color: #949a9e;
+}
+
+.search-count-badge {
+  font-size: 0.78rem;
+  color: #fd7014;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+#project-filters {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+}
+
+.filter-group.sub-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem 0.6rem;
+  padding: 0.6rem 1rem;
+  background: rgba(34, 40, 49, 0.5);
+  border: 1px dashed rgba(253, 112, 20, 0.25);
+  border-radius: 14px;
+  max-width: 860px;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.sub-btn {
+  font-size: 0.78rem;
+  padding: 0.3rem 0.75rem;
+  background: rgba(238, 238, 238, 0.05);
+  border: 1px solid rgba(253, 112, 20, 0.2);
+  color: #c0c8d0;
+  border-radius: 20px;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.sub-btn:hover,
+.filter-btn.sub-btn.active {
+  background: rgba(253, 112, 20, 0.22);
+  border-color: #fd7014;
+  color: #fd7014;
+  box-shadow: 0 0 12px rgba(253, 112, 20, 0.25);
+}
+
 #project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 1.5rem;
+  max-height: 640px;
+  overflow-y: auto !important;
+  padding: 8px 8px 12px 4px;
+}
+
+#project-grid::-webkit-scrollbar {
+  width: 6px;
+}
+
+#project-grid::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+#project-grid::-webkit-scrollbar-thumb {
+  background-color: rgba(253, 112, 20, 0.4);
+  border-radius: 10px;
+}
+
+#project-grid::-webkit-scrollbar-thumb:hover {
+  background-color: #fd7014;
 }
 
 .project-card {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  aspect-ratio: 4 / 3;
-  transition: opacity 0.4s ease, transform 0.4s ease;
+  background: linear-gradient(145deg, rgba(34, 40, 49, 0.9), rgba(22, 27, 35, 0.95));
+  border: 1px solid rgba(253, 112, 20, 0.35);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+  aspect-ratio: auto;
+  min-height: 220px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover {
+  transform: translateY(-6px);
+  border-color: #fd7014;
+  box-shadow: 0 16px 40px rgba(253, 112, 20, 0.25), 0 0 20px rgba(253, 112, 20, 0.15);
 }
 
 .project-card.hide {
-  transform: scale(0.9);
-  opacity: 0;
-  display: none;
+  display: none !important;
 }
 
 .project-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+  display: none !important;
 }
 
-.project-card:hover img {
-  transform: scale(1.1);
-}
-
-.project-card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.repo-card-inner {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-start;
-  padding: 1.5rem;
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
-  opacity: 0;
-  transition: opacity 0.4s ease;
+  height: 100%;
+  justify-content: space-between;
+  gap: 0.75rem;
 }
 
-.project-card:hover .project-card-overlay {
-  opacity: 1;
+.repo-badges {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem 0.5rem;
 }
 
-.project-card-overlay h4 {
-  color: #eeeeee;
-  font-size: 1.5rem;
-  font-weight: 600;
-  margin: 0 0 0.25rem 0;
-  transform: translateY(15px);
-  transition: transform 0.4s ease;
+.repo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #fd7014;
+  background: rgba(253, 112, 20, 0.12);
+  border: 1px solid rgba(253, 112, 20, 0.35);
+  border-radius: 20px;
+  padding: 0.25rem 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-.project-card-overlay p {
-  color: #c9c9c9;
-  font-size: 1rem;
+.repo-badge.sub-badge {
+  color: #4da6ff;
+  background: rgba(77, 166, 255, 0.12);
+  border-color: rgba(77, 166, 255, 0.35);
+}
+
+.repo-badge:hover {
+  transform: translateY(-1px);
+  background: #fd7014;
+  color: #ffffff;
+  border-color: #fd7014;
+}
+
+.repo-badge.sub-badge:hover {
+  background: #4da6ff;
+  color: #ffffff;
+  border-color: #4da6ff;
+}
+
+.repo-card-inner h4 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0.2rem 0 0.4rem 0;
+  line-height: 1.35;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .repo-card-inner h4 {
+  color: #fd7014;
+}
+
+.repo-card-inner p {
+  font-size: 0.88rem;
+  color: #b0b8c1;
+  line-height: 1.5;
   margin: 0;
-  transform: translateY(15px);
-  transition: transform 0.4s ease 0.1s;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.project-card:hover .project-card-overlay h4,
-.project-card:hover .project-card-overlay p {
-  transform: translateY(0);
+.repo-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+  font-size: 0.8rem;
+  color: #8b949e;
+  font-weight: 500;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.repo-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.2rem 0.55rem;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 /* CONTACT SECTION STYLES */
