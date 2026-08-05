@@ -1035,9 +1035,10 @@ $(document).ready(function () {
   });
 })();
 
+
 // ------------------------------------------------
 // AUTOMATED GITHUB REPOSITORIES FETCH & SHOWCASE
-// Fetches ALL public GitHub repos for Bayhaqieee and injects into portfolio grid
+// Fetches ALL public GitHub repos for Bayhaqieee with multi-tags
 // ------------------------------------------------
 (function fetchGitHubProjects() {
   var grid = document.getElementById('project-grid');
@@ -1070,12 +1071,12 @@ $(document).ready(function () {
         card.href = repo.html_url;
         card.target = '_blank';
         card.className = 'project-card github-repo-card';
-        card.setAttribute('data-category', 'tech github-auto ai-ml full-stack');
+        card.setAttribute('data-category', 'tech github-auto ai-ml full-stack open-source');
         card.setAttribute('data-focus', 'open-source');
         card.setAttribute('data-repo-id', repo.id);
         card.setAttribute('data-title', repo.name);
         card.setAttribute('data-description', repo.description || 'Public GitHub repository by ' + (repo.owner ? repo.owner.login : 'Bayhaqieee'));
-        card.setAttribute('data-tags', (repo.language || 'GitHub') + ', Stars: ' + repo.stargazers_count + ', Forks: ' + repo.forks_count);
+        card.setAttribute('data-tags', 'tech, github-auto, open-source, ' + (repo.language || 'Code').toLowerCase());
         card.setAttribute('data-button-text', 'View GitHub Repo');
 
         var descText = repo.description ? (repo.description.length > 110 ? repo.description.substring(0, 110) + '...' : repo.description) : 'Public repository on GitHub by Bayhaqieee';
@@ -1085,6 +1086,7 @@ $(document).ready(function () {
             '<div class="repo-badges">' +
               '<span class="repo-badge" data-tag="tech">Tech</span>' +
               '<span class="repo-badge sub-badge" data-tag="github-auto">GitHub Repo</span>' +
+              '<span class="repo-badge topic-badge" data-tag="' + (repo.language || 'Code').toLowerCase() + '">' + (repo.language || 'Code') + '</span>' +
             '</div>' +
             '<h4>' + repo.name + '</h4>' +
             '<p>' + descText + '</p>' +
@@ -1107,47 +1109,81 @@ $(document).ready(function () {
     });
 })();
 
+
 // ------------------------------------------------
-// REAL-TIME SEARCH & CASCADING FILTER CONTROLLER FOR PROJECTS
-// Primary filters (All / Tech / Non-Tech) dynamically expand relevant sub-filters
+// 3-TIER HIERARCHICAL CASCADING PROJECT FILTER CONTROLLER
+// Features Progressive Unlocking & Toggle Deselection
 // ------------------------------------------------
 (function () {
   var searchInput = document.getElementById('project-search-input');
   var countBadge = document.getElementById('project-search-count');
   var primaryBtns = document.querySelectorAll('#primary-filters .primary-btn');
   var subBtns = document.querySelectorAll('#secondary-filters .sub-btn');
+  var topicBtns = document.querySelectorAll('#tertiary-filters .topic-btn');
+  var secondaryContainer = document.getElementById('secondary-filters');
+  var tertiaryContainer = document.getElementById('tertiary-filters');
   var grid = document.getElementById('project-grid');
 
-  var techTags = ['ai-ml', 'data-science', 'full-stack', 'ui-ux', 'mobile-ai', 'nlp', 'algorithms', 'github-auto'];
-  var nonTechTags = ['social-project', 'event-management'];
+  var activePrimary = 'all';
+  var activeSub = 'all';
+  var activeTopic = 'all';
 
-  function updateSubFilterVisibility(primaryFilter) {
+  function updateTierVisibility() {
+    // 1. Tier 2 Container Visibility
+    if (activePrimary === 'all') {
+      if (secondaryContainer) secondaryContainer.style.display = 'none';
+      if (tertiaryContainer) tertiaryContainer.style.display = 'none';
+      activeSub = 'all';
+      activeTopic = 'all';
+    } else {
+      if (secondaryContainer) secondaryContainer.style.display = 'flex';
+      // Filter sub-button visibility based on active primary
+      subBtns.forEach(function (btn) {
+        var parent = btn.getAttribute('data-parent');
+        if (parent === 'all' || parent === activePrimary) {
+          btn.style.display = 'inline-flex';
+        } else {
+          btn.style.display = 'none';
+        }
+      });
+    }
+
+    // 2. Tier 3 Container Visibility
+    if (activeSub === 'all' || activePrimary === 'all') {
+      if (tertiaryContainer) tertiaryContainer.style.display = 'none';
+      activeTopic = 'all';
+    } else {
+      if (tertiaryContainer) tertiaryContainer.style.display = 'flex';
+      // Filter topic-button visibility based on active sub domain
+      topicBtns.forEach(function (btn) {
+        var domain = btn.getAttribute('data-domain');
+        if (domain === 'all' || domain === activeSub) {
+          btn.style.display = 'inline-flex';
+        } else {
+          btn.style.display = 'none';
+        }
+      });
+    }
+
+    // 3. Update Button .active classes cleanly
+    primaryBtns.forEach(function (btn) {
+      if (btn.getAttribute('data-filter') === activePrimary) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
     subBtns.forEach(function (btn) {
-      var tag = btn.getAttribute('data-filter');
-      if (tag === 'all') {
-        btn.style.display = 'inline-flex';
-        return;
-      }
-      if (primaryFilter === 'all') {
-        btn.style.display = 'inline-flex';
-      } else if (primaryFilter === 'tech') {
-        btn.style.display = techTags.indexOf(tag) !== -1 ? 'inline-flex' : 'none';
-      } else if (primaryFilter === 'non-tech') {
-        btn.style.display = nonTechTags.indexOf(tag) !== -1 ? 'inline-flex' : 'none';
-      }
+      if (btn.getAttribute('data-filter') === activeSub) btn.classList.add('active');
+      else btn.classList.remove('active');
+    });
+
+    topicBtns.forEach(function (btn) {
+      if (btn.getAttribute('data-filter') === activeTopic) btn.classList.add('active');
+      else btn.classList.remove('active');
     });
   }
 
-  function filterProjects(overrideFilter) {
+  function filterProjects() {
     var query = searchInput ? searchInput.value.toLowerCase().trim() : '';
-    var activePrimary = document.querySelector('#primary-filters .primary-btn.active');
-    var primaryFilter = activePrimary ? activePrimary.getAttribute('data-filter') : 'all';
-    
-    var activeSub = document.querySelector('#secondary-filters .sub-btn.active');
-    var subFilter = activeSub ? activeSub.getAttribute('data-filter') : 'all';
-
-    var activeFilter = overrideFilter || (subFilter !== 'all' ? subFilter : primaryFilter);
-
     var cards = document.querySelectorAll('#project-grid .project-card');
     var visibleCount = 0;
 
@@ -1158,18 +1194,17 @@ $(document).ready(function () {
       var description = (card.getAttribute('data-description') || '').toLowerCase();
       var tags = (card.getAttribute('data-tags') || '').toLowerCase();
 
-      var matchesCategory = false;
-      if (activeFilter === 'all') {
-        matchesCategory = true;
-      } else if (activeFilter === 'github-auto') {
-        matchesCategory = card.classList.contains('github-repo-card') || category.indexOf('github-auto') !== -1;
-      } else {
-        matchesCategory = category.indexOf(activeFilter) !== -1 || focus.indexOf(activeFilter) !== -1 || tags.indexOf(activeFilter) !== -1;
-      }
+      var cardText = (category + ' ' + focus + ' ' + title + ' ' + description + ' ' + tags).toLowerCase();
+
+      var matchesPrimary = (activePrimary === 'all') || cardText.includes(activePrimary);
+      var matchesSub = (activeSub === 'all') || cardText.includes(activeSub);
+      var matchesTopic = (activeTopic === 'all') || cardText.includes(activeTopic);
+
+      var matchesCategory = matchesPrimary && matchesSub && matchesTopic;
 
       var matchesQuery = true;
       if (query) {
-        matchesQuery = title.indexOf(query) !== -1 || description.indexOf(query) !== -1 || tags.indexOf(query) !== -1 || category.indexOf(query) !== -1;
+        matchesQuery = title.includes(query) || description.includes(query) || tags.includes(query) || category.includes(query);
       }
 
       if (matchesCategory && matchesQuery) {
@@ -1191,36 +1226,64 @@ $(document).ready(function () {
     searchInput.addEventListener('input', function() { filterProjects(); });
   }
 
+  // Primary Tier 1 Clicks & Toggle Deselection
   primaryBtns.forEach(function (btn) {
     btn.addEventListener('click', function (e) {
       e.preventDefault();
-      primaryBtns.forEach(function (b) { b.classList.remove('active'); });
-      btn.classList.add('active');
+      var filterVal = btn.getAttribute('data-filter');
 
-      // Reset sub-filter to 'all'
-      subBtns.forEach(function (sb) {
-        if (sb.getAttribute('data-filter') === 'all') {
-          sb.classList.add('active');
-        } else {
-          sb.classList.remove('active');
-        }
-      });
+      // Toggle Deselection check
+      if (activePrimary === filterVal && filterVal !== 'all') {
+        activePrimary = 'all';
+      } else {
+        activePrimary = filterVal;
+      }
+      activeSub = 'all';
+      activeTopic = 'all';
 
-      var primaryVal = btn.getAttribute('data-filter');
-      updateSubFilterVisibility(primaryVal);
-      filterProjects(primaryVal);
-    });
-  });
-
-  subBtns.forEach(function (btn) {
-    btn.addEventListener('click', function (e) {
-      e.preventDefault();
-      subBtns.forEach(function (sb) { sb.classList.remove('active'); });
-      btn.classList.add('active');
+      updateTierVisibility();
       filterProjects();
     });
   });
 
+  // Secondary Tier 2 Domain Clicks & Toggle Deselection
+  subBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var filterVal = btn.getAttribute('data-filter');
+
+      // Toggle Deselection check
+      if (activeSub === filterVal && filterVal !== 'all') {
+        activeSub = 'all';
+      } else {
+        activeSub = filterVal;
+      }
+      activeTopic = 'all';
+
+      updateTierVisibility();
+      filterProjects();
+    });
+  });
+
+  // Tertiary Tier 3 Topic Clicks & Toggle Deselection
+  topicBtns.forEach(function (btn) {
+    btn.addEventListener('click', function (e) {
+      e.preventDefault();
+      var filterVal = btn.getAttribute('data-filter');
+
+      // Toggle Deselection check
+      if (activeTopic === filterVal && filterVal !== 'all') {
+        activeTopic = 'all';
+      } else {
+        activeTopic = filterVal;
+      }
+
+      updateTierVisibility();
+      filterProjects();
+    });
+  });
+
+  // On-card Multi-tag Click Listener (Activates matching Tier & domain)
   if (grid) {
     grid.addEventListener('click', function(e) {
       var badge = e.target.closest('.repo-badge');
@@ -1229,39 +1292,128 @@ $(document).ready(function () {
         e.stopPropagation();
         var tagVal = badge.getAttribute('data-tag') || badge.textContent.toLowerCase().trim();
 
-        // Highlight matching sub-btn or primary-btn
-        var foundSub = false;
-        subBtns.forEach(function (sb) {
-          if (sb.getAttribute('data-filter') === tagVal) {
-            sb.classList.add('active');
-            foundSub = true;
+        if (tagVal === 'tech' || tagVal === 'non-tech') {
+          activePrimary = tagVal;
+          activeSub = 'all';
+          activeTopic = 'all';
+        } else {
+          // Check if tag is in Tier 2
+          var isTier2 = Array.from(subBtns).some(function (b) { return b.getAttribute('data-filter') === tagVal; });
+          if (isTier2) {
+            activePrimary = 'tech';
+            activeSub = tagVal;
+            activeTopic = 'all';
           } else {
-            sb.classList.remove('active');
-          }
-        });
-
-        if (!foundSub) {
-          primaryBtns.forEach(function (pb) {
-            if (pb.getAttribute('data-filter') === tagVal) {
-              pb.classList.add('active');
+            // Check if tag is in Tier 3
+            var topicBtn = Array.from(topicBtns).find(function (b) { return b.getAttribute('data-filter') === tagVal; });
+            if (topicBtn) {
+              activePrimary = 'tech';
+              activeSub = topicBtn.getAttribute('data-domain') || 'ai-ml';
+              activeTopic = tagVal;
             } else {
-              pb.classList.remove('active');
+              activePrimary = 'all';
+              activeSub = 'all';
+              activeTopic = 'all';
             }
-          });
+          }
         }
 
-        filterProjects(tagVal);
+        updateTierVisibility();
+        filterProjects();
       }
     }, true);
   }
 
   setTimeout(function() {
-    updateSubFilterVisibility('all');
+    updateTierVisibility();
     filterProjects();
   }, 200);
 })();
 
 
+// ------------------------------------------------
+// SECURE ASYNCHRONOUS DIRECT EMAIL SUBMISSION (AJAX)
+// Submits contact form in background without redirecting or opening Gmail client
+// ------------------------------------------------
+(function () {
+  var contactForm = document.getElementById('contact-form');
+  var statusMsg = document.getElementById('contact-status-msg');
+  var submitBtn = document.getElementById('contact-submit-btn');
 
+  if (!contactForm) return;
 
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
+    // Check honeypot trap
+    var gotcha = contactForm.querySelector('input[name="_gotcha"]');
+    if (gotcha && gotcha.value) {
+      console.log('Bot submission trapped');
+      return;
+    }
+
+    var nameInput = document.getElementById('fullName');
+    var emailInput = document.getElementById('email');
+    var messageInput = document.getElementById('message');
+
+    if (!nameInput || !emailInput || !messageInput) return;
+
+    var name = nameInput.value.trim();
+    var email = emailInput.value.trim();
+    var message = messageInput.value.trim();
+
+    if (!name || !email || !message) {
+      showStatus('Please fill in all required fields.', 'error');
+      return;
+    }
+
+    // Disable button & show loading state
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.btn-text').textContent = 'Sending Message...';
+    }
+
+    showStatus('Sending your message securely...', 'success');
+
+    var formData = new FormData(contactForm);
+
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'application/json'
+      }
+    })
+    .then(function (response) {
+      if (response.ok) {
+        showStatus('Message sent successfully! I will get back to you soon.', 'success');
+        contactForm.reset();
+      } else {
+        return response.json().then(function (data) {
+          if (data && data.errors) {
+            showStatus(data.errors.map(function(err){ return err.message; }).join(', '), 'error');
+          } else {
+            showStatus('Oops! There was a problem submitting your message.', 'error');
+          }
+        });
+      }
+    })
+    .catch(function (error) {
+      console.error('Contact Form Error:', error);
+      showStatus('Connection error. Please check your internet and try again.', 'error');
+    })
+    .finally(function () {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.querySelector('.btn-text').textContent = 'Send Message Direct';
+      }
+    });
+  });
+
+  function showStatus(text, type) {
+    if (!statusMsg) return;
+    statusMsg.textContent = text;
+    statusMsg.className = 'contact-status-msg ' + type;
+    statusMsg.style.display = 'block';
+  }
+})();

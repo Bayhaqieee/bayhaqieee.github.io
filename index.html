@@ -1259,7 +1259,7 @@
           </div>
         </div>
 
-        <div id="project" class="scroll-animate">
+                <div id="project" class="scroll-animate">
           <!-- Fossil #7  right side -->
           <!-- Fossil #8  left side -->
           <h2>PORTFOLIO & PROJECTS</h2>
@@ -1277,38 +1277,55 @@
             </div>
 
             <div id="project-filters">
-              <div id="primary-filters" class="filter-group">
+              <!-- Tier 1: Main Category -->
+              <div id="primary-filters" class="filter-group tier-1">
                 <button class="filter-btn primary-btn active" data-filter="all">All Projects</button>
                 <button class="filter-btn primary-btn" data-filter="tech">Tech</button>
                 <button class="filter-btn primary-btn" data-filter="non-tech">Non-Tech</button>
               </div>
 
-              <div id="secondary-filters" class="filter-group sub-filters">
-                <button class="filter-btn sub-btn active" data-filter="all">All Topics</button>
-                <button class="filter-btn sub-btn" data-filter="ai-ml">AI / ML</button>
-                <button class="filter-btn sub-btn" data-filter="data-science">Data Science</button>
-                <button class="filter-btn sub-btn" data-filter="full-stack">Full Stack</button>
-                <button class="filter-btn sub-btn" data-filter="ui-ux">UI / UX</button>
-                <button class="filter-btn sub-btn" data-filter="mobile-ai">Mobile AI</button>
-                <button class="filter-btn sub-btn" data-filter="nlp">NLP</button>
-                <button class="filter-btn sub-btn" data-filter="algorithms">Algorithms</button>
-                <button class="filter-btn sub-btn" data-filter="github-auto">GitHub Repos</button>
-                <button class="filter-btn sub-btn" data-filter="social-project">Social Project</button>
-                <button class="filter-btn sub-btn" data-filter="event-management">Event Management</button>
+              <!-- Tier 2: Domains -->
+              <div id="secondary-filters" class="filter-group tier-2 sub-filters" style="display: none;">
+                <button class="filter-btn sub-btn active" data-filter="all" data-parent="all">All Domains</button>
+                <button class="filter-btn sub-btn domain-tech" data-filter="ai-ml" data-parent="tech">AI / ML</button>
+                <button class="filter-btn sub-btn domain-tech" data-filter="data-science" data-parent="tech">Data Science</button>
+                <button class="filter-btn sub-btn domain-tech" data-filter="full-stack" data-parent="tech">Full Stack</button>
+                <button class="filter-btn sub-btn domain-tech" data-filter="ui-ux" data-parent="tech">UI / UX</button>
+                <button class="filter-btn sub-btn domain-tech" data-filter="algorithms" data-parent="tech">Algorithms</button>
+                <button class="filter-btn sub-btn domain-tech" data-filter="github-auto" data-parent="tech">GitHub Repos</button>
+                <button class="filter-btn sub-btn domain-non-tech" data-filter="social-project" data-parent="non-tech">Social Projects</button>
+                <button class="filter-btn sub-btn domain-non-tech" data-filter="event-management" data-parent="non-tech">Event Management</button>
+              </div>
+
+              <!-- Tier 3: Specialized Topics -->
+              <div id="tertiary-filters" class="filter-group tier-3 topic-filters" style="display: none;">
+                <button class="filter-btn topic-btn active" data-filter="all" data-domain="all">All Topics</button>
+                <button class="filter-btn topic-btn topic-ai-ml" data-filter="rag" data-domain="ai-ml">RAG & Fine-Tuning</button>
+                <button class="filter-btn topic-btn topic-ai-ml" data-filter="multi-agent" data-domain="ai-ml">Multi-Agent Systems</button>
+                <button class="filter-btn topic-btn topic-ai-ml" data-filter="nlp" data-domain="ai-ml">NLP & LLMs</button>
+                <button class="filter-btn topic-btn topic-ai-ml" data-filter="mobile-ai" data-domain="ai-ml">Mobile AI & Vision</button>
+                <button class="filter-btn topic-btn topic-ai-ml" data-filter="recommender-systems" data-domain="ai-ml">Recommenders</button>
+                <button class="filter-btn topic-btn topic-data-science" data-filter="eda" data-domain="data-science">EDA & Analytics</button>
+                <button class="filter-btn topic-btn topic-data-science" data-filter="credit-risk" data-domain="data-science">Credit Risk & ML</button>
+                <button class="filter-btn topic-btn topic-data-science" data-filter="time-series" data-domain="data-science">Time Series</button>
+                <button class="filter-btn topic-btn topic-full-stack" data-filter="front-end" data-domain="full-stack">Front End & Viz</button>
+                <button class="filter-btn topic-btn topic-full-stack" data-filter="web-systems" data-domain="full-stack">Web Systems</button>
               </div>
             </div>
           </div>
 
           <div id="project-grid">
             <a href="https://github.com/Bayhaqieee/ReleaseNotes_GenAI" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Autonomous Release Notes Intelligence System"
+              data-category="tech ai-ml rag multi-agent nlp" data-focus="ai-ml" data-title="Autonomous Release Notes Intelligence System"
               data-description="An autonomous multi-agent system that streamlines software release note tracking. It features a proactive newsletter dispatcher to keep teams updated and a reactive RAG-powered Q&A email bot for on-demand answers about specific updates."
-              data-tags="Multi-Agent System,CrewAI,LangChain,RAG,Selenium,Azure OpenAI,FAISS,Python"
+              data-tags="Multi-Agent System,CrewAI,LangChain,RAG,Selenium,Azure OpenAI,FAISS,Python,NLP"
               data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="rag">RAG</span>
+                  <span class="repo-badge topic-badge" data-tag="multi-agent">Multi-Agent</span>
                 </div>
                 <h4>Autonomous Release Notes AI</h4>
                 <p>An autonomous multi-agent system built with CrewAI & RAG for proactive software release tracking and Q&A email automation.</p>
@@ -1321,14 +1338,15 @@
             </a>
 
             <a href="https://github.com/bayhaqieee/customer_service_genairouting" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Customer Service GenAI Routing"
+              data-category="tech ai-ml genai-routing multi-agent" data-focus="ai-ml" data-title="Customer Service GenAI Routing"
               data-description="A smart customer service application that classifies and routes inquiries to different LLMs (Azure for high-priority, local Ollama for general) based on their importance, creating an efficient and cost-effective solution."
-              data-tags="Generative AI,Flask,Python,Azure OpenAI,Ollama,Google ADK,Multi-Agent System"
+              data-tags="Generative AI,Flask,Python,Azure OpenAI,Ollama,Google ADK,Multi-Agent System,GenAI Routing"
               data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="multi-agent">Multi-Agent</span>
                 </div>
                 <h4>Customer Service GenAI Routing</h4>
                 <p>Smart customer service application routing inquiries between Azure OpenAI and local Ollama models based on intent priority.</p>
@@ -1341,14 +1359,15 @@
             </a>
 
             <a href="https://github.com/bayhaqieee/loan_approval_multagent" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Smart Loan Processing Multi-Agent System"
+              data-category="tech ai-ml multi-agent financial-ai" data-focus="ai-ml" data-title="Smart Loan Processing Multi-Agent System"
               data-description="A multi-agent system that automates the loan approval process. It uses a combination of sequential and parallel agent workflows to handle document processing, comprehensive risk assessment, and final approval for financial institutions."
-              data-tags="Multi-Agent System,Python,Google ADK,Streamlit,Generative AI,Ollama"
+              data-tags="Multi-Agent System,Python,Google ADK,Streamlit,Generative AI,Ollama,Financial AI"
               data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="multi-agent">Multi-Agent</span>
                 </div>
                 <h4>Smart Loan Processing</h4>
                 <p>Multi-agent financial workflow orchestrating sequential and parallel agents for automated document verification & risk scoring.</p>
@@ -1361,14 +1380,16 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/AIResearcher_Writer_MultAgent" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="AI Researcher & Writer Multi-Agent"
+              data-category="tech ai-ml multi-agent nlp" data-focus="ai-ml" data-title="AI Researcher & Writer Multi-Agent"
               data-description="A multi-agent system built with CrewAI and LangChain for automated AI research and content creation. Given a topic, autonomous agents conduct research and generate a detailed report and a blog post."
-              data-tags="Multi-Agent System,CrewAI,LangChain,Python,Azure OpenAI,Generative AI"
+              data-tags="Multi-Agent System,CrewAI,LangChain,Python,Azure OpenAI,Generative AI,NLP"
               data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="multi-agent">Multi-Agent</span>
+                  <span class="repo-badge topic-badge" data-tag="nlp">NLP</span>
                 </div>
                 <h4>AI Researcher & Writer</h4>
                 <p>Autonomous research & technical writing squad conducting deep topic synthesis and generating comprehensive engineering reports.</p>
@@ -1381,13 +1402,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/IBL_Infography" target="_blank" class="project-card"
-              data-category="tech full-stack" data-focus="front-end" data-title="IBL Infography Website"
+              data-category="tech full-stack front-end data-viz" data-focus="front-end" data-title="IBL Infography Website"
               data-description="A dynamic and responsive infographic website created for the Indonesian Basketball League (IBL). The site visualizes player stats and team performance using modern web technologies to provide an engaging user experience."
-              data-tags="Front End,JavaScript,HTML5,CSS3,Data Visualization" data-button-text="View Repository">
+              data-tags="Front End,JavaScript,HTML5,CSS3,Data Visualization,Full Stack" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="full-stack">Front End</span>
+                  <span class="repo-badge sub-badge" data-tag="full-stack">Full Stack</span>
+                  <span class="repo-badge topic-badge" data-tag="front-end">Front End</span>
                 </div>
                 <h4>IBL Infography Website</h4>
                 <p>Interactive basketball data visualization portal built for the Indonesian Basketball League with dynamic statistical dashboards.</p>
@@ -1400,13 +1422,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/VisitWestSumatera" target="_blank" class="project-card"
-              data-category="tech full-stack" data-focus="front-end" data-title="Visit West Sumatera"
+              data-category="tech full-stack ui-ux front-end" data-focus="front-end" data-title="Visit West Sumatera"
               data-description="A promotional tourism website designed to showcase the beauty and cultural richness of West Sumatera. This project focuses on clean UI/UX and responsive design to be accessible on all devices."
-              data-tags="Front End,UI/UX,HTML5,CSS3,Responsive Design" data-button-text="View Repository">
+              data-tags="Front End,UI/UX,HTML5,CSS3,Responsive Design,Full Stack" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="ui-ux">UI/UX</span>
+                  <span class="repo-badge sub-badge" data-tag="full-stack">Full Stack</span>
+                  <span class="repo-badge topic-badge" data-tag="ui-ux">UI/UX</span>
                 </div>
                 <h4>Visit West Sumatera</h4>
                 <p>Modern responsive tourism web experience showcasing the cultural heritage and travel destinations of West Sumatra.</p>
@@ -1419,13 +1442,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/C_Logic_Completion" target="_blank" class="project-card"
-              data-category="tech" data-focus="other" data-title="C++ Logic Exercises"
+              data-category="tech algorithms c++ competitive-programming" data-focus="other" data-title="C++ Logic Exercises"
               data-description="A collection of solutions for various competitive programming and logic-based problems implemented in C++. This repository showcases problem-solving skills and a strong foundation in algorithms and data structures."
-              data-tags="C++,Algorithms,Data Structures,Competitive Programming" data-button-text="View Repository">
+              data-tags="C++,Algorithms,Data Structures,Competitive Programming,Tech" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="tech">Algorithms</span>
+                  <span class="repo-badge sub-badge" data-tag="algorithms">Algorithms</span>
+                  <span class="repo-badge topic-badge" data-tag="c++">C++</span>
                 </div>
                 <h4>C++ Algorithmic Logic Suite</h4>
                 <p>Curated solutions for competitive programming benchmarks, graph algorithms, and data structure implementations in C++.</p>
@@ -1438,13 +1462,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/GenAI_Learning" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Generative AI Learning Hub"
+              data-category="tech ai-ml rag fine-tuning" data-focus="ai-ml" data-title="Generative AI Learning Hub"
               data-description="My personal learning repository for Generative AI. It contains a curated collection of notebooks, projects, and notes covering topics from fundamental concepts to advanced techniques like RAG and fine-tuning."
-              data-tags="Generative AI,RAG,Fine-Tuning,LLM,Study" data-button-text="View Repository">
+              data-tags="Generative AI,RAG,Fine-Tuning,LLM,Study,Python,AI/ML" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="rag">RAG</span>
                 </div>
                 <h4>Generative AI Learning Hub</h4>
                 <p>Hands-on repository containing LLM fine-tuning notebooks, hybrid RAG implementations, and agentic AI architectures.</p>
@@ -1457,13 +1482,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Chatbot-QnA-Quran" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Al-Quran Q&A Chatbot"
+              data-category="tech ai-ml nlp chatbot" data-focus="ai-ml" data-title="Al-Quran Q&A Chatbot"
               data-description="An intelligent chatbot that answers questions based on the contents of the Al-Quran. The system uses Natural Language Processing (NLP) and a knowledge base to provide relevant and accurate responses."
-              data-tags="AI/ML,NLP,Chatbot,Python,Knowledge Base" data-button-text="View Repository">
+              data-tags="AI/ML,NLP,Chatbot,Python,Knowledge Base,Tech" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="ai-ml">NLP</span>
+                  <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="nlp">NLP</span>
                 </div>
                 <h4>Al-Quran Q&A Chatbot</h4>
                 <p>Intelligent NLP-driven conversational agent indexing textual context to deliver accurate scriptural QA responses.</p>
@@ -1476,14 +1502,15 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/IDNTrafficSign_Classification_Detection" target="_blank"
-              class="project-card" data-category="tech ai-ml" data-focus="ai-ml"
+              class="project-card" data-category="tech ai-ml computer-vision mobile-ai" data-focus="ai-ml"
               data-title="Indonesian Traffic Sign Detection"
               data-description="A deep learning model for real-time detection and classification of Indonesian traffic signs. This project utilizes computer vision techniques and the YOLO algorithm for high accuracy and performance."
-              data-tags="AI/ML,Computer Vision,YOLO,TensorFlow,Object Detection" data-button-text="View Repository">
+              data-tags="AI/ML,Computer Vision,YOLO,TensorFlow,Object Detection,Mobile AI" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="ai-ml">Computer Vision</span>
+                  <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="mobile-ai">Mobile AI</span>
                 </div>
                 <h4>Indonesian Traffic Sign Detection</h4>
                 <p>Real-time YOLO object detection & deep learning classification engine trained on Indonesian road traffic signage.</p>
@@ -1496,13 +1523,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/AI_Travel_Agent_SDK" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="AI Travel Agent SDK"
+              data-category="tech ai-ml multi-agent sdk" data-focus="ai-ml" data-title="AI Travel Agent SDK"
               data-description="A Software Development Kit (SDK) for building an AI-powered travel agent. This project uses a multi-agent system to handle flight bookings, hotel reservations, and activity planning through conversational AI."
-              data-tags="Generative AI,Multi-Agent System,SDK,Python" data-button-text="View Repository">
+              data-tags="Generative AI,Multi-Agent System,SDK,Python,AI/ML" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="multi-agent">Multi-Agent</span>
                 </div>
                 <h4>AI Travel Agent SDK</h4>
                 <p>Modular Python SDK orchestrating autonomous travel planning agents for flight, hotel, and itinerary synthesis.</p>
@@ -1515,15 +1543,16 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Reccomendation_System_Restaurant" target="_blank"
-              class="project-card" data-category="tech ai-ml data-science" data-focus="ai-ml"
+              class="project-card" data-category="tech ai-ml data-science recommender-systems" data-focus="ai-ml"
               data-title="Restaurant Recommendation System"
               data-description="A recommendation engine that suggests restaurants to users based on their past ratings and preferences. The system is built using collaborative filtering techniques to find similar users and predict ratings."
-              data-tags="AI/ML,Recommendation Systems,Collaborative Filtering,Python"
+              data-tags="AI/ML,Recommendation Systems,Collaborative Filtering,Python,Data Science,Recommenders"
               data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="data-science">Data Science</span>
+                  <span class="repo-badge topic-badge" data-tag="recommender-systems">Recommenders</span>
                 </div>
                 <h4>Restaurant Recommendation System</h4>
                 <p>Collaborative filtering recommendation engine predicting dining preferences based on user ratings & spatial similarity.</p>
@@ -1536,13 +1565,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Sentiment_Analysis_IndoNLU" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Sentiment Analysis with IndoNLU"
+              data-category="tech ai-ml nlp hugging-face" data-focus="ai-ml" data-title="Sentiment Analysis with IndoNLU"
               data-description="This project focuses on sentiment analysis for the Indonesian language by fine-tuning a transformer model from the IndoNLU benchmark. It achieves high accuracy in classifying text into positive, negative, and neutral sentiments."
-              data-tags="AI/ML,NLP,Sentiment Analysis,Hugging Face,IndoNLU" data-button-text="View Repository">
+              data-tags="AI/ML,NLP,Sentiment Analysis,Hugging Face,IndoNLU,PyTorch" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="ai-ml">NLP</span>
+                  <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="nlp">NLP</span>
                 </div>
                 <h4>Sentiment Analysis with IndoNLU</h4>
                 <p>Transformer model fine-tuned on the IndoNLU benchmark for high-accuracy Indonesian sentiment classification.</p>
@@ -1555,13 +1585,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/BudayaKita" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Budayaku - Batik Detection App"
+              data-category="tech ai-ml mobile-ai computer-vision" data-focus="ai-ml" data-title="Budayaku - Batik Detection App"
               data-description="A mobile application that can identify various Indonesian Batik patterns from an image. The app uses a lightweight deep learning model (TensorFlow Lite) for on-device computer vision, celebrating local culture with technology."
-              data-tags="AI/ML,Mobile App,Computer Vision,TensorFlow Lite" data-button-text="View Repository">
+              data-tags="AI/ML,Mobile App,Computer Vision,TensorFlow Lite,Mobile AI" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
-                  <span class="repo-badge sub-badge" data-tag="ai-ml">Mobile AI</span>
+                  <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="mobile-ai">Mobile AI</span>
                 </div>
                 <h4>Budayaku - Batik Pattern Vision App</h4>
                 <p>On-device mobile computer vision app utilizing TensorFlow Lite to classify traditional Indonesian batik patterns.</p>
@@ -1574,13 +1605,15 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Song_Based_Mood_Reccomendation" target="_blank" class="project-card"
-              data-category="tech ai-ml" data-focus="ai-ml" data-title="Mood-Based Song Recommendation"
+              data-category="tech ai-ml nlp recommender-systems" data-focus="ai-ml" data-title="Mood-Based Song Recommendation"
               data-description="A system that recommends songs based on the user's current mood, inferred from text input. The model analyzes audio features and lyrical sentiment to create personalized and emotionally resonant playlists."
-              data-tags="AI/ML,Recommendation Systems,NLP,Audio Processing" data-button-text="View Repository">
+              data-tags="AI/ML,Recommendation Systems,NLP,Audio Processing,Recommenders" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ai-ml">AI/ML</span>
+                  <span class="repo-badge topic-badge" data-tag="nlp">NLP</span>
+                  <span class="repo-badge topic-badge" data-tag="recommender-systems">Recommenders</span>
                 </div>
                 <h4>Mood-Based Song Recommender</h4>
                 <p>Audio feature & lyrical sentiment model generating personalized music playlists matched to text-inferred user moods.</p>
@@ -1593,13 +1626,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Retail_DataExploration" target="_blank" class="project-card"
-              data-category="tech data-science" data-focus="data-science" data-title="Retail Data Exploration"
+              data-category="tech data-science eda analytics" data-focus="data-science" data-title="Retail Data Exploration"
               data-description="An in-depth exploratory data analysis (EDA) of a retail dataset. This project uncovers sales patterns, customer behavior, and product trends through comprehensive data cleaning, analysis, and visualization with Pandas and Seaborn."
-              data-tags="Data Science,EDA,Pandas,Data Visualization,Seaborn" data-button-text="View Repository">
+              data-tags="Data Science,EDA,Pandas,Data Visualization,Seaborn,Analytics" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="data-science">Data Science</span>
+                  <span class="repo-badge topic-badge" data-tag="eda">EDA</span>
                 </div>
                 <h4>Retail Data EDA & Analytics</h4>
                 <p>Comprehensive exploratory data analysis uncovering sales velocity, customer cohort retention, and product affinity.</p>
@@ -1612,14 +1646,15 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Finance_CreditRisk_Analysis" target="_blank" class="project-card"
-              data-category="tech data-science" data-focus="data-science" data-title="Financial Credit Risk Analysis"
+              data-category="tech data-science credit-risk machine-learning" data-focus="data-science" data-title="Financial Credit Risk Analysis"
               data-description="A machine learning model to predict credit default risk for a financial institution. This project involves feature engineering, model training (e.g., Logistic Regression, XGBoost), and evaluation to minimize financial risk."
-              data-tags="Data Science,Machine Learning,Classification,Finance,Scikit-learn"
+              data-tags="Data Science,Machine Learning,Classification,Finance,Scikit-learn,Credit Risk"
               data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="data-science">Data Science</span>
+                  <span class="repo-badge topic-badge" data-tag="credit-risk">Credit Risk</span>
                 </div>
                 <h4>Financial Credit Risk Analysis</h4>
                 <p>Predictive risk scoring pipeline training XGBoost & Logistic Regression models to minimize credit default rates.</p>
@@ -1632,13 +1667,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Covid19_R" target="_blank" class="project-card"
-              data-category="tech data-science" data-focus="data-science" data-title="COVID-19 Data Analysis in R"
+              data-category="tech data-science time-series r-lang" data-focus="data-science" data-title="COVID-19 Data Analysis in R"
               data-description="A time-series analysis and visualization of global COVID-19 data using R. The project tracks the spread of the virus, analyzes trends, and creates insightful dashboards to communicate the pandemic's impact."
               data-tags="Data Science,R,Time Series,Data Visualization,Statistics" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="data-science">Data Science</span>
+                  <span class="repo-badge topic-badge" data-tag="time-series">Time Series</span>
                 </div>
                 <h4>COVID-19 Time Series in R</h4>
                 <p>Epidemiological time-series forecasting & statistical trend dashboard built using R and ggplot2.</p>
@@ -1651,13 +1687,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/Brazil_Ecommerce_Analyze" target="_blank" class="project-card"
-              data-category="tech data-science" data-focus="data-science" data-title="Brazilian E-Commerce Analysis"
+              data-category="tech data-science e-commerce eda" data-focus="data-science" data-title="Brazilian E-Commerce Analysis"
               data-description="A comprehensive analysis of a public Brazilian e-commerce dataset. This project explores customer demographics, order patterns, and seller performance to provide actionable business insights."
               data-tags="Data Science,E-Commerce,EDA,Pandas,Seaborn" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="data-science">Data Science</span>
+                  <span class="repo-badge topic-badge" data-tag="eda">EDA</span>
                 </div>
                 <h4>Brazilian E-Commerce Market Analytics</h4>
                 <p>E-commerce data analytics exploring customer purchasing geography, logistics fulfillment latency, and seller KPIs.</p>
@@ -1670,7 +1707,7 @@
             </a>
 
             <a href="https://www.behance.net/gallery/208440331/Aksara-Aplikasi-Belajar-Bahasa-UIUX-Competition"
-              target="_blank" class="project-card" data-category="tech full-stack ui-ux" data-focus="ui-ux"
+              target="_blank" class="project-card" data-category="tech full-stack ui-ux mobile-app figma" data-focus="ui-ux"
               data-title="Aksara - Language Learning App"
               data-description="A UI/UX case study and prototype for 'Aksara,' a mobile app designed to make learning traditional scripts and languages engaging. The project focuses on user-centered design principles, from wireframing to high-fidelity mockups in Figma."
               data-tags="UI/UX,Case Study,Figma,Prototyping,Mobile App" data-button-text="View on Behance">
@@ -1678,6 +1715,7 @@
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ui-ux">UI/UX</span>
+                  <span class="repo-badge topic-badge" data-tag="mobile-app">Mobile App</span>
                 </div>
                 <h4>Aksara - Script Learning App UI/UX</h4>
                 <p>User-centered UI/UX mobile application case study & interactive prototype for traditional script education in Figma.</p>
@@ -1690,14 +1728,15 @@
             </a>
 
             <a href="https://docs.google.com/presentation/d/1BftMULt-j1IZvnqXvnCkaQREHT3sKRlEKFo9i86eTmA/edit?usp=sharing"
-              target="_blank" class="project-card" data-category="tech full-stack ui-ux" data-focus="ui-ux"
+              target="_blank" class="project-card" data-category="tech full-stack ui-ux wellness figma" data-focus="ui-ux"
               data-title="Lively - Wellness App Concept"
               data-description="A UI/UX design concept for 'Lively,' a wellness and productivity application. This presentation outlines the user research, persona development, and design process for creating an intuitive and calming user interface."
-              data-tags="UI/UX,Design Concept,User Research,Figma" data-button-text="View Presentation">
+              data-tags="UI/UX,Design Concept,User Research,Figma,Wellness" data-button-text="View Presentation">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="ui-ux">UI/UX</span>
+                  <span class="repo-badge topic-badge" data-tag="wellness">Wellness Concept</span>
                 </div>
                 <h4>Lively - Digital Wellness Concept</h4>
                 <p>Productivity & digital mental wellness app design concept featuring comprehensive user research & wireframes.</p>
@@ -1710,13 +1749,14 @@
             </a>
 
             <a href="https://github.com/Bayhaqieee/SIMRS_Project" target="_blank" class="project-card"
-              data-category="tech full-stack" data-focus="full-stack" data-title="Hospital Information System"
+              data-category="tech full-stack web-systems php-mysql" data-focus="full-stack" data-title="Hospital Information System"
               data-description="A full-stack web application for managing hospital operations (Sistem Informasi Manajemen Rumah Sakit). The system includes modules for patient registration, appointment scheduling, and medical records, built with PHP and a SQL database."
-              data-tags="Full Stack,Web App,PHP,MySQL,JavaScript" data-button-text="View Repository">
+              data-tags="Full Stack,Web App,PHP,MySQL,JavaScript,Web Systems" data-button-text="View Repository">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="tech">Tech</span>
                   <span class="repo-badge sub-badge" data-tag="full-stack">Full Stack</span>
+                  <span class="repo-badge topic-badge" data-tag="web-systems">Web Systems</span>
                 </div>
                 <h4>Hospital Management Information System</h4>
                 <p>Full-stack web application orchestrating inpatient registration, appointment scheduling, and medical record EHR databases.</p>
@@ -1729,13 +1769,14 @@
             </a>
 
             <a href="https://www.goodnewsfromindonesia.id/2023/10/10/aiesec-in-unsri-filternesia-1-0" target="_blank"
-              class="project-card" data-category="non-tech" data-focus="social-project" data-title="Filternesia 1.0"
+              class="project-card" data-category="non-tech social-project digital-literacy" data-focus="social-project" data-title="Filternesia 1.0"
               data-description="A social project focused on digital literacy and combating misinformation online. As part of AIESEC, we organized workshops for students to teach critical thinking and fact-checking skills in the digital age."
-              data-tags="Social Impact,Digital Literacy,Event Management,Leadership" data-button-text="Read Article">
+              data-tags="Social Impact,Digital Literacy,Event Management,Leadership,Non-Tech" data-button-text="Read Article">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="non-tech">Non-Tech</span>
                   <span class="repo-badge sub-badge" data-tag="social-project">Social Project</span>
+                  <span class="repo-badge topic-badge" data-tag="digital-literacy">Digital Literacy</span>
                 </div>
                 <h4>Filternesia 1.0</h4>
                 <p>Digital literacy community initiative empowering youth to filter online misinformation and foster digital safety.</p>
@@ -1748,14 +1789,15 @@
             </a>
 
             <a href="https://www.goodnewsfromindonesia.id/2024/03/02/seruni-20-langkah-inisiatif-aiesec-in-unsri-untuk-mendorong-pendidikan-inklusi"
-              target="_blank" class="project-card" data-category="non-tech" data-focus="social-project"
-              data-title="Seruni 2.0"
+              target="_blank" class="project-card" data-category="non-tech social-project inclusive-education"
+              data-focus="social-project" data-title="Seruni 2.0"
               data-description="An initiative to promote inclusive education for underprivileged children. This AIESEC project involved creating learning modules and hosting educational events to provide quality education in line with SDG 4."
-              data-tags="Social Impact,Education,Community,Project Management" data-button-text="Read Article">
+              data-tags="Social Impact,Education,Community,Project Management,Non-Tech" data-button-text="Read Article">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="non-tech">Non-Tech</span>
                   <span class="repo-badge sub-badge" data-tag="social-project">Social Project</span>
+                  <span class="repo-badge topic-badge" data-tag="inclusive-education">Inclusive Education</span>
                 </div>
                 <h4>Seruni 2.0 - Inclusive Education</h4>
                 <p>Educational social impact project delivering specialized learning curricula to underprivileged children in alignment with SDG 4.</p>
@@ -1768,10 +1810,10 @@
             </a>
 
             <a href="https://gdg.community.dev/events/details/google-gdg-on-campus-universitas-sriwijaya-palembang-indonesia-presents-google-cloud-roadshow-2025-palembang-indonesia/"
-              target="_blank" class="project-card" data-category="non-tech" data-focus="event-management"
+              target="_blank" class="project-card" data-category="non-tech event-management community-leadership" data-focus="event-management"
               data-title="Google Cloud Roadshow 2025"
               data-description="Co-organized the Google Cloud Roadshow event in Palembang. My role involved planning, logistics, and promotion to bring together tech enthusiasts and professionals for a day of learning about cloud technologies."
-              data-tags="Event Management,Community,Google Cloud,Public Speaking" data-button-text="View Event Page">
+              data-tags="Event Management,Community,Google Cloud,Public Speaking,Non-Tech" data-button-text="View Event Page">
               <div class="repo-card-inner">
                 <div class="repo-badges">
                   <span class="repo-badge" data-tag="non-tech">Non-Tech</span>
@@ -1789,24 +1831,59 @@
           </div>
         </div>
 
-        <div id="contact" class="scroll-animate">
-          <!-- Fossil #9  left side -->
-          <h2>LET'S WORK <span>TOGETHER</span></h2>
-          <p>Bringing your ideas to life with clean, efficient, and scalable code.</p>
-          <form action="https://formspree.io/f/xqabyqoa" method="POST">
-            <div class="form-row">
-              <input type="text" name="fullName" placeholder="Full Name*" required>
-              <input type="email" name="email" placeholder="Email*" required>
-            </div>
-            <div class="form-row">
-              <input type="tel" name="phone" placeholder="Phone">
-              <input type="text" name="subject" placeholder="Subject">
-            </div>
-            <textarea name="message" placeholder="Message" rows="5"></textarea>
-            <button type="submit" class="btn-talk">LET'S TALK →</button>
-          </form>
-        </div><!-- /#contact -->
+                        <div id="contact" class="scroll-animate">
+          <!-- Section Header -->
+          <div class="contact-header">
+            <h2>LET'S WORK <span class="highlight">TOGETHER</span></h2>
+            <p class="section-subtitle">Have an exciting project, research proposal, or engineering role? Send a message directly below.</p>
+          </div>
 
+          <div class="contact-centered-container">
+            <div class="contact-form-column">
+              <form id="contact-form" action="https://formspree.io/f/xqabyqoa" method="POST">
+                <!-- Anti-spam Honeypot Trap (Hidden from real users) -->
+                <input type="text" name="_gotcha" style="display:none !important;" tabindex="-1" autocomplete="off">
+
+                <div class="form-row">
+                  <div class="input-group">
+                    <label for="fullName">Full Name*</label>
+                    <input type="text" id="fullName" name="fullName" placeholder="Your Name" required>
+                  </div>
+                  <div class="input-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                  </div>
+                </div>
+
+                <div class="form-row">
+                  <div class="input-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+62 812...">
+                  </div>
+                  <div class="input-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="Project Inquiry / Job Role">
+                  </div>
+                </div>
+
+                <div class="input-group full-width">
+                  <label for="message">Your Message*</label>
+                  <textarea id="message" name="message" placeholder="Hi Aditya, I would like to discuss..." rows="5" required></textarea>
+                </div>
+
+                <button type="submit" id="contact-submit-btn" class="btn-talk">
+                  <span class="btn-text">Send Message Direct</span>
+                  <svg class="send-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="22" y1="2" x2="11" y2="13"/>
+                    <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+                  </svg>
+                </button>
+
+                <div id="contact-status-msg" class="contact-status-msg" style="display:none;"></div>
+              </form>
+            </div>
+          </div>
+        </div>
 
       </div><!-- /#content-section -->
 
