@@ -1123,7 +1123,8 @@ body {
   max-width: 110px;
   object-fit: contain;
   filter: brightness(0) invert(0.9) grayscale(1);
-  opacity: 0.65;
+  opacity: 0.28;
+  max-width: 12vw;
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
@@ -3103,17 +3104,36 @@ body {
 .fw-fossil {
   position: absolute;
   pointer-events: none;
-  opacity: 0.65;
+  opacity: 0.28;
+  max-width: 12vw;
   filter: drop-shadow(0 10px 24px rgba(0, 0, 0, 0.6));
 }
 
 /* Side anchoring - peeking from margins */
 .fw-left {
-  left: -20px;
+  left: -75px;
 }
 
 .fw-right {
-  right: -20px;
+  right: -75px;
+}
+
+@media (max-width: 1400px) {
+  .fw-left {
+    left: -100px;
+  }
+  .fw-right {
+    right: -100px;
+  }
+  .fw-fossil {
+    opacity: 0.15;
+  }
+}
+
+@media (max-width: 1180px) {
+  #fossil-wall {
+    display: none;
+  }
 }
 
 /* LEFT fossils — staggered top to bottom (% of #content-section height) */
@@ -3450,7 +3470,8 @@ body {
 .quick-link-item svg {
   color: #eeeeee;
   flex-shrink: 0;
-  opacity: 0.65;
+  opacity: 0.28;
+  max-width: 12vw;
   transition: color 0.25s ease, opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -4623,7 +4644,8 @@ body {
 }
 
 .btn-talk:disabled {
-  opacity: 0.65;
+  opacity: 0.28;
+  max-width: 12vw;
   cursor: not-allowed;
   transform: none;
 }
