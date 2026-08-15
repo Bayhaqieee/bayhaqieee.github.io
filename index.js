@@ -123,8 +123,18 @@
       e.stopPropagation();
       isPinned = !isPinned;
       sidebar.classList.toggle('sidebar-pinned', isPinned);
+      
       sidebar.classList.toggle('sidebar-open',   isPinned);
       pinBtn.setAttribute('title', isPinned ? 'Unpin sidebar' : 'Pin sidebar open');
+    });
+  }
+
+  // Mobile minimize / expand toggle
+  const mobileMinBtn = document.getElementById('sidebar-mobile-minimize-btn');
+  if (mobileMinBtn) {
+    mobileMinBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      sidebar.classList.toggle('sidebar-minimized');
     });
   }
 })();
@@ -1047,6 +1057,18 @@ $(document).ready(function () {
 (function () {
   var searchInput = document.getElementById('project-search-input');
   var countBadge = document.getElementById('project-search-count');
+
+  function updateMobilePlaceholder() {
+    if (searchInput) {
+      if (window.innerWidth <= 550) {
+        searchInput.placeholder = 'Search projects or tech stack...';
+      } else {
+        searchInput.placeholder = 'Search projects by title, tech stack (Python, AI, React...), or topic...';
+      }
+    }
+  }
+  updateMobilePlaceholder();
+  window.addEventListener('resize', updateMobilePlaceholder);
   var primaryBtns = document.querySelectorAll('#primary-filters .primary-btn');
   var subBtns = document.querySelectorAll('#secondary-filters .sub-btn');
   var topicBtns = document.querySelectorAll('#tertiary-filters .topic-btn');
