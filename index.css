@@ -47,7 +47,7 @@ body {
   background-color: #1a1c28;
   background-image:
     linear-gradient(180deg, transparent 0%, transparent 400px, rgba(34, 40, 49, 0.85) 1000px),
-    url('image/soil-texture.png');
+    url('image/soil-texture.webp');
   background-size: auto, 512px auto;
   background-repeat: no-repeat, repeat;
   background-position: top left, top left;
@@ -677,7 +677,7 @@ body {
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: url('image/soil-texture.png');
+  background-image: url('image/soil-texture.webp');
   background-size: 512px auto;
   background-repeat: repeat;
   background-position: top left;
