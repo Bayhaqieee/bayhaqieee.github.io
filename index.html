@@ -7,6 +7,7 @@
   <title>Muhammad Aditya Bayhaqie</title>
   <link rel="icon" href="image/logo.webp">
   <link rel="stylesheet" href="index.css" />
+  <link rel="stylesheet" href="theme.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -43,6 +44,12 @@
         </defs>
       </svg>
       <span class="ql-label">Ask AI</span>
+    </button>
+
+    <!-- Theme toggle: Sun/Moon -->
+    <button id="theme-toggle-btn" class="quick-link-item" aria-label="Toggle Day/Night" data-ql-label="Night Mode">
+      <img src="image/header/crescent-moon.png" alt="" class="theme-icon" width="20" height="20" />
+      <span class="ql-label">Night Mode</span>
     </button>
 
     <!-- 2. Collapse / Expand Arrow Button -->
@@ -253,13 +260,30 @@
         </button>
         <audio id="bg-audio" loop preload="auto"></audio>
       </div>
+      <div data-label="Night Mode" id="sidebar-theme-item">
+        <button class="sidebar-theme-btn" id="sidebar-theme-btn" aria-label="Toggle Day/Night Mode">
+          <img src="image/header/crescent-moon.png" alt="" class="theme-icon" width="22" height="22" />
+        </button>
+      </div>
     </div>
 
 
     <div id="right">
 
-      <!-- NEW PARALLAX HERO SECTION                   -->
+      <!-- NEW PARALLAX HERO SECTION -->
       <section id="hero-scene" aria-label="Hero illustration">
+
+        <!-- Decorative sky accessories: Moon (dark mode) + Sun (day mode) -->
+        <div id="hero-celestial" aria-hidden="true">
+          <div class="celestial-body" id="hero-moon">
+            <div class="celestial-glow moon-glow"></div>
+            <img src="image/header/crescent-moon.png" alt="" class="celestial-img" />
+          </div>
+          <div class="celestial-body" id="hero-sun">
+            <div class="celestial-glow sun-glow"></div>
+            <img src="image/header/sun.png" alt="" class="celestial-img" />
+          </div>
+        </div>
 
         <div id="hero-canvas">
           <!-- Layer 0: Background  BACKMOST, barely moves -->
@@ -2220,6 +2244,28 @@
 
       <h4 style="margin-top: 1.5rem; color: #fd7014;">Tech Stack & Core Tooling</h4>
       <div id="modal-impact-tags" class="card-tags">
+      </div>
+    </div>
+  </div>
+
+  <!-- Light Mode Under Development Alert Modal -->
+  <div id="light-mode-modal" class="modal-overlay">
+    <div class="light-mode-modal-content">
+      <span id="light-mode-modal-close" class="modal-close" title="Close">&times;</span>
+      <div class="light-mode-modal-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fd7014" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+      </div>
+      <h3 class="light-mode-modal-title">Light Mode Under Development</h3>
+      <p class="light-mode-modal-desc">
+        Light Mode is currently under active development. Visual themes, card contrast, and layout elements are still being polished.
+      </p>
+      <div class="light-mode-modal-actions">
+        <button id="btn-continue-light" class="btn-light-modal-primary">Explore Light Mode</button>
+        <button id="btn-stay-dark" class="btn-light-modal-secondary">Switch Back to Dark Mode</button>
       </div>
     </div>
   </div>

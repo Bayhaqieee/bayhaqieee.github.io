@@ -1,7 +1,7 @@
 // Environment Configuration for Aditya Bayhaqie Portfolio AI Assistant
 window.ENV_CONFIG = {
   // Groq API Key (Paste your Groq API key starting with 'gsk_' below or enter it in the Chatbot settings UI)
-  GROQ_API_KEY: process?.env?.GROQ_API_KEY || "",
+  GROQ_API_KEY: (typeof process !== "undefined" && process && process.env && process.env.GROQ_API_KEY) ? process.env.GROQ_API_KEY : "",
 
   // Groq Model (default: fast & intelligent llama-3.3-70b-versatile)
   GROQ_MODEL: "llama-3.3-70b-versatile",

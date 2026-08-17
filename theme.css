@@ -1,0 +1,802 @@
+/* ═══════════════════════════════════════════
+   CELESTIAL SKY ACCESSORIES (Sun / Moon)
+   Orbital Arc Animation & Sky Interactivity
+   ═══════════════════════════════════════════ */
+
+#hero-celestial {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  overflow: hidden;
+}
+
+/* Shared base for both celestial bodies */
+.celestial-body {
+  position: absolute;
+  top: 12%;
+  left: 50%;
+  width: 110px;
+  height: 110px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  cursor: pointer;
+  z-index: 50;
+  transition: opacity 0.75s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.75s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Snap off-left class (instant orbital start position from left sky) */
+.celestial-body.snap-left {
+  opacity: 0 !important;
+  transform: translate(-180%, -40px) rotate(-45deg) scale(0.5) !important;
+  transition: none !important;
+  pointer-events: none !important;
+}
+
+/* Active Orbital Center: centered in sky */
+#hero-moon[data-active="true"],
+#hero-sun[data-active="true"] {
+  opacity: 1 !important;
+  transform: translate(-50%, 0) rotate(0deg) scale(1) !important;
+  pointer-events: auto !important;
+}
+
+/* Orbital Exit Right: curves up & right into horizon */
+#hero-moon[data-active="false"],
+#hero-sun[data-active="false"] {
+  opacity: 0 !important;
+  transform: translate(60vw, -40px) rotate(45deg) scale(0.5) !important;
+  pointer-events: none !important;
+}
+
+/* Initial default positions before JS runs */
+#hero-moon {
+  opacity: 1;
+  transform: translate(-50%, 0) rotate(0deg) scale(1);
+}
+#hero-sun {
+  opacity: 0;
+  transform: translate(-180%, -40px) rotate(-45deg) scale(0.5);
+}
+
+.celestial-img {
+  width: 85px;
+  height: 85px;
+  object-fit: contain;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 20px rgba(253, 160, 40, 0.8));
+  animation: celestial-float 5s ease-in-out infinite;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.celestial-body:hover .celestial-img {
+  transform: scale(1.18) rotate(12deg);
+  filter: drop-shadow(0 0 28px rgba(253, 112, 20, 1));
+}
+
+@keyframes celestial-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.celestial-glow {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: celestial-glow-pulse 3s ease-in-out infinite alternate;
+}
+
+.moon-glow {
+  width: 130px; height: 130px;
+  background: radial-gradient(circle, rgba(180,210,255,0.5) 0%, rgba(120,170,255,0.18) 55%, transparent 80%);
+  animation-duration: 3.5s;
+}
+
+.sun-glow {
+  width: 160px; height: 160px;
+  background: radial-gradient(circle, rgba(255,220,60,0.65) 0%, rgba(255,160,20,0.25) 55%, transparent 80%);
+  animation-duration: 2.8s;
+}
+
+@keyframes celestial-glow-pulse {
+  0%   { transform: translate(-50%,-50%) scale(1);    opacity: 0.7; }
+  100% { transform: translate(-50%,-50%) scale(1.22); opacity: 1;   }
+}
+
+/* ═══════════════════════════════════════════
+   THEME TOGGLE BUTTONS (Quick Links + Sidebar)
+   ═══════════════════════════════════════════ */
+
+#theme-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.theme-icon {
+  object-fit: contain;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+  animation: theme-icon-float 4s ease-in-out infinite alternate;
+}
+
+@keyframes theme-icon-float {
+  0%   { transform: translateY(0) rotate(0deg); }
+  50%  { transform: translateY(-2px) rotate(6deg); }
+  100% { transform: translateY(0) rotate(-3deg); }
+}
+
+#theme-toggle-btn:hover .theme-icon,
+.sidebar-theme-btn:hover .theme-icon {
+  filter: drop-shadow(0 0 10px rgba(253, 112, 20, 0.9));
+  transform: rotate(20deg) scale(1.18);
+  animation: none;
+}
+
+.sidebar-theme-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(253, 112, 20, 0.3);
+  border-radius: 50%;
+  width: 38px; height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar-theme-btn:hover {
+  background: rgba(253, 112, 20, 0.2);
+  border-color: #fd7014;
+  transform: translateY(-2px);
+}
+
+.theme-icon.spinning {
+  animation: theme-spin 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards !important;
+}
+
+@keyframes theme-spin {
+  0%   { transform: rotate(0deg) scale(1); }
+  50%  { transform: rotate(200deg) scale(1.3); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* ═══════════════════════════════════════════
+   FIX CHARACTER IMAGE CONTAINER BACKGROUND
+   Removes weird square box background behind character avatar
+   ═══════════════════════════════════════════ */
+
+.avatar-chara,
+.chara-outside,
+.chara-inside {
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* ═══════════════════════════════════════════
+   CONTACT CARD CONTAINER (DARK & LIGHT MODE)
+   Prevents bottom content cut-off
+   ═══════════════════════════════════════════ */
+
+.contact-dual-container {
+  display: grid !important;
+  grid-template-columns: 1fr 1.2fr !important;
+  gap: 1.8rem !important;
+  align-items: stretch !important;
+}
+
+@media (max-width: 860px) {
+  .contact-dual-container {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.contact-info-card,
+.contact-form-card {
+  padding: 2.2rem 2rem 2.8rem 2rem !important;
+  min-height: 100% !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+}
+
+/* ═══════════════════════════════════════════
+   GLOBAL TRANSITIONS FOR THEME SWITCHING
+   ═══════════════════════════════════════════ */
+
+#home, #organization-card, #about-me-card,
+#news-activity-section, #experience,
+#activities-skills, #skills-card, #project, #contact,
+.content-box, .contact-info-card, .contact-form-card,
+.project-card, .news-card, .skill-item, .cert-card,
+.activity-card, .expertise-card, .domain-card,
+#welcome, .org-slider, .timeline-card {
+  transition:
+    background 0.5s ease,
+    border-color 0.5s ease,
+    box-shadow 0.5s ease,
+    color 0.4s ease;
+}
+
+.fw-fossil {
+  transition: filter 0.6s ease, opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* ═══════════════════════════════════════════
+   LIGHT MODE STYLING: AMBER STRATUM
+   ═══════════════════════════════════════════ */
+
+/* Section Outer Divs background overrides */
+body.light-mode #news-activity-section,
+body.light-mode #experience,
+body.light-mode #activities-skills,
+body.light-mode #project,
+body.light-mode #contact {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 1. HOME CARD & ORGANIZATIONS & COLLABORATIONS: WHITE/LIGHT SAND FILL */
+body.light-mode #home,
+body.light-mode #welcome,
+body.light-mode #organization-card,
+body.light-mode .org-slider,
+body.light-mode #about-me-card {
+  background: rgba(246, 241, 232, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: none !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2) !important;
+  color: #1c1610 !important;
+}
+
+/* Organizations Card: Black Font, Dark Logos & Dark Pills */
+body.light-mode #organization-card .org-slider-header span,
+body.light-mode .org-slider-header span,
+body.light-mode .org-slider-header h2,
+body.light-mode .org-slider-header h3 {
+  color: #1c1610 !important;
+  font-weight: 700 !important;
+  text-shadow: none !important;
+}
+
+body.light-mode .activity-item img,
+body.light-mode .org-logo,
+body.light-mode .company-logo {
+  filter: none !important;
+  opacity: 0.95 !important;
+}
+
+body.light-mode .org-pill,
+body.light-mode .org-slider-item {
+  background: rgba(30, 24, 18, 0.08) !important;
+  color: #1c1610 !important;
+  border: none !important;
+}
+
+/* Home Section Text */
+body.light-mode #welcome h2,
+body.light-mode #welcome .welcome-greeting-title,
+body.light-mode #about-me-card h2 {
+  color: #1c1610 !important;
+  text-shadow: none !important;
+}
+
+body.light-mode #welcome p,
+body.light-mode #welcome span,
+body.light-mode #welcome .welcome-tagline,
+body.light-mode #about-me-card p,
+body.light-mode #about-me-card .description {
+  color: #2e251c !important;
+}
+
+body.light-mode .welcome-stats-row {
+  background: rgba(253, 112, 20, 0.12) !important;
+  border: none !important;
+}
+
+body.light-mode .stat-number {
+  color: #fd7014 !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode .stat-label {
+  color: #402a14 !important;
+  font-weight: 600 !important;
+}
+
+/* Section Canvas Titles */
+body.light-mode #news-activity-section h2,
+body.light-mode #news-activity-section h3,
+body.light-mode #experience h2,
+body.light-mode #activities-skills h2,
+body.light-mode #project h2,
+body.light-mode #contact h2,
+body.light-mode .section-header h2,
+body.light-mode #about .expertise-header h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.light-mode .highlight,
+body.light-mode .text-accent,
+body.light-mode .hero-title-accent,
+body.light-mode .accent-text,
+body.light-mode [class*="highlight"] {
+  color: #fd7014 !important;
+}
+
+body.light-mode .section-subtitle,
+body.light-mode .expertise-subtitle {
+  color: #d8caad !important;
+}
+
+/* 2. TECHNICAL PUBLICATIONS & LINKEDIN UPDATES: DARK TITLES */
+body.light-mode .news-card,
+body.light-mode .github-card,
+body.light-mode .publication-card,
+body.light-mode #news-card-medium,
+body.light-mode #news-card-linkedin,
+body.light-mode #github-news-grid .news-card {
+  background: rgba(246, 241, 232, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: none !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18) !important;
+}
+
+body.light-mode .news-card h3,
+body.light-mode .news-card h4,
+body.light-mode .news-card .news-title,
+body.light-mode #medium-title,
+body.light-mode #linkedin-title,
+body.light-mode .publication-card h3,
+body.light-mode .news-block-header h3 {
+  color: #1c1610 !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode .news-card p,
+body.light-mode #medium-snippet,
+body.light-mode #linkedin-snippet,
+body.light-mode .news-card .repo-desc {
+  color: #2e251c !important;
+}
+
+body.light-mode .news-date,
+body.light-mode #medium-date,
+body.light-mode #linkedin-date {
+  color: #5c4834 !important;
+}
+
+body.light-mode .news-badge,
+body.light-mode .medium-badge,
+body.light-mode .linkedin-badge,
+body.light-mode .repo-badge {
+  background: rgba(253, 112, 20, 0.14) !important;
+  color: #d95300 !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+body.light-mode .news-tag-pill {
+  background: rgba(253, 112, 20, 0.12) !important;
+  color: #c44e00 !important;
+  border: none !important;
+}
+
+body.light-mode .news-action-btn,
+body.light-mode #medium-link,
+body.light-mode #linkedin-link,
+body.light-mode .repo-link {
+  color: #fd7014 !important;
+  font-weight: 600 !important;
+}
+
+/* 3. ACTIVITIES & SKILLS SECTION: BLACK FONT, WHITE TECHNICAL SKILLS CARD, TRANSPARENT SKILL LOGOS */
+body.light-mode #activities-skills .content-box,
+body.light-mode .activities-grid .content-box,
+body.light-mode #skills-card,
+body.light-mode #skills-container {
+  background: rgba(246, 241, 232, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: none !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18) !important;
+  color: #1c1610 !important;
+}
+
+body.light-mode #activities-skills h3,
+body.light-mode #activities-skills h4,
+body.light-mode .content-box h3,
+body.light-mode .content-box h4,
+body.light-mode .activity-details h4,
+body.light-mode .activity-details h3,
+body.light-mode .cert-title,
+body.light-mode .skill-category h4 {
+  color: #1c1610 !important;
+  text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode #activities-skills p,
+body.light-mode #activities-skills li,
+body.light-mode .content-box p,
+body.light-mode .content-box li,
+body.light-mode .activity-details p,
+body.light-mode .activity-details span {
+  color: #2e251c !important;
+}
+
+/* Technical Skills: Remove white square background on skill logo icons */
+body.light-mode .skill-item,
+body.light-mode #skills-container .skill-item,
+body.light-mode .skills-grid .skill-item {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .skill-item img,
+body.light-mode #skills-container .skill-item img {
+  filter: none !important;
+  background: transparent !important;
+}
+
+/* Certifications Inner Items */
+body.light-mode .cert-item {
+  background: rgba(253, 112, 20, 0.08) !important;
+  border: 1px solid rgba(253, 112, 20, 0.2) !important;
+  color: #1c1610 !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .cert-item .cert-title {
+  color: #1c1610 !important;
+}
+
+/* 4. PROFESSIONAL EXPERIENCE (#experience) */
+body.light-mode .timeline-card,
+body.light-mode .timeline-card-container .timeline-card {
+  background: rgba(246, 241, 232, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: none !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18) !important;
+}
+
+body.light-mode .timeline-card .card-title,
+body.light-mode .timeline-card h3 {
+  color: #1c1610 !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode .timeline-card .card-company {
+  color: #fd7014 !important;
+  font-weight: 600 !important;
+}
+
+body.light-mode .timeline-card .card-description,
+body.light-mode .timeline-card p {
+  color: #2e251c !important;
+}
+
+body.light-mode .timeline-card .card-date,
+body.light-mode .timeline-card .card-click-hint {
+  color: #5c4834 !important;
+}
+
+body.light-mode .timeline-card .tag-link,
+body.light-mode .timeline-card .card-tags span {
+  background: rgba(253, 112, 20, 0.14) !important;
+  color: #d95300 !important;
+  border: none !important;
+  font-weight: 600 !important;
+}
+
+body.light-mode .timeline-line {
+  background: rgba(253, 112, 20, 0.4) !important;
+}
+
+body.light-mode .timeline-point {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+body.light-mode .timeline-item.active .timeline-point,
+body.light-mode .timeline-item.active-step .timeline-point {
+  background: #fd7014 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 14px rgba(253, 112, 20, 0.5) !important;
+}
+
+body.light-mode #prev-btn.timeline-btn {
+  background: rgba(255, 255, 255, 0.9) !important;
+  color: #1c1610 !important;
+  border: none !important;
+}
+
+body.light-mode #next-btn.timeline-btn {
+  background: linear-gradient(135deg, #fd7014, #e05300) !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* 5. PORTFOLIO PROJECTS (#project) */
+body.light-mode .project-card {
+  background: rgba(246, 241, 232, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: none !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.18) !important;
+  color: #1c1610 !important;
+}
+
+body.light-mode .project-card h3 {
+  color: #1c1610 !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode .project-card p {
+  color: #2e251c !important;
+}
+
+/* 6. CONTACT SECTION (#contact) IN LIGHT MODE */
+body.light-mode .contact-info-card,
+body.light-mode .contact-form-card {
+  background: rgba(246, 241, 232, 0.96) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: none !important;
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.18) !important;
+  color: #1c1610 !important;
+}
+
+body.light-mode .contact-info-card h3,
+body.light-mode .contact-form-card h3,
+body.light-mode .form-card-header h3,
+body.light-mode .contact-title-accent {
+  color: #1c1610 !important;
+  font-weight: 700 !important;
+}
+
+body.light-mode .contact-info-card p,
+body.light-mode .contact-form-card p,
+body.light-mode .contact-desc,
+body.light-mode .form-card-header p {
+  color: #2e251c !important;
+}
+
+body.light-mode input,
+body.light-mode textarea,
+body.light-mode select {
+  background: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(180, 120, 40, 0.3) !important;
+  color: #1c1610 !important;
+}
+
+body.light-mode input:focus,
+body.light-mode textarea:focus,
+body.light-mode select:focus {
+  border-color: #fd7014 !important;
+  box-shadow: 0 0 0 3px rgba(253, 112, 20, 0.2) !important;
+  outline: none !important;
+}
+
+body.light-mode input::placeholder,
+body.light-mode textarea::placeholder {
+  color: #8e7862 !important;
+}
+
+body.light-mode .contact-meta-card {
+  background: rgba(253, 112, 20, 0.08) !important;
+  border: none !important;
+}
+
+body.light-mode .contact-meta-card h5,
+body.light-mode .contact-meta-card p,
+body.light-mode .contact-meta-card span {
+  color: #1c1610 !important;
+}
+
+body.light-mode .contact-social-btn {
+  background: rgba(30, 24, 18, 0.08) !important;
+  color: #1c1610 !important;
+  border: none !important;
+}
+
+body.light-mode .contact-response-badge {
+  color: #5c4834 !important;
+  border-top-color: rgba(30, 24, 18, 0.1) !important;
+}
+
+/* 7. AREAS OF EXPERTISE SECTION (#about / .expertise-header) */
+body.light-mode #about .expertise-header h2 {
+  color: #ffffff !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6) !important;
+}
+
+body.light-mode #about .expertise-header h2 .highlight {
+  color: #fd7014 !important;
+}
+
+body.light-mode #about .expertise-subtitle {
+  color: #d8caad !important;
+}
+
+body.light-mode .expertise-gallery .gallery-item,
+body.light-mode .expertise-card,
+body.light-mode .domain-card {
+  background: rgba(30, 38, 52, 0.85) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(253, 112, 20, 0.35) !important;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45) !important;
+}
+
+body.light-mode .gallery-item h3,
+body.light-mode .gallery-item .item-title,
+body.light-mode .expertise-card h3,
+body.light-mode .expertise-card .card-title {
+  color: #ffffff !important;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.light-mode .gallery-item p,
+body.light-mode .gallery-item .item-desc,
+body.light-mode .expertise-card p,
+body.light-mode .expertise-card .card-desc {
+  color: #d4c8b6 !important;
+}
+
+body.light-mode .carousel-nav-btn,
+body.light-mode #exp-prev-btn,
+body.light-mode #exp-next-btn {
+  background: rgba(253, 112, 20, 0.18) !important;
+  border: 1px solid rgba(253, 112, 20, 0.4) !important;
+  color: #fd7014 !important;
+}
+
+body.light-mode .carousel-nav-btn:hover {
+  background: linear-gradient(135deg, #fd7014, #e05300) !important;
+  color: #ffffff !important;
+}
+
+/* Filter & Category Buttons on Canvas */
+body.light-mode .filter-btn,
+body.light-mode .category-btn,
+body.light-mode .domain-btn {
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: none !important;
+  color: #e2d5c3 !important;
+}
+
+body.light-mode .filter-btn:hover,
+body.light-mode .category-btn:hover,
+body.light-mode .domain-btn:hover {
+  background: rgba(253, 112, 20, 0.2) !important;
+  color: #ffffff !important;
+}
+
+body.light-mode .filter-btn.active,
+body.light-mode .filter-btn.active-filter,
+body.light-mode .category-btn.active,
+body.light-mode .domain-btn.active {
+  background: linear-gradient(135deg, #fd7014, #e05300) !important;
+  border: none !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 15px rgba(253, 112, 20, 0.3) !important;
+}
+
+/* Sidebar */
+body.light-mode #sidebar {
+  background: rgba(246, 241, 232, 0.96) !important;
+  border: none !important;
+  box-shadow: 4px 0 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+body.light-mode #sidebar a,
+body.light-mode #sidebar span,
+body.light-mode .sidebar-nav-label {
+  color: #2e251c !important;
+}
+
+body.light-mode #sidebar a:hover {
+  color: #fd7014 !important;
+  background: rgba(253, 112, 20, 0.1) !important;
+}
+
+/* Quick Links Bar in Light Mode */
+body.light-mode #quick-links {
+  background: rgba(246, 241, 232, 0.95) !important;
+  border: none !important;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode #quick-links::before {
+  background: rgba(253, 112, 20, 0.25) !important;
+}
+
+body.light-mode #ql-collapse-btn {
+  color: #5c4228 !important;
+}
+
+body.light-mode #ql-collapse-btn:hover {
+  color: #fd7014 !important;
+  background: rgba(253, 112, 20, 0.12) !important;
+}
+
+body.light-mode .quick-link-item {
+  color: #1c1610 !important;
+}
+
+body.light-mode .quick-link-item svg {
+  color: #4a3420 !important;
+  fill: currentColor !important;
+  opacity: 0.85 !important;
+}
+
+body.light-mode .quick-link-item:hover {
+  background: rgba(253, 112, 20, 0.15) !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .quick-link-item:hover svg {
+  color: #fd7014 !important;
+  opacity: 1 !important;
+}
+
+body.light-mode .quick-link-item.ql-active {
+  background: rgba(253, 112, 20, 0.2) !important;
+  box-shadow: none !important;
+}
+
+body.light-mode .quick-link-item.ql-active svg {
+  color: #fd7014 !important;
+  opacity: 1 !important;
+}
+
+body.light-mode .ql-label {
+  background: rgba(250, 246, 238, 0.98) !important;
+  color: #1c1610 !important;
+  border: none !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15) !important;
+}
+
+body.light-mode .ql-label::after {
+  border-color: transparent transparent transparent rgba(250, 246, 238, 0.98) !important;
+}
+
+body.light-mode .dropdown-menu {
+  background: rgba(250, 246, 238, 0.98) !important;
+  border: none !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18) !important;
+}
+
+body.light-mode .dropdown-item {
+  color: #1c1610 !important;
+}
+
+body.light-mode .dropdown-item:hover {
+  background: rgba(253, 112, 20, 0.12) !important;
+  color: #fd7014 !important;
+}
+
+/* Fossils Backdrop in Light Mode */
+body.light-mode .fw-fossil {
+  opacity: 0.8 !important;
+  filter: sepia(0.2) saturate(0.9) brightness(0.9) !important;
+}

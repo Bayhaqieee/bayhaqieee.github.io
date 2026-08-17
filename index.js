@@ -1693,3 +1693,189 @@ $(document).ready(function () {
 })();
 
 
+/* ══════════════════════════════════════════════════════
+   DAY / NIGHT THEME TOGGLE
+   ══════════════════════════════════════════════════════ */
+(function initTheme() {
+  var STORAGE_KEY   = 'portfolio-theme';
+  var heroCelestial = document.getElementById('hero-celestial');
+  var heroMoon      = document.getElementById('hero-moon');
+  var heroSun       = document.getElementById('hero-sun');
+  var heroBgImg     = document.querySelector('#layer-bg img');
+  var themeBtn      = document.getElementById('theme-toggle-btn');
+  var sidebarBtn    = document.getElementById('sidebar-theme-btn');
+
+  var SRC_MOON = 'image/header/crescent-moon.png';
+  var SRC_SUN  = 'image/header/sun.png';
+  var BG_NIGHT = 'image/header/selected-bg.webp';
+  var BG_DAY   = 'image/header/selected-bg-sunny.jpg';
+
+  var isAnimating = false;
+  /* Always force Dark Mode as default on website launch */
+  var currentTheme = 'dark';
+  localStorage.setItem(STORAGE_KEY, 'dark');
+
+  var lightModal       = document.getElementById('light-mode-modal');
+  var lightModalClose  = document.getElementById('light-mode-modal-close');
+  var btnContinueLight = document.getElementById('btn-continue-light');
+  var btnStayDark      = document.getElementById('btn-stay-dark');
+
+  function showLightModeModal() {
+    if (lightModal) lightModal.classList.add('active');
+  }
+
+  function hideLightModeModal() {
+    if (lightModal) lightModal.classList.remove('active');
+  }
+
+  if (lightModalClose)  lightModalClose.addEventListener('click', hideLightModeModal);
+  if (btnContinueLight) btnContinueLight.addEventListener('click', hideLightModeModal);
+  if (btnStayDark) {
+    btnStayDark.addEventListener('click', function () {
+      hideLightModeModal();
+      switchTheme('dark');
+    });
+  }
+
+  /* ── Apply theme without animation (initial load) ── */
+  function setInitial(theme) {
+    var isLight = theme === 'light';
+    if (isLight) {
+      document.body.classList.add('light-mode');
+    } else {
+      document.body.classList.remove('light-mode');
+    }
+
+    if (heroMoon) heroMoon.removeAttribute('style');
+    if (heroSun)  heroSun.removeAttribute('style');
+
+    if (heroMoon) heroMoon.setAttribute('data-active', isLight ? 'false' : 'true');
+    if (heroSun)  heroSun.setAttribute('data-active', isLight ? 'true' : 'false');
+
+    if (heroBgImg) heroBgImg.src = isLight ? BG_DAY : BG_NIGHT;
+
+    updateFossilImages(isLight);
+    updateIcons(isLight);
+  }
+
+  /* ── Swap fossil background accessories between Day (.webp) and Night (-navy.webp) ── */
+  function updateFossilImages(isLight) {
+    var fossilImgs = document.querySelectorAll('img[src*="fossils-"]');
+    fossilImgs.forEach(function(img) {
+      var src = img.getAttribute('src');
+      if (!src) return;
+      if (isLight) {
+        var newSrc = src.replace('-navy.webp', '.webp').replace('-navy.png', '.png');
+        if (newSrc !== src) img.src = newSrc;
+      } else {
+        if (src.indexOf('-navy') === -1) {
+          var newSrc = src.replace('.webp', '-navy.webp').replace('.png', '-navy.png');
+          img.src = newSrc;
+        }
+      }
+    });
+  }
+
+  /* ── Animated theme switch ── */
+  function switchTheme(toTheme) {
+    if (isAnimating) return;
+    isAnimating = true;
+
+    var isLight = toTheme === 'light';
+    currentTheme = toTheme;
+    localStorage.setItem(STORAGE_KEY, toTheme);
+
+    if (isLight) {
+      document.body.classList.add('light-mode');
+      showLightModeModal();
+    } else {
+      document.body.classList.remove('light-mode');
+      hideLightModeModal();
+    }
+
+    updateFossilImages(isLight);
+
+    var outgoing = isLight ? heroMoon : heroSun;
+    var incoming = isLight ? heroSun  : heroMoon;
+
+    if (outgoing) outgoing.removeAttribute('style');
+    if (incoming) incoming.removeAttribute('style');
+
+    /* 1. Slide outgoing off to right */
+    if (outgoing) {
+      outgoing.setAttribute('data-active', 'false');
+    }
+
+    /* 2. Position incoming off-screen left, then trigger CSS slide to center */
+    if (incoming) {
+      incoming.classList.add('snap-left');
+      void incoming.offsetWidth; // Force DOM reflow
+      incoming.classList.remove('snap-left');
+      incoming.setAttribute('data-active', 'true');
+    }
+
+    /* Crossfade hero background image */
+    if (heroBgImg) {
+      var targetSrc = isLight ? BG_DAY : BG_NIGHT;
+      if (heroBgImg.getAttribute('src') !== targetSrc) {
+        heroBgImg.style.transition = 'opacity 0.4s ease';
+        heroBgImg.style.opacity    = '0';
+        setTimeout(function () {
+          heroBgImg.src           = targetSrc;
+          heroBgImg.style.opacity = '1';
+        }, 350);
+      }
+    }
+
+    spinIcons();
+    setTimeout(function () { updateIcons(isLight); }, 300);
+
+    /* Unlock state & clean inline styles after transition completes */
+    setTimeout(function() {
+      if (outgoing) outgoing.removeAttribute('style');
+      if (incoming) incoming.removeAttribute('style');
+      isAnimating = false;
+    }, 700);
+  }
+
+  /* ── Update all toggle-button icons ── */
+  function updateIcons(isLight) {
+    var icons = document.querySelectorAll('.theme-icon');
+    icons.forEach(function (ic) {
+      ic.src = isLight ? SRC_SUN : SRC_MOON;
+    });
+    var themeLabel = document.querySelector('#theme-toggle-btn .ql-label');
+    var sidebarItem = document.getElementById('sidebar-theme-item');
+    if (themeLabel)  themeLabel.textContent = isLight ? 'Day Mode'   : 'Night Mode';
+    if (sidebarItem) sidebarItem.setAttribute('data-label', isLight ? 'Day Mode' : 'Night Mode');
+  }
+
+  /* ── Brief spin on icons ── */
+  function spinIcons() {
+    var icons = document.querySelectorAll('.theme-icon');
+    icons.forEach(function (ic) {
+      ic.classList.add('spinning');
+      setTimeout(function () { ic.classList.remove('spinning'); }, 650);
+    });
+  }
+
+  /* ── Wire up click handlers ── */
+  function onToggle(e) {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    switchTheme(currentTheme === 'dark' ? 'light' : 'dark');
+  }
+
+  if (themeBtn)      themeBtn.addEventListener('click', onToggle);
+  if (sidebarBtn)    sidebarBtn.addEventListener('click', onToggle);
+  if (heroCelestial) heroCelestial.addEventListener('click', onToggle);
+  if (heroMoon)      heroMoon.addEventListener('click', onToggle);
+  if (heroSun)       heroSun.addEventListener('click', onToggle);
+
+  /* Force Dark Mode on initial load */
+  setInitial('dark');
+}());
+
+
