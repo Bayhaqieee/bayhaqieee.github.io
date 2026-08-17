@@ -267,38 +267,6 @@ $(document).ready(function () {
     });
   }
 
-  // Project Filter Functionality
-  const primaryFilters = $('#primary-filters .filter-btn');
-  const secondaryFilters = $('#secondary-filters');
-  const projectCards = $('.project-card');
-
-  primaryFilters.on('click', function() {
-    primaryFilters.removeClass('active');
-    $(this).addClass('active');
-    const primaryFilterValue = $(this).data('filter');
-    projectCards.hide(); // Hide all cards first
-
-    if (primaryFilterValue === 'tech') {
-      secondaryFilters.removeClass('hidden');
-      secondaryFilters.find('.filter-btn').removeClass('active');
-      projectCards.filter('[data-category="tech"]').show();
-    } else {
-      secondaryFilters.addClass('hidden');
-      if (primaryFilterValue === 'all') {
-        projectCards.show();
-      } else {
-        projectCards.filter(`[data-category="${primaryFilterValue}"]`).show();
-      }
-    }
-  });
-
-  secondaryFilters.find('.filter-btn').on('click', function() {
-    secondaryFilters.find('.filter-btn').removeClass('active');
-    $(this).addClass('active');
-    const secondaryFilterValue = $(this).data('filter');
-    projectCards.hide().filter(`[data-focus="${secondaryFilterValue}"]`).show();
-  });
-
 
   // Quick Links Dropdown Functionality
   const dropdownToggle = $('.more-btn');
