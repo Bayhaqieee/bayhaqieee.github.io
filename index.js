@@ -1705,10 +1705,10 @@ $(document).ready(function () {
   var themeBtn      = document.getElementById('theme-toggle-btn');
   var sidebarBtn    = document.getElementById('sidebar-theme-btn');
 
-  var SRC_MOON = 'image/header/crescent-moon.png';
-  var SRC_SUN  = 'image/header/sun.png';
+  var SRC_MOON = 'image/header/crescent-moon.webp';
+  var SRC_SUN  = 'image/header/sun.webp';
   var BG_NIGHT = 'image/header/selected-bg.webp';
-  var BG_DAY   = 'image/header/selected-bg-sunny.jpg';
+  var BG_DAY   = 'image/header/selected-bg-sunny.webp';
 
   var isAnimating = false;
   /* Always force Dark Mode as default on website launch */
@@ -1721,11 +1721,19 @@ $(document).ready(function () {
   var btnStayDark      = document.getElementById('btn-stay-dark');
 
   function showLightModeModal() {
-    if (lightModal) lightModal.classList.add('active');
+    if (lightModal) {
+      lightModal.classList.add('show');
+      lightModal.classList.add('active');
+      lightModal.style.display = 'flex';
+    }
   }
 
   function hideLightModeModal() {
-    if (lightModal) lightModal.classList.remove('active');
+    if (lightModal) {
+      lightModal.classList.remove('show');
+      lightModal.classList.remove('active');
+      lightModal.style.display = 'none';
+    }
   }
 
   if (lightModalClose)  lightModalClose.addEventListener('click', hideLightModeModal);

@@ -3752,7 +3752,8 @@ html::-webkit-scrollbar-corner {
 }
 
 .modal-overlay.show,
-.modal-overlay.visible {
+.modal-overlay.visible,
+.modal-overlay.active {
   display: flex !important;
   opacity: 1 !important;
   visibility: visible !important;
